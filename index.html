@@ -37,7 +37,8 @@
     <section class="hero">
       <h1>Hi, I'm Yehia Ibrahim</h1>
       <p>
-        I'm a software developer with a passion for building impactful projects.
+        I'm a software developer with a passion for building impactful projects
+        that solve real-world problems.
       </p>
       <a href="#projects" class="btn">View My Work</a>
     </section>
@@ -46,9 +47,15 @@
     <section id="about">
       <h2>About Me</h2>
       <p>
-        I'm a Computer Science student based in Abu Dhabi with a background in
-        software development and project management. I specialize in building
-        web applications, data analysis, and cloud-based solutions.
+        I'm a Computer Science student based in Abu Dhabi with a strong
+        background in software development and project management. I specialize
+        in building web applications, data analysis, and cloud-based solutions.
+      </p>
+      <p>
+        With a keen interest in emerging technologies, I continuously seek out
+        opportunities to expand my skill set and keep up with trends in the tech
+        industry. I am dedicated to delivering high-quality solutions that meet
+        user needs.
       </p>
     </section>
 
@@ -59,25 +66,44 @@
         <div class="project">
           <h3>Publishing Company - Power BI</h3>
           <p>
-            Designed a Database Management System for a publishing company...
+            Designed a Database Management System for a publishing company to
+            streamline operations and improve data accessibility.
           </p>
         </div>
         <div class="project">
           <h3>SIC-XE Assembler - Python</h3>
           <p>
-            Developed a SIC/XE assembler for converting assembly language...
+            Developed a SIC/XE assembler for converting assembly language
+            programs into machine code, enhancing understanding of low-level
+            programming.
           </p>
         </div>
         <div class="project">
           <h3>RMI Internode Communication - Java</h3>
           <p>
-            Developed a distributed file system that supports file sharing...
+            Created a distributed file system that supports file sharing across
+            multiple nodes, utilizing Java's Remote Method Invocation (RMI).
           </p>
         </div>
         <div class="project">
           <h3>Computer Guardian - HTML, CSS, JS</h3>
           <p>
-            Comprehensive platform for custom computer building and component...
+            Developed a comprehensive platform for custom computer building,
+            allowing users to select and compare components.
+          </p>
+        </div>
+        <div class="project">
+          <h3>Weather App - React</h3>
+          <p>
+            Built a responsive weather application using React and API
+            integration to provide real-time weather updates and forecasts.
+          </p>
+        </div>
+        <div class="project">
+          <h3>Task Manager - Flask</h3>
+          <p>
+            Designed a task management web application that helps users organize
+            their tasks, set deadlines, and track progress.
           </p>
         </div>
       </div>
@@ -87,10 +113,12 @@
     <section id="skills">
       <h2>Technical Skills</h2>
       <ul>
-        <li>Languages: Python, Java, Go, C++, SQL</li>
-        <li>Web Development: HTML, CSS, JavaScript, Flask</li>
+        <li>Programming Languages: Python, Java, Go, C++, SQL</li>
+        <li>Web Development: HTML, CSS, JavaScript, Flask, React</li>
         <li>Machine Learning: TensorFlow, Keras, PyTorch, Azure ML</li>
-        <li>DevOps: Docker, AWS, CI/CD</li>
+        <li>DevOps: Docker, AWS, CI/CD, Jenkins</li>
+        <li>Database Management: MySQL, MongoDB, PostgreSQL</li>
+        <li>Version Control: Git, GitHub</li>
       </ul>
     </section>
 
@@ -113,8 +141,20 @@
           <h3>Machine Learning</h3>
           <p>
             Create and optimize machine learning models for various
-            applications.
+            applications, including predictive analytics.
           </p>
+        </div>
+        <div class="service">
+          <i class="fas fa-tools"></i>
+          <h3>Technical Consulting</h3>
+          <p>
+            Provide expert advice on software architecture and best practices.
+          </p>
+        </div>
+        <div class="service">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Mobile Development</h3>
+          <p>Develop cross-platform mobile applications for iOS and Android.</p>
         </div>
       </div>
     </section>
@@ -136,6 +176,13 @@
             the results were amazing!"
           </p>
           <cite>- Client B</cite>
+        </blockquote>
+        <blockquote>
+          <p>
+            "Working with Yehia was a pleasure. He brought innovative ideas and
+            executed them flawlessly."
+          </p>
+          <cite>- Client C</cite>
         </blockquote>
       </div>
     </section>
@@ -165,10 +212,13 @@
 
     <!-- Script for Mobile Menu Toggle -->
     <script>
-      const menuToggle = document.querySelector(".menu-toggle");
-      const navLinks = document.querySelector(".nav-links");
-      menuToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
+      window.addEventListener("scroll", function () {
+        const nav = document.querySelector("nav");
+        if (window.scrollY > 50) {
+          nav.classList.add("scrolled");
+        } else {
+          nav.classList.remove("scrolled");
+        }
       });
     </script>
   </body>
