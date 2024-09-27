@@ -34,12 +34,14 @@
 
     <!-- Hero Section -->
     <section class="hero">
-      <h1>Hi, I'm Yehia Ibrahim</h1>
-      <p>
-        I'm a software developer with a passion for building impactful projects
-        that solve real-world problems.
-      </p>
-      <a href="#projects" class="btn">View My Work</a>
+      <div class="hero-content">
+        <h1>Hi, I'm Yehia Ibrahim</h1>
+        <p>
+          I'm a software developer passionate about building impactful projects.
+        </p>
+        <a href="#projects" class="btn">View My Work</a>
+      </div>
+      <div class="hero-image"></div>
     </section>
 
     <!-- About Me Section -->
@@ -47,14 +49,10 @@
       <h2>About Me</h2>
       <p>
         I'm a Computer Science student based in Abu Dhabi with a strong
-        background in software development and project management. I specialize
-        in building web applications, data analysis, and cloud-based solutions.
+        background in software development and project management.
       </p>
       <p>
-        With a keen interest in emerging technologies, I continuously seek out
-        opportunities to expand my skill set and keep up with trends in the tech
-        industry. I am dedicated to delivering high-quality solutions that meet
-        user needs.
+        I'm dedicated to delivering high-quality solutions that meet user needs.
       </p>
     </section>
 
@@ -62,92 +60,37 @@
     <section id="projects">
       <h2>Projects</h2>
       <div class="project-list">
+        <!-- Project items go here -->
         <div class="project">
-          <h3>Publishing Company - Power BI</h3>
-          <p>
-            Designed a Database Management System for a publishing company to
-            streamline operations and improve data accessibility.
-          </p>
+          <h3>Project Title</h3>
+          <p>Short description of the project.</p>
           <a href="#" class="btn-primary">View Project</a>
         </div>
-        <div class="project">
-          <h3>SIC-XE Assembler - Python</h3>
-          <p>
-            Developed a SIC/XE assembler for converting assembly language
-            programs into machine code, enhancing understanding of low-level
-            programming.
-          </p>
-          <a href="#" class="btn-primary">View Project</a>
-        </div>
-        <div class="project">
-          <h3>RMI Internode Communication - Java</h3>
-          <p>
-            Created a distributed file system that supports file sharing across
-            multiple nodes, utilizing Java's Remote Method Invocation (RMI).
-          </p>
-          <a href="#" class="btn-primary">View Project</a>
-        </div>
-        <div class="project">
-          <h3>Computer Guardian - HTML, CSS, JS</h3>
-          <p>
-            Developed a comprehensive platform for custom computer building,
-            allowing users to select and compare components.
-          </p>
-          <a href="#" class="btn-primary">View Project</a>
-        </div>
-        <div class="project">
-          <h3>Weather App - React</h3>
-          <p>
-            Built a responsive weather application using React and API
-            integration to provide real-time weather updates and forecasts.
-          </p>
-          <a href="#" class="btn-primary">View Project</a>
-        </div>
-        <div class="project">
-          <h3>Task Manager - Flask</h3>
-          <p>
-            Designed a task management web application that helps users organize
-            their tasks, set deadlines, and track progress.
-          </p>
-          <a href="#" class="btn-primary">View Project</a>
-        </div>
+        <!-- Repeat project items as needed -->
       </div>
     </section>
 
     <!-- Skills Section -->
     <section id="skills">
       <h2>Technical Skills</h2>
-      <div class="skills-grid">
+      <div class="skills-container">
         <div class="skill">
-          <i class="fas fa-code"></i>
-          <h3>Programming Languages</h3>
-          <p>Python, Java, Go, C++, SQL</p>
+          <h3>HTML</h3>
+          <div class="skill-bar"><div class="skill-level html"></div></div>
         </div>
         <div class="skill">
-          <i class="fas fa-laptop"></i>
-          <h3>Web Development</h3>
-          <p>HTML, CSS, JavaScript, Flask, React</p>
+          <h3>CSS</h3>
+          <div class="skill-bar"><div class="skill-level css"></div></div>
         </div>
         <div class="skill">
-          <i class="fas fa-robot"></i>
-          <h3>Machine Learning</h3>
-          <p>TensorFlow, Keras, PyTorch, Azure ML</p>
+          <h3>JavaScript</h3>
+          <div class="skill-bar"><div class="skill-level js"></div></div>
         </div>
         <div class="skill">
-          <i class="fas fa-cloud"></i>
-          <h3>DevOps</h3>
-          <p>Docker, AWS, CI/CD, Jenkins</p>
+          <h3>React</h3>
+          <div class="skill-bar"><div class="skill-level react"></div></div>
         </div>
-        <div class="skill">
-          <i class="fas fa-database"></i>
-          <h3>Database Management</h3>
-          <p>MySQL, MongoDB, PostgreSQL</p>
-        </div>
-        <div class="skill">
-          <i class="fas fa-git"></i>
-          <h3>Version Control</h3>
-          <p>Git, GitHub</p>
-        </div>
+        <!-- Add more skills as needed -->
       </div>
     </section>
 
@@ -155,36 +98,13 @@
     <section id="services">
       <h2>Services</h2>
       <div class="service-list">
+        <!-- Service items go here -->
         <div class="service">
           <i class="fas fa-laptop-code"></i>
           <h3>Web Development</h3>
-          <p>Build high-quality, responsive websites and web applications.</p>
+          <p>Build high-quality, responsive websites.</p>
         </div>
-        <div class="service">
-          <i class="fas fa-cloud"></i>
-          <h3>Cloud Solutions</h3>
-          <p>Design and deploy scalable cloud-based architectures.</p>
-        </div>
-        <div class="service">
-          <i class="fas fa-brain"></i>
-          <h3>Machine Learning</h3>
-          <p>
-            Create and optimize machine learning models for various
-            applications.
-          </p>
-        </div>
-        <div class="service">
-          <i class="fas fa-tools"></i>
-          <h3>Technical Consulting</h3>
-          <p>
-            Provide expert advice on software architecture and best practices.
-          </p>
-        </div>
-        <div class="service">
-          <i class="fas fa-mobile-alt"></i>
-          <h3>Mobile Development</h3>
-          <p>Develop cross-platform mobile applications for iOS and Android.</p>
-        </div>
+        <!-- Repeat service items as needed -->
       </div>
     </section>
 
@@ -193,26 +113,10 @@
       <h2>Testimonials</h2>
       <div class="testimonial-list">
         <blockquote>
-          <p>
-            "Yehia delivered an exceptional product on time and exceeded all
-            expectations."
-          </p>
+          <p>"Great work!"</p>
           <cite>- Client A</cite>
         </blockquote>
-        <blockquote>
-          <p>
-            "His technical skills are top-notch. The project went smoothly and
-            the results were amazing!"
-          </p>
-          <cite>- Client B</cite>
-        </blockquote>
-        <blockquote>
-          <p>
-            "Working with Yehia was a pleasure. He brought innovative ideas and
-            executed them flawlessly."
-          </p>
-          <cite>- Client C</cite>
-        </blockquote>
+        <!-- Repeat testimonial items as needed -->
       </div>
     </section>
 
@@ -243,12 +147,14 @@
     <script>
       window.addEventListener("scroll", function () {
         const nav = document.querySelector("nav");
-        if (window.scrollY > 50) {
-          nav.classList.add("scrolled");
-        } else {
-          nav.classList.remove("scrolled");
-        }
+        nav.classList.toggle("scrolled", window.scrollY > 50);
       });
+
+      document
+        .querySelector(".menu-toggle")
+        .addEventListener("click", function () {
+          document.querySelector(".nav-links").classList.toggle("active");
+        });
     </script>
   </body>
 </html>
