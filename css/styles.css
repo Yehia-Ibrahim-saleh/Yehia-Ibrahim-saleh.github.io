@@ -9,9 +9,12 @@
 body {
   font-family: "Arial", sans-serif;
   line-height: 1.6;
-  background-color: white; /* White background throughout */
-  color: #333;
   overflow-x: hidden;
+  background-image: url("images/your-background-image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
 }
 
 /* Header and Navbar Styling */
@@ -90,7 +93,7 @@ nav.scrolled {
   align-items: center;
   text-align: center;
   color: white;
-  background: #f4f4f4; /* Lighter background for contrast */
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay to improve text readability */
   transition: background 0.5s ease-in-out;
 }
 
@@ -110,8 +113,8 @@ nav.scrolled {
 
 .hero .btn {
   padding: 10px 25px;
-  background-color: #0073e6;
-  color: white;
+  background-color: #fff;
+  color: #0073e6;
   text-transform: uppercase;
   border: none;
   border-radius: 5px;
@@ -121,14 +124,14 @@ nav.scrolled {
 }
 
 .hero .btn:hover {
-  background-color: #005bb5;
+  background-color: #f4f4f4;
 }
 
 /* Section Styling */
 section {
   padding: 60px 20px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.9); /* Light background for each section */
+  background: rgba(255, 255, 255, 0.9);
   margin: 20px auto;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -216,6 +219,13 @@ section h2::after {
   transform: translateY(-5px);
 }
 
+.service {
+  text-align: center;
+  padding: 20px;
+  flex: 1 1 200px;
+  margin: 10px;
+}
+
 /* Testimonials Section */
 .testimonial-list {
   display: flex;
@@ -301,7 +311,7 @@ footer a:hover {
   }
 }
 
-/* Large Picture Visibility on Scroll */
+/* Large Picture Visibility */
 .scrolled .large-pic {
   display: block;
   opacity: 1;
