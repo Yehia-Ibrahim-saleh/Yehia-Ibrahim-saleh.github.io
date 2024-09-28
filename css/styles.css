@@ -9,22 +9,25 @@
 body {
   font-family: "Arial", sans-serif;
   line-height: 1.6;
-  background-color: #f4f4f4;
+  overflow-x: hidden;
 }
 
-/* Navbar Styling */
-nav {
-  background-color: #333;
+/* Header and Navbar Styling */
+header {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  padding: 10px 20px;
   color: white;
+}
+
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #333;
   padding: 15px 50px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
   transition: background-color 0.3s ease;
 }
 
@@ -32,79 +35,60 @@ nav.scrolled {
   background-color: #222;
 }
 
-nav .logo {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-nav ul {
+.nav-links {
   list-style: none;
   display: flex;
   gap: 20px;
 }
 
-nav ul li {
-  position: relative;
-}
-
-nav ul li a {
+.nav-links a {
   color: white;
   text-decoration: none;
   padding: 5px 10px;
   transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
+.nav-links a:hover {
   color: #ddd;
 }
 
-/* Dropdown Menu Styling */
-nav ul li .dropdown-menu {
-  display: none;
+/* Profile Container */
+.profile-container {
+  position: fixed;
+  top: 20px; /* Adjust as needed */
+  left: 20px; /* Adjust as needed */
+  z-index: 10;
+}
+
+.profile-pic {
+  width: 100px; /* Initial size */
+  height: auto;
+  border-radius: 50%; /* Circular profile picture */
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.large-pic {
+  display: none; /* Hidden by default */
   position: absolute;
-  background-color: #444;
-  top: 100%;
-  left: 0;
-  padding: 10px;
-  border-radius: 5px;
-  z-index: 2000;
-}
-
-nav ul li:hover .dropdown-menu {
-  display: block;
-}
-
-nav ul li .dropdown-menu li {
-  padding: 10px;
-}
-
-nav ul li .dropdown-menu li a {
-  color: white;
-  white-space: nowrap;
-}
-
-nav ul li .dropdown-menu li a:hover {
-  color: #ddd;
-}
-
-/* Mobile Menu Toggle */
-.menu-toggle {
-  display: none;
-  cursor: pointer;
-  font-size: 1.5em;
-  color: white;
+  top: 0; /* Adjust as needed */
+  left: 120%; /* Position it to the right */
+  width: 300px; /* Larger size */
+  height: auto;
+  border-radius: 10px; /* Rounded corners */
+  opacity: 0; /* Start as invisible */
+  transition: left 0.5s ease, opacity 0.5s ease;
 }
 
 /* Hero Section Styling */
 .hero {
-  padding: 150px 20px;
-  background-color: #0073e6;
-  color: white;
-  text-align: center;
-  background: url("your-hero-image.jpg") no-repeat center center/cover;
   height: 100vh;
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  transition: background 0.5s ease-in-out;
 }
 
 .hero h1 {
@@ -139,22 +123,16 @@ nav ul li .dropdown-menu li a:hover {
 
 /* Section Styling */
 section {
-  padding: 60px 100px;
-  background-color: white;
-  margin: 50px auto;
-  max-width: 1200px;
+  padding: 60px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  margin: 20px auto;
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-section:hover {
-  transform: scale(1.02);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
 }
 
 section h2 {
-  text-align: center;
   font-size: 2.5rem;
   margin-bottom: 40px;
   text-transform: uppercase;
@@ -173,13 +151,16 @@ section h2::after {
   transform: translateX(-50%);
 }
 
-/* Project Section */
-.project-list {
+/* Project, Skills, and Service Lists */
+.project-list,
+.skills-grid,
+.service-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
 
+/* Project Card Styling */
 .project {
   background-color: #f4f4f4;
   padding: 20px;
@@ -216,15 +197,9 @@ section h2::after {
   background-color: #005bb5;
 }
 
-/* Skills Section */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
-}
-
-.skill {
+/* Skill and Service Cards */
+.skill,
+.service {
   background: #0073e6;
   color: white;
   padding: 20px;
@@ -233,19 +208,9 @@ section h2::after {
   transition: transform 0.3s ease;
 }
 
-.skill:hover {
+.skill:hover,
+.service:hover {
   transform: translateY(-5px);
-}
-
-.skill h3 {
-  margin-top: 10px;
-}
-
-/* Services Section */
-.service-list {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
 }
 
 .service {
@@ -253,22 +218,6 @@ section h2::after {
   padding: 20px;
   flex: 1 1 200px;
   margin: 10px;
-  transition: transform 0.3s ease;
-}
-
-.service:hover {
-  transform: translateY(-5px);
-}
-
-.service i {
-  font-size: 4rem;
-  color: #0073e6;
-}
-
-.service h3 {
-  margin-top: 20px;
-  font-size: 1.5rem;
-  color: #0073e6;
 }
 
 /* Testimonials Section */
@@ -291,6 +240,7 @@ section h2::after {
   transform: scale(1.02);
 }
 
+/* Footer Styling */
 footer {
   background-color: #333;
   color: white;
@@ -354,40 +304,13 @@ footer a:hover {
     font-size: 2rem;
   }
 }
-/* Profile Container */
-.profile-container {
-  position: fixed;
-  top: 20px; /* Adjust as needed */
-  left: 20px; /* Adjust as needed */
-  z-index: 10;
-}
 
-.profile-pic {
-  width: 100px; /* Initial size */
-  height: auto;
-  border-radius: 50%; /* Circular profile picture */
-  transition: width 0.3s ease, height 0.3s ease;
-}
-
-.large-pic {
-  display: none; /* Hidden by default */
-  position: absolute;
-  top: 0; /* Adjust as needed */
-  left: 120%; /* Position it to the right */
-  width: 300px; /* Larger size */
-  height: auto;
-  border-radius: 10px; /* Rounded corners */
-  opacity: 0; /* Start as invisible */
-  transition: left 0.5s ease, opacity 0.5s ease;
-}
-
-/* Show the large picture when scrolling */
+/* Large Picture Visibility */
 .scrolled .large-pic {
   display: block;
   opacity: 1;
 }
 
-/* Hide the small profile picture when scrolling */
 .scrolled .profile-pic {
   width: 0; /* Shrink to 0 */
   opacity: 0; /* Fade out */

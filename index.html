@@ -9,74 +9,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        overflow-x: hidden;
-        transition: background 0.5s ease-in-out;
-      }
-      header {
-        background: rgba(0, 0, 0, 0.5);
-        position: fixed;
-        width: 100%;
-        z-index: 1000;
-        padding: 10px 20px;
-        color: white;
-      }
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-      }
-      .nav-links a {
-        color: white;
-        text-decoration: none;
-      }
-      .profile-container {
-        position: relative;
-        text-align: center;
-        margin-top: 80px;
-      }
-      .hero {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: white;
-        background: url("images/15.png") no-repeat center center/cover;
-        transition: background 0.5s ease-in-out;
-      }
-      section {
-        padding: 60px 20px;
-        text-align: center;
-        background: rgba(255, 255, 255, 0.9);
-        margin: 20px auto;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        max-width: 800px;
-      }
-      .project-list,
-      .skills-grid,
-      .service-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
-      }
-      footer {
-        text-align: center;
-        padding: 20px;
-        background: #333;
-        color: white;
-      }
-    </style>
   </head>
   <body>
     <!-- Navbar -->
@@ -310,18 +242,14 @@
     <!-- Script for Mobile Menu Toggle -->
     <script>
       window.addEventListener("scroll", function () {
-        const nav = document.querySelector("nav");
-        const heroSection = document.querySelector(".hero");
+        const body = document.body;
 
         // Change background image on scroll
         if (window.scrollY > 0) {
-          heroSection.style.backgroundImage = "url('images/15.png')";
+          body.style.backgroundImage = "url('images/16.png')";
         } else {
-          heroSection.style.backgroundImage = "url('images/16.png')";
+          body.style.backgroundImage = "url('images/15.png')";
         }
-
-        // Toggle classes based on scroll position
-        nav.classList.toggle("scrolled", window.scrollY > 50);
       });
 
       document
