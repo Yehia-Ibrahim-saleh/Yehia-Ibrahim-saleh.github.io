@@ -14,7 +14,7 @@ body {
 
 /* Navbar Styling */
 nav {
-  background-color: #333;
+  background-color: rgba(51, 51, 51, 0.9); /* Semi-transparent background */
   color: white;
   display: flex;
   justify-content: space-between;
@@ -35,12 +35,19 @@ nav.scrolled {
 nav .logo {
   font-size: 1.5em;
   font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+nav .logo a {
+  color: white;
+  text-decoration: none;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 30px; /* Increased gap for better spacing */
 }
 
 nav ul li {
@@ -51,11 +58,12 @@ nav ul li a {
   color: white;
   text-decoration: none;
   padding: 5px 10px;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease; /* Added transform for hover effect */
 }
 
 nav ul li a:hover {
   color: #ddd;
+  transform: scale(1.05); /* Scale effect on hover */
 }
 
 /* Dropdown Menu Styling */
@@ -101,7 +109,7 @@ nav ul li .dropdown-menu li a:hover {
   background-color: #0073e6;
   color: white;
   text-align: center;
-  background: url("your-hero-image.jpg") no-repeat center center/cover;
+  background: url("images/your-hero-image.jpg") no-repeat center center/cover; /* Updated path for the hero image */
   height: 100vh;
   position: relative;
   overflow: hidden;
@@ -291,6 +299,7 @@ section h2::after {
   transform: scale(1.02);
 }
 
+/* Footer Styling */
 footer {
   background-color: #333;
   color: white;
