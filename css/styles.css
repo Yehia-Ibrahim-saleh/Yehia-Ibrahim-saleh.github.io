@@ -354,3 +354,42 @@ footer a:hover {
     font-size: 2rem;
   }
 }
+/* Profile Container */
+.profile-container {
+  position: fixed;
+  top: 20px; /* Adjust as needed */
+  left: 20px; /* Adjust as needed */
+  z-index: 10;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.profile-pic {
+  width: 100px; /* Initial size */
+  height: auto;
+  border-radius: 50%; /* Circular profile picture */
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.large-pic {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 0; /* Adjust as needed */
+  left: 120%; /* Position it to the right */
+  width: 300px; /* Larger size */
+  height: auto;
+  border-radius: 10px; /* Rounded corners */
+  opacity: 0; /* Start as invisible */
+  transition: left 0.5s ease, opacity 0.5s ease;
+}
+
+/* Show the large picture when scrolling */
+.scrolled .large-pic {
+  display: block;
+  opacity: 1;
+}
+
+/* Hide the small profile picture when scrolling */
+.scrolled .profile-pic {
+  width: 0; /* Shrink to 0 */
+  opacity: 0; /* Fade out */
+}
