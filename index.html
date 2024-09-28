@@ -34,12 +34,14 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-      <h1>Hi, I'm Yehia Ibrahim</h1>
-      <p>
-        I'm a software developer with a passion for building impactful projects
-        that solve real-world problems.
-      </p>
-      <a href="#projects" class="btn">View My Work</a>
+      <div class="hero-content">
+        <h1>Hi, I'm Yehia Ibrahim</h1>
+        <p>
+          I'm a software developer with a passion for building impactful
+          projects that solve real-world problems.
+        </p>
+        <a href="#projects" class="btn">View My Work</a>
+      </div>
     </section>
 
     <!-- About Me Section -->
@@ -241,17 +243,6 @@
 
     <!-- Script for Mobile Menu Toggle -->
     <script>
-      window.addEventListener("scroll", function () {
-        const body = document.body;
-
-        // Change background image on scroll
-        if (window.scrollY > 0) {
-          body.style.backgroundImage = "url('images/16.png')";
-        } else {
-          body.style.backgroundImage = "url('images/15.png')";
-        }
-      });
-
       document
         .querySelector(".menu-toggle")
         .addEventListener("click", function () {

@@ -10,6 +10,11 @@ body {
   font-family: "Arial", sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
+  background-image: url("images/your-background-image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
 }
 
 /* Header and Navbar Styling */
@@ -26,7 +31,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
   padding: 15px 50px;
   transition: background-color 0.3s ease;
 }
@@ -55,27 +60,27 @@ nav.scrolled {
 /* Profile Container */
 .profile-container {
   position: fixed;
-  top: 20px; /* Adjust as needed */
-  left: 20px; /* Adjust as needed */
+  top: 20px;
+  left: 20px;
   z-index: 10;
 }
 
 .profile-pic {
-  width: 100px; /* Initial size */
+  width: 100px;
   height: auto;
-  border-radius: 50%; /* Circular profile picture */
+  border-radius: 50%;
   transition: width 0.3s ease, height 0.3s ease;
 }
 
 .large-pic {
-  display: none; /* Hidden by default */
+  display: none;
   position: absolute;
-  top: 0; /* Adjust as needed */
-  left: 120%; /* Position it to the right */
-  width: 300px; /* Larger size */
+  top: 0;
+  left: 120%;
+  width: 300px;
   height: auto;
-  border-radius: 10px; /* Rounded corners */
-  opacity: 0; /* Start as invisible */
+  border-radius: 10px;
+  opacity: 0;
   transition: left 0.5s ease, opacity 0.5s ease;
 }
 
@@ -88,6 +93,7 @@ nav.scrolled {
   align-items: center;
   text-align: center;
   color: white;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay to improve text readability */
   transition: background 0.5s ease-in-out;
 }
 
@@ -312,6 +318,6 @@ footer a:hover {
 }
 
 .scrolled .profile-pic {
-  width: 0; /* Shrink to 0 */
-  opacity: 0; /* Fade out */
+  width: 0;
+  opacity: 0;
 }
