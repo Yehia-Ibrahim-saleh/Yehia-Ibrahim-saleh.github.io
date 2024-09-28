@@ -11,6 +11,13 @@
     />
   </head>
   <body>
+    <div class="profile-pic-container">
+      <img
+        src="D:\yahya\my professional pictures\1"
+        alt="Profile Picture"
+        class="profile-pic"
+      />
+    </div>
     <!-- Navbar -->
     <header>
       <nav>
@@ -145,6 +152,16 @@
 
     <!-- Script for Mobile Menu Toggle -->
     <script>
+      window.addEventListener("scroll", function () {
+        const profilePic = document.querySelector(".profile-pic-container");
+
+        if (window.scrollY > 200) {
+          profilePic.classList.add("scrolled");
+        } else {
+          profilePic.classList.remove("scrolled");
+        }
+      });
+
       window.addEventListener("scroll", function () {
         const nav = document.querySelector("nav");
         nav.classList.toggle("scrolled", window.scrollY > 50);
