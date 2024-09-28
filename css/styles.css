@@ -9,30 +9,22 @@
 body {
   font-family: "Arial", sans-serif;
   line-height: 1.6;
-  overflow-x: hidden;
-  background-image: url("images/your-background-image.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: #fff;
+  background-color: #f4f4f4;
 }
 
-/* Header and Navbar Styling */
-header {
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  width: 100%;
-  z-index: 1000;
-  padding: 10px 20px;
-  color: white;
-}
-
+/* Navbar Styling */
 nav {
+  background-color: #333;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
   padding: 15px 50px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
   transition: background-color 0.3s ease;
 }
 
@@ -40,61 +32,79 @@ nav.scrolled {
   background-color: #222;
 }
 
-.nav-links {
+nav .logo {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+nav ul {
   list-style: none;
   display: flex;
   gap: 20px;
 }
 
-.nav-links a {
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
   color: white;
   text-decoration: none;
   padding: 5px 10px;
   transition: color 0.3s ease;
 }
 
-.nav-links a:hover {
+nav ul li a:hover {
   color: #ddd;
 }
 
-/* Profile Container */
-.profile-container {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 10;
-}
-
-.profile-pic {
-  width: 100px;
-  height: auto;
-  border-radius: 50%;
-  transition: width 0.3s ease, height 0.3s ease;
-}
-
-.large-pic {
+/* Dropdown Menu Styling */
+nav ul li .dropdown-menu {
   display: none;
   position: absolute;
-  top: 0;
-  left: 120%;
-  width: 300px;
-  height: auto;
-  border-radius: 10px;
-  opacity: 0;
-  transition: left 0.5s ease, opacity 0.5s ease;
+  background-color: #444;
+  top: 100%;
+  left: 0;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 2000;
+}
+
+nav ul li:hover .dropdown-menu {
+  display: block;
+}
+
+nav ul li .dropdown-menu li {
+  padding: 10px;
+}
+
+nav ul li .dropdown-menu li a {
+  color: white;
+  white-space: nowrap;
+}
+
+nav ul li .dropdown-menu li a:hover {
+  color: #ddd;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: white;
 }
 
 /* Hero Section Styling */
 .hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  padding: 150px 20px;
+  background-color: #0073e6;
   color: white;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay to improve text readability */
-  transition: background 0.5s ease-in-out;
+  text-align: center;
+  background: url("your-hero-image.jpg") no-repeat center center/cover;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero h1 {
@@ -129,16 +139,22 @@ nav.scrolled {
 
 /* Section Styling */
 section {
-  padding: 60px 20px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.9);
-  margin: 20px auto;
+  padding: 60px 100px;
+  background-color: white;
+  margin: 50px auto;
+  max-width: 1200px;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 section h2 {
+  text-align: center;
   font-size: 2.5rem;
   margin-bottom: 40px;
   text-transform: uppercase;
@@ -157,16 +173,13 @@ section h2::after {
   transform: translateX(-50%);
 }
 
-/* Project, Skills, and Service Lists */
-.project-list,
-.skills-grid,
-.service-list {
+/* Project Section */
+.project-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
 }
 
-/* Project Card Styling */
 .project {
   background-color: #f4f4f4;
   padding: 20px;
@@ -203,9 +216,15 @@ section h2::after {
   background-color: #005bb5;
 }
 
-/* Skill and Service Cards */
-.skill,
-.service {
+/* Skills Section */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.skill {
   background: #0073e6;
   color: white;
   padding: 20px;
@@ -214,9 +233,19 @@ section h2::after {
   transition: transform 0.3s ease;
 }
 
-.skill:hover,
-.service:hover {
+.skill:hover {
   transform: translateY(-5px);
+}
+
+.skill h3 {
+  margin-top: 10px;
+}
+
+/* Services Section */
+.service-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .service {
@@ -224,6 +253,22 @@ section h2::after {
   padding: 20px;
   flex: 1 1 200px;
   margin: 10px;
+  transition: transform 0.3s ease;
+}
+
+.service:hover {
+  transform: translateY(-5px);
+}
+
+.service i {
+  font-size: 4rem;
+  color: #0073e6;
+}
+
+.service h3 {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #0073e6;
 }
 
 /* Testimonials Section */
@@ -246,7 +291,6 @@ section h2::after {
   transform: scale(1.02);
 }
 
-/* Footer Styling */
 footer {
   background-color: #333;
   color: white;
@@ -309,15 +353,4 @@ footer a:hover {
   section h2 {
     font-size: 2rem;
   }
-}
-
-/* Large Picture Visibility */
-.scrolled .large-pic {
-  display: block;
-  opacity: 1;
-}
-
-.scrolled .profile-pic {
-  width: 0;
-  opacity: 0;
 }

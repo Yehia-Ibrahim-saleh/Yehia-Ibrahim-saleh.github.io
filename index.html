@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yehia Ibrahim Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      /* Import Google Font */
-      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
-    </style>
+    <title>Yehia Ibrahim's Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
     <!-- Navbar -->
@@ -33,186 +33,201 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="intro-section">
-      <div class="content">
-        <h1>Hi, I'm Yehia Ibrahim</h1>
-        <p>
-          I'm a software developer with a passion for building impactful
-          projects that solve real-world problems.
-        </p>
-        <a href="#projects" class="btn">View My Work</a>
-      </div>
-      <div class="profile-pic-container">
-        <img
-          src="images/15.png"
-          alt="Profile Picture"
-          class="profile-pic"
-        />
-      </div>
+    <section class="hero">
+      <h1>Hi, I'm Yehia Ibrahim</h1>
+      <p>
+        I'm a software developer with a passion for building impactful projects
+        that solve real-world problems.
+      </p>
+      <a href="#projects" class="btn">View My Work</a>
     </section>
 
     <!-- About Me Section -->
-    <section class="scroll-section">
-      <div class="scroll-content">
-        <div class="scroll-text-left">
-          <h2>About Me</h2>
-          <p>
-            I'm a Computer Science student based in Abu Dhabi with a strong
-            background in software development and project management. I
-            specialize in building web applications, data analysis, and
-            cloud-based solutions. I am dedicated to delivering high-quality
-            solutions that meet user needs.
-          </p>
-        </div>
-        <div class="scrolling-picture">
-          <img src="images/16.png" alt="New Picture" id="changing-pic" />
-        </div>
-      </div>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I'm a Computer Science student based in Abu Dhabi with a strong
+        background in software development and project management. I specialize
+        in building web applications, data analysis, and cloud-based solutions.
+      </p>
+      <p>
+        With a keen interest in emerging technologies, I continuously seek out
+        opportunities to expand my skill set and keep up with trends in the tech
+        industry. I am dedicated to delivering high-quality solutions that meet
+        user needs.
+      </p>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="scroll-section">
+    <section id="projects">
       <h2>Projects</h2>
-      <div class="scroll-content">
-        <div class="scroll-text-left">
-          <div class="project">
-            <h3>Publishing Company - Power BI</h3>
-            <p>
-              Designed a Database Management System for a publishing company to
-              streamline operations and improve data accessibility.
-            </p>
-          </div>
-          <div class="project">
-            <h3>SIC-XE Assembler - Python</h3>
-            <p>
-              Developed a SIC/XE assembler for converting assembly language
-              programs into machine code, enhancing understanding of low-level
-              programming.
-            </p>
-          </div>
-          <div class="project">
-            <h3>RMI Internode Communication - Java</h3>
-            <p>
-              Created a distributed file system that supports file sharing
-              across multiple nodes, utilizing Java's Remote Method Invocation
-              (RMI).
-            </p>
-          </div>
+      <div class="project-list">
+        <div class="project">
+          <h3>Publishing Company - Power BI</h3>
+          <p>
+            Designed a Database Management System for a publishing company to
+            streamline operations and improve data accessibility.
+          </p>
+          <a href="#" class="btn-primary">View Project</a>
         </div>
-        <div class="scrolling-picture">
-          <img
-            src="images/15.png"
-            alt="Project Picture"
-            id="project-pic"
-          />
+        <div class="project">
+          <h3>SIC-XE Assembler - Python</h3>
+          <p>
+            Developed a SIC/XE assembler for converting assembly language
+            programs into machine code, enhancing understanding of low-level
+            programming.
+          </p>
+          <a href="#" class="btn-primary">View Project</a>
+        </div>
+        <div class="project">
+          <h3>RMI Internode Communication - Java</h3>
+          <p>
+            Created a distributed file system that supports file sharing across
+            multiple nodes, utilizing Java's Remote Method Invocation (RMI).
+          </p>
+          <a href="#" class="btn-primary">View Project</a>
+        </div>
+        <div class="project">
+          <h3>Computer Guardian - HTML, CSS, JS</h3>
+          <p>
+            Developed a comprehensive platform for custom computer building,
+            allowing users to select and compare components.
+          </p>
+          <a href="#" class="btn-primary">View Project</a>
+        </div>
+        <div class="project">
+          <h3>Weather App - React</h3>
+          <p>
+            Built a responsive weather application using React and API
+            integration to provide real-time weather updates and forecasts.
+          </p>
+          <a href="#" class="btn-primary">View Project</a>
+        </div>
+        <div class="project">
+          <h3>Task Manager - Flask</h3>
+          <p>
+            Designed a task management web application that helps users organize
+            their tasks, set deadlines, and track progress.
+          </p>
+          <a href="#" class="btn-primary">View Project</a>
         </div>
       </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="scroll-section">
+    <section id="skills">
       <h2>Technical Skills</h2>
-      <div class="scroll-content">
-        <div class="scroll-text-left">
-          <div class="skill">
-            <i class="fas fa-code"></i>
-            <h3>Programming Languages</h3>
-            <p>Python, Java, Go, C++, SQL</p>
-          </div>
-          <div class="skill">
-            <i class="fas fa-laptop"></i>
-            <h3>Web Development</h3>
-            <p>HTML, CSS, JavaScript, Flask, React</p>
-          </div>
-          <div class="skill">
-            <i class="fas fa-robot"></i>
-            <h3>Machine Learning</h3>
-            <p>TensorFlow, Keras, PyTorch, Azure ML</p>
-          </div>
+      <div class="skills-grid">
+        <div class="skill">
+          <i class="fas fa-code"></i>
+          <h3>Programming Languages</h3>
+          <p>Python, Java, Go, C++, SQL</p>
         </div>
-        <div class="scrolling-picture">
-          <img src="images/16.png" alt="Skills Picture" id="skills-pic" />
+        <div class="skill">
+          <i class="fas fa-laptop"></i>
+          <h3>Web Development</h3>
+          <p>HTML, CSS, JavaScript, Flask, React</p>
+        </div>
+        <div class="skill">
+          <i class="fas fa-robot"></i>
+          <h3>Machine Learning</h3>
+          <p>TensorFlow, Keras, PyTorch, Azure ML</p>
+        </div>
+        <div class="skill">
+          <i class="fas fa-cloud"></i>
+          <h3>DevOps</h3>
+          <p>Docker, AWS, CI/CD, Jenkins</p>
+        </div>
+        <div class="skill">
+          <i class="fas fa-database"></i>
+          <h3>Database Management</h3>
+          <p>MySQL, MongoDB, PostgreSQL</p>
+        </div>
+        <div class="skill">
+          <i class="fas fa-git"></i>
+          <h3>Version Control</h3>
+          <p>Git, GitHub</p>
         </div>
       </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="scroll-section">
+    <section id="services">
       <h2>Services</h2>
-      <div class="scroll-content">
-        <div class="scroll-text-left">
-          <div class="service">
-            <i class="fas fa-laptop-code"></i>
-            <h3>Web Development</h3>
-            <p>Build high-quality, responsive websites and web applications.</p>
-          </div>
-          <div class="service">
-            <i class="fas fa-cloud"></i>
-            <h3>Cloud Solutions</h3>
-            <p>Design and deploy scalable cloud-based architectures.</p>
-          </div>
+      <div class="service-list">
+        <div class="service">
+          <i class="fas fa-laptop-code"></i>
+          <h3>Web Development</h3>
+          <p>Build high-quality, responsive websites and web applications.</p>
         </div>
-        <div class="scrolling-picture">
-          <img
-            src="images/15.png"
-            alt="Services Picture"
-            id="services-pic"
-          />
+        <div class="service">
+          <i class="fas fa-cloud"></i>
+          <h3>Cloud Solutions</h3>
+          <p>Design and deploy scalable cloud-based architectures.</p>
+        </div>
+        <div class="service">
+          <i class="fas fa-brain"></i>
+          <h3>Machine Learning</h3>
+          <p>
+            Create and optimize machine learning models for various
+            applications.
+          </p>
+        </div>
+        <div class="service">
+          <i class="fas fa-tools"></i>
+          <h3>Technical Consulting</h3>
+          <p>
+            Provide expert advice on software architecture and best practices.
+          </p>
+        </div>
+        <div class="service">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Mobile Development</h3>
+          <p>Develop cross-platform mobile applications for iOS and Android.</p>
         </div>
       </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="scroll-section">
+    <section id="testimonials">
       <h2>Testimonials</h2>
-      <div class="scroll-content">
-        <div class="scroll-text-left">
-          <blockquote>
+      <div class="testimonial-list">
+        <blockquote>
+          <p>
             "Yehia delivered an exceptional product on time and exceeded all
-            expectations." - Client A
-          </blockquote>
-          <blockquote>
+            expectations."
+          </p>
+          <cite>- Client A</cite>
+        </blockquote>
+        <blockquote>
+          <p>
             "His technical skills are top-notch. The project went smoothly and
-            the results were amazing!" - Client B
-          </blockquote>
-          <blockquote>
+            the results were amazing!"
+          </p>
+          <cite>- Client B</cite>
+        </blockquote>
+        <blockquote>
+          <p>
             "Working with Yehia was a pleasure. He brought innovative ideas and
-            executed them flawlessly." - Client C
-          </blockquote>
-        </div>
-        <div class="scrolling-picture">
-          <img
-            src="images/16.png"
-            alt="Testimonials Picture"
-            id="testimonials-pic"
-          />
-        </div>
+            executed them flawlessly."
+          </p>
+          <cite>- Client C</cite>
+        </blockquote>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="scroll-section">
+    <section id="contact">
       <h2>Contact Me</h2>
-      <div class="scroll-content">
-        <div class="scroll-text-left">
-          <form action="https://formsubmit.co/your-email" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required />
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required />
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-            <button type="submit">Send Message</button>
-          </form>
-        </div>
-        <div class="scrolling-picture">
-          <img
-            src="images/15.png"
-            alt="Contact Picture"
-            id="contact-pic"
-          />
-        </div>
-      </div>
+      <form action="https://formsubmit.co/your-email" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
     </section>
 
     <!-- Footer -->
@@ -224,20 +239,14 @@
       <p>Yehia Ibrahim © 2024. All Rights Reserved.</p>
     </footer>
 
-    <!-- JavaScript for scroll animation -->
+    <!-- Script for Mobile Menu Toggle -->
     <script>
       window.addEventListener("scroll", function () {
-        const profilePic = document.querySelector(".profile-pic-container img");
-        const changingPic = document.querySelector("#changing-pic");
-
-        const scrollPosition = window.scrollY;
-
-        if (scrollPosition > 300) {
-          profilePic.classList.add("scrolled");
-          changingPic.style.opacity = "1"; // Fade-in effect
+        const nav = document.querySelector("nav");
+        if (window.scrollY > 50) {
+          nav.classList.add("scrolled");
         } else {
-          profilePic.classList.remove("scrolled");
-          changingPic.style.opacity = "0"; // Fade-out effect
+          nav.classList.remove("scrolled");
         }
       });
     </script>
