@@ -360,7 +360,6 @@ footer a:hover {
   top: 20px; /* Adjust as needed */
   left: 20px; /* Adjust as needed */
   z-index: 10;
-  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .profile-pic {
