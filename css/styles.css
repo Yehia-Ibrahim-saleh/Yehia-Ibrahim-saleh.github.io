@@ -22,51 +22,36 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 50px; /* Updated padding for better spacing */
+  padding: 10px 50px; /* Padding for spacing */
   background: transparent; /* Make navbar transparent */
   transition: background-color 0.3s ease;
 }
 
 nav.scrolled {
   background-color: lightblue; /* Light blue color when scrolled */
-  transition: background-color 0.3s ease;
 }
 
-/* Styling for the first letters */
 .logo a {
   text-decoration: none; /* Remove underline */
-  color: black; /* Default color for the entire name */
+  color: black; /* Default color for the logo */
   font-weight: bold; /* Make the logo bold */
   transition: color 0.3s ease; /* Smooth transition for hover */
-}
-
-.logo a .first-letter {
-  color: blue; /* First letter in blue */
-}
-
-.logo a:hover {
-  color: blue; /* All text turns blue on hover */
-}
-
-.logo a:hover .first-letter {
-  color: blue; /* Ensure the first letters also stay blue on hover */
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  position: relative; /* Position relative to enable absolute positioning for dropdown */
 }
 
 .nav-links li {
-  margin: 0 1.5rem; /* Increased margin for a more spacious look */
+  margin: 0 1.5rem; /* Spacing between menu items */
 }
 
 .nav-links a {
   text-decoration: none;
   color: black; /* Text color is black */
   font-weight: 600; /* Bolder text */
-  padding: 10px 15px; /* Added padding for better click area */
+  padding: 10px 15px; /* Padding for better click area */
   border-radius: 5px; /* Rounded corners for links */
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
 }
@@ -74,45 +59,6 @@ nav.scrolled {
 /* Navbar Link Hover Effects */
 .nav-links a:hover {
   color: blue; /* Change text color to blue on hover */
-}
-
-/* Dropdown Menu Styling */
-nav ul li .dropdown {
-  position: relative; /* Position relative for the dropdown */
-}
-
-nav ul li .dropdown-menu {
-  display: none;
-  position: absolute; /* Align dropdown to its parent */
-  top: 100%; /* Position right below the "More" link */
-  left: 0; /* Align to the left */
-  background-color: #444; /* Background for dropdown */
-  padding: 10px 0; /* Padding inside dropdown */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-  z-index: 1000; /* Ensure dropdown is above other elements */
-  min-width: 150px; /* Minimum width for the dropdown */
-}
-
-nav ul li:hover .dropdown-menu {
-  display: block; /* Display dropdown on hover */
-}
-
-nav ul li .dropdown-menu li {
-  padding: 10px;
-}
-
-nav ul li .dropdown-menu li a {
-  color: white; /* Text color for dropdown links */
-  padding: 10px 20px;
-  display: block; /* Make links block-level elements */
-  white-space: nowrap; /* Prevent text from wrapping */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover transition */
-}
-
-nav ul li .dropdown-menu li a:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Hover background */
-  color: blue; /* Hover text color */
 }
 
 /* Mobile Menu Toggle */
