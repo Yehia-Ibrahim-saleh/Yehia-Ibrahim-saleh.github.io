@@ -189,7 +189,15 @@ footer a:hover {
 #typed-description {
   color: black; /* Ensure typed text is black */
 }
+/* Optional: Adjust the container for better appearance */
+#typed-text {
+  font-size: 2rem; /* Adjust font size */
+  margin-bottom: 20px; /* Space between elements */
+}
 
+#typed-description {
+  color: black; /* Default text color */
+}
 /* Responsive Styles */
 @media (max-width: 768px) {
   .nav-links {

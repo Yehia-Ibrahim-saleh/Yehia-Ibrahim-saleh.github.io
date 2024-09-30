@@ -40,9 +40,12 @@
     <section class="hero">
       <div class="hero-text">
         <h1 id="typed-text"></h1>
+        <!-- This is where the typing effect will display -->
         <p id="typed-description"></p>
+        <!-- This is for the description -->
         <a href="#projects" class="btn">View My Work</a>
       </div>
+
       <div class="hero-image">
         <img src="images/5-edited.png" alt="Yehia Ibrahim" />
       </div>
@@ -260,7 +263,7 @@
         }
       });
       const typedText =
-        "A Software Engineer Specializing in Front-end and Back-end Development";
+        "A <span class='highlight'>Software Engineer</span> Specializing in <span class='highlight'>Front-end</span> and <span class='highlight'>Back-end Development</span>";
       const typedDescription =
         "I’m Yehia Ibrahim, a passionate Software Engineer with a Bachelor's degree in Computer Science. I proudly hold a dual degree from the Arab Academy for Science and Technology in Alexandria, Egypt, and the University of Northampton in London, United Kingdom. As a dedicated software developer, I thrive on building impactful projects that solve real-world problems.";
 
@@ -285,13 +288,27 @@
           );
       }
 
-      // Set the text directly without animation
+      const highlightedDescription = highlightText(typedDescription);
+
       const typedTextElement = document.getElementById("typed-text");
       const typedDescriptionElement =
         document.getElementById("typed-description");
 
-      typedTextElement.textContent = typedText; // Set the main text
-      typedDescriptionElement.innerHTML = highlightText(typedDescription); // Set the highlighted description
+      let textIndex = 0;
+
+      function type() {
+        if (textIndex < typedText.length) {
+          typedTextElement.innerHTML += typedText.charAt(textIndex); // Use innerHTML to include spans
+          textIndex++;
+          setTimeout(type, 65); // Adjust typing speed
+        } else {
+          setTimeout(() => {
+            typedDescriptionElement.innerHTML = highlightedDescription; // Set the entire content at once
+          }, 500); // Wait before showing description
+        }
+      }
+
+      type(); // Start typing
     </script>
   </body>
 </html>
