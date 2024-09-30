@@ -88,7 +88,7 @@ nav.scrolled {
   align-items: center; /* Align items vertically */
   padding: 150px 20px; /* Added padding for header overlap */
   height: 100vh;
-  background: url("images/15.png") no-repeat center center/cover; /* Background image */
+  /*background: url("images/15.png") no-repeat center center/cover; /* Background image */
 }
 
 .hero-text {
