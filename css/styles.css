@@ -180,9 +180,15 @@ footer a {
 footer a:hover {
   color: blue; /* Change to blue on hover */
 }
+
 .highlight {
   font-weight: bold; /* Make highlighted text bold */
   color: blue; /* Change color of highlighted text */
+}
+
+#typed-text,
+#typed-description {
+  color: black; /* Ensure typed text is black */
 }
 
 /* Responsive Styles */
