@@ -24,20 +24,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 15px 50px; /* Updated padding for better spacing */
   background: transparent; /* Make navbar transparent */
-
-  background-color: #333;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 50px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
   transition: background-color 0.3s ease;
 }
 
@@ -51,22 +39,21 @@ nav.scrolled {
 }
 
 .nav-links li {
-  margin: 0 1rem;
+  margin: 0 1.5rem; /* Increased margin for a more spacious look */
 }
 
 .nav-links a {
   text-decoration: none;
-  color: black; /* Link color */
-}
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  padding: 5px 10px;
-  transition: color 0.3s ease;
+  color: white; /* Link color for navbar */
+  font-weight: 500; /* Slightly bolder text */
+  padding: 8px 12px; /* Added padding for better click area */
+  border-radius: 4px; /* Rounded corners for links */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
 }
 
-nav ul li a:hover {
-  color: #ddd;
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Subtle background on hover */
+  color: #ddd; /* Lighten the text on hover */
 }
 
 /* Dropdown Menu Styling */
@@ -79,6 +66,7 @@ nav ul li .dropdown-menu {
   padding: 10px;
   border-radius: 5px;
   z-index: 2000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Shadow for dropdown */
 }
 
 nav ul li:hover .dropdown-menu {
@@ -92,10 +80,12 @@ nav ul li .dropdown-menu li {
 nav ul li .dropdown-menu li a {
   color: white;
   white-space: nowrap;
+  padding: 5px 10px; /* Padding for dropdown links */
+  transition: color 0.3s ease; /* Smooth transition for dropdown links */
 }
 
 nav ul li .dropdown-menu li a:hover {
-  color: #ddd;
+  color: #ddd; /* Lighten the text on hover */
 }
 
 /* Mobile Menu Toggle */
