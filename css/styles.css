@@ -76,32 +76,38 @@ nav.scrolled {
 }
 
 /* Dropdown Menu Styling */
-/* Dropdown Menu Styling */
 nav ul li .dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%; /* Ensure the dropdown is directly below the "More" link */
-  left: 0; /* Align the dropdown relative to the "More" link */
-  background-color: #444; /* Dark background for dropdown */
-  padding: 10px 0; /* Padding for dropdown items */
-  border-radius: 5px; /* Rounded corners for dropdown */
-  z-index: 2000;
+  top: 100%; /* Place the dropdown right below the "More" link */
+  left: 0; /* Align dropdown to the left of its parent */
+  background-color: #444; /* Background for dropdown */
+  padding: 10px 0; /* Padding inside dropdown */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  z-index: 1000; /* Ensure dropdown is above other elements */
+  min-width: 150px; /* Minimum width for the dropdown */
 }
 
 nav ul li:hover .dropdown-menu {
-  display: block; /* Show dropdown on hover */
+  display: block; /* Display dropdown on hover */
+}
+
+nav ul li .dropdown-menu li {
+  padding: 10px;
 }
 
 nav ul li .dropdown-menu li a {
   color: white; /* Text color for dropdown links */
-  white-space: nowrap; /* Prevent text wrapping */
-  padding: 10px 15px; /* Padding for each dropdown item */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  padding: 10px 20px;
+  display: block; /* Make links block-level elements */
+  white-space: nowrap; /* Prevent text from wrapping */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover transition */
 }
 
 nav ul li .dropdown-menu li a:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Subtle background on hover */
-  color: blue; /* Change dropdown text color to blue on hover */
+  background-color: rgba(255, 255, 255, 0.2); /* Hover background */
+  color: blue; /* Hover text color */
 }
 
 /* Mobile Menu Toggle */
