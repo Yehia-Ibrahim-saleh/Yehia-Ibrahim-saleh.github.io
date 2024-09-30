@@ -28,7 +28,7 @@ nav {
 }
 
 nav.scrolled {
-  background-color:lightblue; /* Slight transparency on scroll */
+  background-color: lightblue; /* Light blue color when scrolled */
   transition: background-color 0.3s ease;
 }
 
@@ -55,6 +55,7 @@ nav.scrolled {
 .nav-links {
   list-style: none;
   display: flex;
+  position: relative; /* Position relative to enable absolute positioning for dropdown */
 }
 
 .nav-links li {
@@ -76,11 +77,15 @@ nav.scrolled {
 }
 
 /* Dropdown Menu Styling */
+nav ul li .dropdown {
+  position: relative; /* Position relative for the dropdown */
+}
+
 nav ul li .dropdown-menu {
   display: none;
-  position: absolute;
-  top: 100%; /* Place the dropdown right below the "More" link */
-  left: 0; /* Align dropdown to the left of its parent */
+  position: absolute; /* Align dropdown to its parent */
+  top: 100%; /* Position right below the "More" link */
+  left: 0; /* Align to the left */
   background-color: #444; /* Background for dropdown */
   padding: 10px 0; /* Padding inside dropdown */
   border-radius: 5px; /* Rounded corners */
