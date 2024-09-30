@@ -259,10 +259,10 @@
           nav.classList.remove("scrolled"); // Remove the 'scrolled' class when at the top
         }
       });
-
-      const typedText = "A Software Engineer Specializing in Front-end and Back-end Development";
+      const typedText =
+        "A Software Engineer Specializing in Front-end and Back-end Development";
       const typedDescription =
-        "I’m Yehia Ibrahim, a passionate Software Engineer with a Bachelor's degree in Computer Science. I proudly hold a dual degree from the Arab Academy for Science and Technology in Alexandria, Egypt, and the University of Northampton in London, United Kingdom. \n As a dedicated software developer, I thrive on building impactful projects that solve real-world problems.";
+        "I’m <span class='highlight'>Yehia Ibrahim</span>, a passionate Software Engineer with a Bachelor's degree in Computer Science. I proudly hold a dual degree from the <span class='highlight'>Arab Academy for Science and Technology</span> in Alexandria, Egypt, and the <span class='highlight'>University of Northampton</span> in London, United Kingdom. \nAs a dedicated software developer, I thrive on building impactful projects that solve <span class='highlight'>real-world problems</span>.";
 
       const typedTextElement = document.getElementById("typed-text");
       const typedDescriptionElement =
@@ -283,7 +283,7 @@
 
       function typeDescription() {
         if (descriptionIndex < typedDescription.length) {
-          typedDescriptionElement.textContent +=
+          typedDescriptionElement.innerHTML +=
             typedDescription.charAt(descriptionIndex);
           descriptionIndex++;
           setTimeout(typeDescription, 35); // Adjust typing speed here

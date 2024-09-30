@@ -10,7 +10,6 @@ body {
   background-color: white; /* Background color is white */
   color: black; /* Text color is black for contrast */
   font-size: 1.25rem; /* Adjusted paragraph font size */
-
 }
 
 /* Navbar Styles */
@@ -180,6 +179,11 @@ footer a {
 
 footer a:hover {
   color: blue; /* Change to blue on hover */
+}
+.highlight {
+  font-weight: bold; /* Make highlighted text bold */
+  color: blue; /* Change color of highlighted text */
+  text-decoration: underline; /* Add underline for emphasis */
 }
 
 /* Responsive Styles */
