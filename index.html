@@ -311,14 +311,14 @@
             typedText.slice(textIndex, textIndex + 11) === "Front-end "
           ) {
             typedTextElement.innerHTML +=
-              "<span class='highlight-alt'>Front-end</span>";
+              "<span class='highlight'>Front-end</span>";
             textIndex += 11; // Move index forward to skip the highlighted text
           } else if (
             typedText.slice(textIndex, textIndex + 16) ===
             "Back-end Development"
           ) {
             typedTextElement.innerHTML +=
-              "<span class='highlight-alt'>Back-end Development</span>";
+              "<span class='highlight'>Back-end Development</span>";
             textIndex += 16; // Move index forward to skip the highlighted text
           } else {
             typedTextElement.innerHTML += currentChar; // Add regular characters
