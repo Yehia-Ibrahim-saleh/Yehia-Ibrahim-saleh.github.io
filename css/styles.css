@@ -26,6 +26,19 @@ nav {
   align-items: center;
   padding: 1rem;
   background: transparent; /* Make navbar transparent */
+
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
 }
 
 nav.scrolled {
@@ -45,10 +58,57 @@ nav.scrolled {
   text-decoration: none;
   color: black; /* Link color */
 }
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #ddd;
+}
+
+/* Dropdown Menu Styling */
+nav ul li .dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #444;
+  top: 100%;
+  left: 0;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 2000;
+}
+
+nav ul li:hover .dropdown-menu {
+  display: block;
+}
+
+nav ul li .dropdown-menu li {
+  padding: 10px;
+}
+
+nav ul li .dropdown-menu li a {
+  color: white;
+  white-space: nowrap;
+}
+
+nav ul li .dropdown-menu li a:hover {
+  color: #ddd;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: white;
+}
 
 /* Hero Section */
 .hero {
-  padding: 100px 20px; /* Added padding for header overlap */
+  padding: 150px 20px; /* Added padding for header overlap */
   text-align: center;
 }
 
