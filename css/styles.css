@@ -28,7 +28,7 @@ nav {
 }
 
 nav.scrolled {
-  background-color:blue; /* Slight transparency on scroll */
+  background-color:lightblue; /* Slight transparency on scroll */
   transition: background-color 0.3s ease;
 }
 
