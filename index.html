@@ -44,7 +44,7 @@
         <a href="#projects" class="btn">View My Work</a>
       </div>
       <div class="hero-image">
-        <img src="images/15.png" alt="Yehia Ibrahim" />
+       <!--   <img src="images/15.png" alt="Yehia Ibrahim" />-->
       </div>
     </section>
 
@@ -275,7 +275,7 @@
         if (textIndex < typedText.length) {
           typedTextElement.textContent += typedText.charAt(textIndex);
           textIndex++;
-          setTimeout(type, 100); // Adjust typing speed here
+          setTimeout(type, 120); // Adjust typing speed here
         } else {
           setTimeout(typeDescription, 500); // Wait before typing description
         }
@@ -286,7 +286,7 @@
           typedDescriptionElement.textContent +=
             typedDescription.charAt(descriptionIndex);
           descriptionIndex++;
-          setTimeout(typeDescription, 50); // Adjust typing speed here
+          setTimeout(typeDescription, 120); // Adjust typing speed here
         }
       }
 
