@@ -271,6 +271,12 @@
       function highlightText(text) {
         return text
           .replace(
+            /Software Engineer/g,
+            "<span class='highlight'>Software Engineer</span>"
+          )
+          .replace(/Front-end/g, "<span class='highlight'>Front-end</span>")
+          .replace(/Back-end/g, "<span class='highlight'>Back-end</span>")
+          .replace(
             /Yehia Ibrahim/g,
             "<span class='highlight'>Yehia Ibrahim</span>"
           )
@@ -313,13 +319,10 @@
             typedTextElement.innerHTML +=
               "<span class='highlight'>Front-end</span>";
             textIndex += 9; // Move index forward to skip the highlighted text
-          } else if (
-            typedText.slice(textIndex, textIndex + 14) ===
-            "Back-end Development"
-          ) {
+          } else if (typedText.slice(textIndex, textIndex + 9) === "Back-end") {
             typedTextElement.innerHTML +=
-              "<span class='highlight'>Back-end Development</span>";
-            textIndex += 16; // Move index forward to skip the highlighted text
+              "<span class='highlight'>Back-end</span>";
+            textIndex += 8; // Move index forward to skip the highlighted text
           } else {
             typedTextElement.innerHTML += currentChar; // Add regular characters
           }
