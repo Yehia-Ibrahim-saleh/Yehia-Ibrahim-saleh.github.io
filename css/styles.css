@@ -80,45 +80,48 @@ nav.scrolled {
   font-size: 1.5em;
   color: black; /* Adjusted menu toggle color to black */
 }
+/*--------------------------======================*/
 
 /* Hero Section */
 .hero {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space between text and image */
+  align-items: center; /* Align items vertically */
   padding: 150px 20px; /* Added padding for header overlap */
-  text-align: center;
-  background: url("images/your-hero-image.jpg") no-repeat center center/cover; /* Updated path for the hero image */
   height: 100vh;
-  position: relative;
-  overflow: hidden;
+  background: url("images/your-hero-image.jpg") no-repeat center center/cover; /* Updated path for the hero image */
 }
 
-.hero h1 {
-  font-size: 3rem;
+.hero-text {
+  flex: 1; /* Allow text to take available space */
+  color: #0073e6; /* Text color */
+  animation: fadeInLeft 1s ease-in-out; /* Animation for text */
+}
+
+.hero-text h1 {
+  font-size: 3rem; /* Adjusted font size */
   margin-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 3px;
-  animation: fadeIn 1s ease-in-out;
 }
 
-.hero p {
-  font-size: 1.5rem;
+.hero-text p {
+  font-size: 1.5rem; /* Adjusted paragraph font size */
   margin-bottom: 20px;
-  animation: fadeIn 2s ease-in-out;
 }
 
-.hero .btn {
-  padding: 10px 25px;
-  background-color: #fff;
-  color: #0073e6;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  animation: fadeIn 3s ease-in-out;
+.hero-image {
+  flex: 1; /* Allow image to take available space */
+  display: flex; /* Center the image */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
-.hero .btn:hover {
-  background-color: #f4f4f4;
+.hero-image img {
+  max-width: 100%; /* Make image responsive */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Rounded corners for image */
+  animation: zoomIn 1s ease-in-out; /* Animation for image */
 }
 
 /* Section Styles */
@@ -205,5 +208,27 @@ footer a:hover {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+/* Animations */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
