@@ -319,16 +319,36 @@
       let textIndex = 0;
 
       function type() {
-        const currentChar = typedText.charAt(textIndex);
+        if (textIndex < typedText.length) {
+          const currentChar = typedText.charAt(textIndex);
 
-        typedTextElement.innerHTML = highlightedMainText.slice(
-          0,
-          textIndex + 1
-        ); // Show text up to current index
+          // Check for specific words to highlight
+          if (
+            typedText.slice(textIndex, textIndex + 17) === "Software Engineer"
+          ) {
+            typedTextElement.innerHTML +=
+              "<span class='highlight'>Software Engineer</span>";
+            textIndex += 16; // Move index forward to skip the highlighted text
+          } else if (
+            typedText.slice(textIndex, textIndex + 10) === "Front-end"
+          ) {
+            typedTextElement.innerHTML +=
+              "<span class='highlight'>Front-end</span>";
+            textIndex += 9; // Move index forward to skip the highlighted text
+          } else if (typedText.slice(textIndex, textIndex + 9) === "Back-end") {
+            typedTextElement.innerHTML +=
+              "<span class='highlight'>Back-end</span>";
+            textIndex += 8; // Move index forward to skip the highlighted text
+          } else {
+            typedTextElement.innerHTML += currentChar; // Add regular characters
+          }
 
-        if (textIndex < highlightedMainText.length - 1) {
           textIndex++;
           setTimeout(type, 65); // Adjust typing speed
+        } else {
+          setTimeout(() => {
+            typedDescriptionElement.innerHTML = highlightedDescription; // Set the description after typing
+          }, 500); // Wait before showing description
         }
       }
 
