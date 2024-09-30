@@ -291,31 +291,27 @@
       const typedDescriptionElement =
         document.getElementById("typed-description");
 
-      let textIndex = 0;
-
-      function typeMainText() {
-        if (textIndex < typedText.length) {
-          typedTextElement.textContent += typedText.charAt(textIndex);
-          textIndex++;
-          setTimeout(typeMainText, 65); // Adjust typing speed
-        } else {
-          // Start typing the description after the main text is done
-          setTimeout(typeDescription, 500); // Wait before typing description
-        }
+      // Function to fade in the text
+      function fadeIn(element, text, delay, callback) {
+        let index = 0;
+        element.innerHTML = ""; // Clear any existing content
+        const interval = setInterval(() => {
+          if (index < text.length) {
+            element.innerHTML += text.charAt(index);
+            index++;
+          } else {
+            clearInterval(interval);
+            if (callback) callback(); // Call the callback function if provided
+          }
+        }, delay);
       }
 
-      let descriptionIndex = 0;
-
-      function typeDescription() {
-        if (descriptionIndex < highlightedDescription.length) {
-          typedDescriptionElement.innerHTML +=
-            highlightedDescription.charAt(descriptionIndex);
-          descriptionIndex++;
-          setTimeout(typeDescription, 35); // Adjust typing speed for description
-        }
-      }
-
-      typeMainText(); // Start typing the main text
+      // Fade in the main text first, then the description
+      fadeIn(typedTextElement, typedText, 100, () => {
+        setTimeout(() => {
+          fadeIn(typedDescriptionElement, highlightedDescription, 100);
+        }, 500); // Wait half a second before fading in the description
+      });
     </script>
   </body>
 </html>

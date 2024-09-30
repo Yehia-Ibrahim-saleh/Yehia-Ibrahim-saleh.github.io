@@ -184,6 +184,7 @@ footer a:hover {
 .highlight {
   font-weight: bold; /* Make highlighted text bold */
   color: blue; /* Change color of highlighted text */
+  transition: opacity 0.5s; /* Smooth transition for visibility */
 }
 
 #typed-description {
