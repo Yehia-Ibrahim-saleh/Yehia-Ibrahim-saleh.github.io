@@ -44,7 +44,7 @@ nav.scrolled {
 }
 
 .nav-links li {
-  margin: 2 0.01rem; /* Spacing between menu items */
+  margin: 2 0.50rem; /* Spacing between menu items */
 }
 
 .nav-links a {
