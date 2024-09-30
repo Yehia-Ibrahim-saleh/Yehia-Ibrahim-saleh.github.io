@@ -284,7 +284,7 @@
       function typeDescription() {
         if (descriptionIndex < typedDescription.length) {
           typedDescriptionElement.innerHTML +=
-            typedDescription.charAt(descriptionIndex);
+            typedDescription.charAt(descriptionIndex); // Use innerHTML for typed description
           descriptionIndex++;
           setTimeout(typeDescription, 35); // Adjust typing speed here
         }
