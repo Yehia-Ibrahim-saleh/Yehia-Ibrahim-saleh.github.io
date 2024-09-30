@@ -296,9 +296,7 @@
         document.getElementById("typed-description");
 
       let textIndex = 0;
-      let descriptionIndex = 0;
 
-      // Typing effect for typedText
       function type() {
         if (textIndex < typedText.length) {
           typedTextElement.textContent += typedText.charAt(textIndex);
@@ -311,8 +309,7 @@
         }
       }
 
-      // Start typing effect
-      type();
+      type(); // Start typing
     </script>
   </body>
 </html>
