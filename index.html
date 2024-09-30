@@ -15,7 +15,10 @@
     <header>
       <nav>
         <div class="logo">
-          <a href="#"><span class="first-letter">Y</span>ehia <span class="first-letter">I</span>brahim</a>
+          <a href="#"
+            ><span class="first-letter">Y</span>ehia
+            <span class="first-letter">I</span>brahim</a
+          >
         </div>
         <ul class="nav-links">
           <li><a href="#about">About Me</a></li>
@@ -247,7 +250,6 @@
 
     <!-- Script for Mobile Menu Toggle -->
     <script>
-      // Sticky Navbar
       window.addEventListener("scroll", function () {
         const header = document.querySelector("header");
         header.classList.toggle("scrolled", window.scrollY > 50);
@@ -256,9 +258,9 @@
       window.addEventListener("scroll", function () {
         const nav = document.querySelector("nav");
         if (window.scrollY > 50) {
-          nav.classList.add("scrolled");
+          nav.classList.add("scrolled"); // Apply the 'scrolled' class to the navbar
         } else {
-          nav.classList.remove("scrolled");
+          nav.classList.remove("scrolled"); // Remove the 'scrolled' class when at the top
         }
       });
     </script>
