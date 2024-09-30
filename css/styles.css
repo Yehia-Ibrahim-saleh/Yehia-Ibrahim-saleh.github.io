@@ -29,7 +29,7 @@ nav {
 }
 
 nav.scrolled {
-  background-color: lightblue; /* Light blue color when scrolled */
+  background-color: #0073e6; /* Light blue color when scrolled */
 }
 
 .logo a {
