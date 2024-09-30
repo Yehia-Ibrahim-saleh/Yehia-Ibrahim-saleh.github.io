@@ -302,26 +302,23 @@
 
           // Check for specific words to highlight
           if (
-            currentChar === "S" &&
             typedText.slice(textIndex, textIndex + 17) === "Software Engineer"
           ) {
             typedTextElement.innerHTML +=
-              "<span class='highlight'>" + "Software Engineer" + "</span>";
+              "<span class='highlight'>Software Engineer</span>";
             textIndex += 16; // Move index forward to skip the highlighted text
           } else if (
-            currentChar === "F" &&
             typedText.slice(textIndex, textIndex + 10) === "Front-end"
           ) {
             typedTextElement.innerHTML +=
-              "<span class='highlight'>" + "Front-end" + "</span>";
+              "<span class='highlight'>Front-end</span>";
             textIndex += 9; // Move index forward to skip the highlighted text
           } else if (
-            currentChar === "B" &&
             typedText.slice(textIndex, textIndex + 14) ===
-              "Back-end Development"
+            "Back-end Development"
           ) {
             typedTextElement.innerHTML +=
-              "<span class='highlight'>" + "Back-end Development" + "</span>";
+              "<span class='highlight'>Back-end Development</span>";
             textIndex += 16; // Move index forward to skip the highlighted text
           } else {
             typedTextElement.innerHTML += currentChar; // Add regular characters
