@@ -44,7 +44,7 @@ nav.scrolled {
 }
 
 .nav-links li {
-  margin: 2 0.90rem; /* Spacing between menu items */
+  margin: 2 0.9rem; /* Spacing between menu items */
 }
 
 .nav-links a {
@@ -194,4 +194,23 @@ footer a:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.logo a {
+  text-decoration: none; /* Remove underline */
+  color: black; /* Default color for the entire name */
+  font-weight: bold; /* Make the logo bold */
+  transition: color 0.3s ease; /* Smooth transition for hover */
+}
+
+.logo a .first-letter {
+  color: blue; /* First letters in blue */
+}
+
+.logo a:hover {
+  color: blue; /* All text turns blue on hover */
+}
+
+.logo a:hover .first-letter {
+  color: blue; /* Ensure the first letters also stay blue on hover */
 }
