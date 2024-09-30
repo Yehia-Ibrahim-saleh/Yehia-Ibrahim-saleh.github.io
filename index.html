@@ -39,10 +39,14 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-text">
-        <h1 id="typed-text"></h1>
+        <h1 class="unique-title">A Software Engineer</h1>
+        <p class="unique-title">
+          Specializing in Front-end and Back-end Development
+        </p>
         <p id="typed-description"></p>
         <a href="#projects" class="btn">View My Work</a>
       </div>
+
       <div class="hero-image">
         <img src="images/5-edited.png" alt="Yehia Ibrahim" />
       </div>
@@ -292,7 +296,9 @@
         document.getElementById("typed-description");
 
       let textIndex = 0;
+      let descriptionIndex = 0;
 
+      // Typing effect for typedText
       function type() {
         if (textIndex < typedText.length) {
           typedTextElement.textContent += typedText.charAt(textIndex);
@@ -305,7 +311,8 @@
         }
       }
 
-      type(); // Start typing
+      // Start typing effect
+      type();
     </script>
   </body>
 </html>
