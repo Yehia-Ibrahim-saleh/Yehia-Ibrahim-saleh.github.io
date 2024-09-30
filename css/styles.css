@@ -31,6 +31,26 @@ nav.scrolled {
   background: rgba(255, 255, 255, 0.9); /* Slight transparency on scroll */
 }
 
+/* Styling for the first letters */
+.logo a {
+  text-decoration: none; /* Remove underline */
+  color: black; /* Default color for the entire name */
+  font-weight: bold; /* Make the logo bold */
+  transition: color 0.3s ease; /* Smooth transition for hover */
+}
+
+.logo a .first-letter {
+  color: blue; /* First letter in blue */
+}
+
+.logo a:hover {
+  color: blue; /* All text turns blue on hover */
+}
+
+.logo a:hover .first-letter {
+  color: blue; /* Ensure the first letters also stay blue on hover */
+}
+
 .nav-links {
   list-style: none;
   display: flex;
