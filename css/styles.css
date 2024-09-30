@@ -81,7 +81,6 @@ nav.scrolled {
   color: black; /* Adjusted menu toggle color to black */
 }
 /*--------------------------======================*/
-
 /* Hero Section */
 .hero {
   display: flex; /* Use flexbox for layout */
@@ -89,24 +88,23 @@ nav.scrolled {
   align-items: center; /* Align items vertically */
   padding: 150px 20px; /* Added padding for header overlap */
   height: 100vh;
-  background: url("images/your-hero-image.jpg") no-repeat center center/cover; /* Updated path for the hero image */
+  background: url("images/15.png") no-repeat center center/cover; /* Background image */
 }
 
 .hero-text {
   flex: 1; /* Allow text to take available space */
   color: #0073e6; /* Text color */
-  animation: fadeInLeft 1s ease-in-out; /* Animation for text */
 }
 
 .hero-text h1 {
-  font-size: 3rem; /* Adjusted font size */
+  font-size: 2.5rem; /* Adjusted font size */
   margin-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 3px;
 }
 
 .hero-text p {
-  font-size: 1.5rem; /* Adjusted paragraph font size */
+  font-size: 1.2rem; /* Adjusted paragraph font size */
   margin-bottom: 20px;
 }
 
@@ -118,10 +116,9 @@ nav.scrolled {
 }
 
 .hero-image img {
-  max-width: 100%; /* Make image responsive */
+  max-width: 60%; /* Make image smaller */
   height: auto; /* Maintain aspect ratio */
   border-radius: 10px; /* Rounded corners for image */
-  animation: zoomIn 1s ease-in-out; /* Animation for image */
 }
 
 /* Section Styles */
@@ -230,5 +227,19 @@ footer a:hover {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
   }
 }

@@ -36,13 +36,11 @@
     </header>
 
     <!-- Hero Section -->
+    <!-- Hero Section -->
     <section class="hero">
       <div class="hero-text">
-        <h1>Hi, I'm Yehia Ibrahim</h1>
-        <p>
-          I'm a software developer with a passion for building impactful
-          projects that solve real-world problems.
-        </p>
+        <h1 id="typed-text"></h1>
+        <p id="typed-description"></p>
         <a href="#projects" class="btn">View My Work</a>
       </div>
       <div class="hero-image">
@@ -261,6 +259,38 @@
           nav.classList.remove("scrolled"); // Remove the 'scrolled' class when at the top
         }
       });
+
+      const typedText = "Hi, I'm Yehia Ibrahim";
+      const typedDescription =
+        "I'm a software developer with a passion for building impactful projects that solve real-world problems.";
+
+      const typedTextElement = document.getElementById("typed-text");
+      const typedDescriptionElement =
+        document.getElementById("typed-description");
+
+      let textIndex = 0;
+      let descriptionIndex = 0;
+
+      function type() {
+        if (textIndex < typedText.length) {
+          typedTextElement.textContent += typedText.charAt(textIndex);
+          textIndex++;
+          setTimeout(type, 100); // Adjust typing speed here
+        } else {
+          setTimeout(typeDescription, 500); // Wait before typing description
+        }
+      }
+
+      function typeDescription() {
+        if (descriptionIndex < typedDescription.length) {
+          typedDescriptionElement.textContent +=
+            typedDescription.charAt(descriptionIndex);
+          descriptionIndex++;
+          setTimeout(typeDescription, 50); // Adjust typing speed here
+        }
+      }
+
+      type(); // Start typing
     </script>
   </body>
 </html>
