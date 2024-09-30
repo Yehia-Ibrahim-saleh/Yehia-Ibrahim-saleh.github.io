@@ -265,7 +265,7 @@
       const typedText =
         "A Software Engineer Specializing in Front-end and Back-end Development";
       const typedDescription =
-        "I’m Yehia Ibrahim, a passionate Software Engineer with a Bachelor's degree in Computer Science. I proudly hold a dual degree from the Arab Academy for Science and Technology in Alexandria, Egypt, and the University of Northampton in London, United Kingdom. As a dedicated software developer, I thrive on building impactful projects that solve real-world problems.";
+        "I'm Yehia Ibrahim, a passionate Software Engineer with a Bachelor's degree in Computer Science. I proudly hold a dual degree from the Arab Academy for Science and Technology in Alexandria, Egypt, and the University of Northampton in London, United Kingdom. As a dedicated software developer, I thrive on building impactful projects that solve real-world problems.";
 
       // Function to highlight specific words in the description
       function highlightText(text) {
@@ -311,14 +311,14 @@
             typedText.slice(textIndex, textIndex + 11) === "Front-end "
           ) {
             typedTextElement.innerHTML +=
-              "<span class='highlight'>Front-end</span>";
+              "<span class='highlight-alt'>Front-end</span>";
             textIndex += 11; // Move index forward to skip the highlighted text
           } else if (
             typedText.slice(textIndex, textIndex + 16) ===
             "Back-end Development"
           ) {
             typedTextElement.innerHTML +=
-              "<span class='highlight'>Back-end Development</span>";
+              "<span class='highlight-alt'>Back-end Development</span>";
             textIndex += 16; // Move index forward to skip the highlighted text
           } else {
             typedTextElement.innerHTML += currentChar; // Add regular characters

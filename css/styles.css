@@ -200,7 +200,10 @@ footer a:hover {
 #typed-description {
   color: black; /* Default text color */
 }
-
+.highlight-alt {
+  color: blue; /* Change the color to green */
+  font-weight: bold;
+}
 /* Responsive Styles */
 @media (max-width: 768px) {
   .nav-links {
