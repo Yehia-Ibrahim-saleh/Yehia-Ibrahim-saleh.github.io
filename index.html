@@ -261,49 +261,36 @@
       });
       const typedText =
         "A Software Engineer Specializing in Front-end and Back-end Development";
-      const typedDescription = [
-        { text: "I’m Yehia Ibrahim,", highlight: true },
-        {
-          text: "a passionate Software Engineer with a Bachelor's degree in Computer Science.",
-          highlight: false,
-        },
-        { text: "I proudly hold a dual degree from", highlight: false },
-        {
-          text: "the Arab Academy for Science and Technology",
-          highlight: true,
-        },
-        {
-          text: "in Alexandria, Egypt, and the University of Northampton",
-          highlight: true,
-        },
-        { text: "in London, United Kingdom.", highlight: false },
-        { text: "As a dedicated software developer,", highlight: false },
-        {
-          text: "I thrive on building impactful projects that solve",
-          highlight: false,
-        },
-        { text: "real-world problems.", highlight: true },
-      ];
+      const typedDescription =
+        "I’m Yehia Ibrahim, a passionate Software Engineer with a Bachelor's degree in Computer Science. I proudly hold a dual degree from the Arab Academy for Science and Technology in Alexandria, Egypt, and the University of Northampton in London, United Kingdom. As a dedicated software developer, I thrive on building impactful projects that solve real-world problems.";
 
-      // Function to create highlighted HTML
-      function createHighlightedText() {
-        return typedDescription
-          .map((item) =>
-            item.highlight
-              ? `<span class='highlight'>${item.text}</span>`
-              : item.text
+      // Highlight specific words
+      function highlightText(text) {
+        return text
+          .replace(
+            /Yehia Ibrahim/g,
+            "<span class='highlight'>Yehia Ibrahim</span>"
           )
-          .join(" ");
+          .replace(
+            /Arab Academy for Science and Technology/g,
+            "<span class='highlight'>Arab Academy for Science and Technology</span>"
+          )
+          .replace(
+            /University of Northampton/g,
+            "<span class='highlight'>University of Northampton</span>"
+          )
+          .replace(
+            /real-world problems/g,
+            "<span class='highlight'>real-world problems</span>"
+          );
       }
 
-      const highlightedDescription = createHighlightedText();
-
+      const highlightedDescription = highlightText(typedDescription);
       const typedTextElement = document.getElementById("typed-text");
       const typedDescriptionElement =
         document.getElementById("typed-description");
 
       let textIndex = 0;
-      let descriptionIndex = 0;
 
       function type() {
         if (textIndex < typedText.length) {
@@ -311,16 +298,9 @@
           textIndex++;
           setTimeout(type, 65); // Adjust typing speed
         } else {
-          setTimeout(typeDescription, 500); // Wait before typing description
-        }
-      }
-
-      function typeDescription() {
-        if (descriptionIndex < highlightedDescription.length) {
-          typedDescriptionElement.innerHTML +=
-            highlightedDescription.charAt(descriptionIndex); // Use innerHTML for highlighted description
-          descriptionIndex++;
-          setTimeout(typeDescription, 35); // Adjust typing speed
+          setTimeout(() => {
+            typedDescriptionElement.innerHTML = highlightedDescription; // Set the entire content at once
+          }, 500); // Wait before showing description
         }
       }
 
