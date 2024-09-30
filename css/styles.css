@@ -42,7 +42,7 @@ nav.scrolled {
 
 .nav-links a {
   text-decoration: none;
-  color: black; /* Changed link color to black */
+  color: black; /* Text color is black */
   font-weight: 600; /* Bolder text */
   padding: 10px 15px; /* Added padding for better click area */
   border-radius: 5px; /* Rounded corners for links */
