@@ -308,18 +308,18 @@
               "<span class='highlight'>Software Engineer</span>";
             textIndex += 16; // Move index forward to skip the highlighted text
           } else if (
-            typedText.slice(textIndex, textIndex + 10) === "Front-end"
+            typedText.slice(textIndex, textIndex + 11) === "Front-end "
           ) {
             typedTextElement.innerHTML +=
               "<span class='highlight'>Front-end</span>";
-            textIndex += 10; // Move index forward to skip the highlighted text
+            textIndex += 11; // Move index forward to skip the highlighted text
           } else if (
-            typedText.slice(textIndex, textIndex + 14) ===
+            typedText.slice(textIndex, textIndex + 16) ===
             "Back-end Development"
           ) {
             typedTextElement.innerHTML +=
               "<span class='highlight'>Back-end Development</span>";
-            textIndex += 14; // Move index forward to skip the highlighted text
+            textIndex += 16; // Move index forward to skip the highlighted text
           } else {
             typedTextElement.innerHTML += currentChar; // Add regular characters
           }
