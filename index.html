@@ -285,33 +285,13 @@
           );
       }
 
-      const highlightedDescription = highlightText(typedDescription);
-
+      // Set the text directly without animation
       const typedTextElement = document.getElementById("typed-text");
       const typedDescriptionElement =
         document.getElementById("typed-description");
 
-      // Function to fade in the text
-      function fadeIn(element, text, delay, callback) {
-        let index = 0;
-        element.innerHTML = ""; // Clear any existing content
-        const interval = setInterval(() => {
-          if (index < text.length) {
-            element.innerHTML += text.charAt(index);
-            index++;
-          } else {
-            clearInterval(interval);
-            if (callback) callback(); // Call the callback function if provided
-          }
-        }, delay);
-      }
-
-      // Fade in the main text first, then the description
-      fadeIn(typedTextElement, typedText, 100, () => {
-        setTimeout(() => {
-          fadeIn(typedDescriptionElement, highlightedDescription, 100);
-        }, 500); // Wait half a second before fading in the description
-      });
+      typedTextElement.textContent = typedText; // Set the main text
+      typedDescriptionElement.innerHTML = highlightText(typedDescription); // Set the highlighted description
     </script>
   </body>
 </html>
