@@ -275,7 +275,7 @@
         if (textIndex < typedText.length) {
           typedTextElement.textContent += typedText.charAt(textIndex);
           textIndex++;
-          setTimeout(type, 25); // Adjust typing speed here
+          setTimeout(type, 35); // Adjust typing speed here
         } else {
           setTimeout(typeDescription, 500); // Wait before typing description
         }
@@ -286,7 +286,7 @@
           typedDescriptionElement.textContent +=
             typedDescription.charAt(descriptionIndex);
           descriptionIndex++;
-          setTimeout(typeDescription, 30); // Adjust typing speed here
+          setTimeout(typeDescription, 40); // Adjust typing speed here
         }
       }
 
