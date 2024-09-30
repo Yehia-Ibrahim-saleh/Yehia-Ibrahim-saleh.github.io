@@ -267,6 +267,22 @@
       const typedDescription =
         "I’m Yehia Ibrahim, a passionate Software Engineer with a Bachelor's degree in Computer Science. I proudly hold a dual degree from the Arab Academy for Science and Technology in Alexandria, Egypt, and the University of Northampton in London, United Kingdom. As a dedicated software developer, I thrive on building impactful projects that solve real-world problems.";
 
+      // Function to highlight specific words in the main text
+      function highlightMainText(text) {
+        return text
+          .replace(
+            /Software Engineer/g,
+            "<span class='highlight'>Software Engineer</span>"
+          )
+          .replace(/Front-end/g, "<span class='highlight'>Front-end</span>")
+          .replace(/Back-end/g, "<span class='highlight'>Back-end</span>");
+      }
+
+      // Get the main text element
+      const typedTextElement = document.getElementById("typed-text");
+      const highlightedMainText = highlightMainText(typedText);
+      typedTextElement.innerHTML = highlightedMainText;
+
       // Function to highlight specific words in the description
       function highlightText(text) {
         return text
@@ -303,36 +319,16 @@
       let textIndex = 0;
 
       function type() {
-        if (textIndex < typedText.length) {
-          const currentChar = typedText.charAt(textIndex);
+        const currentChar = typedText.charAt(textIndex);
 
-          // Check for specific words to highlight
-          if (
-            typedText.slice(textIndex, textIndex + 17) === "Software Engineer"
-          ) {
-            typedTextElement.innerHTML +=
-              "<span class='highlight'>Software Engineer</span>";
-            textIndex += 16; // Move index forward to skip the highlighted text
-          } else if (
-            typedText.slice(textIndex, textIndex + 10) === "Front-end"
-          ) {
-            typedTextElement.innerHTML +=
-              "<span class='highlight'>Front-end</span>";
-            textIndex += 9; // Move index forward to skip the highlighted text
-          } else if (typedText.slice(textIndex, textIndex + 9) === "Back-end") {
-            typedTextElement.innerHTML +=
-              "<span class='highlight'>Back-end</span>";
-            textIndex += 8; // Move index forward to skip the highlighted text
-          } else {
-            typedTextElement.innerHTML += currentChar; // Add regular characters
-          }
+        typedTextElement.innerHTML = highlightedMainText.slice(
+          0,
+          textIndex + 1
+        ); // Show text up to current index
 
+        if (textIndex < highlightedMainText.length - 1) {
           textIndex++;
           setTimeout(type, 65); // Adjust typing speed
-        } else {
-          setTimeout(() => {
-            typedDescriptionElement.innerHTML = highlightedDescription; // Set the description after typing
-          }, 500); // Wait before showing description
         }
       }
 
