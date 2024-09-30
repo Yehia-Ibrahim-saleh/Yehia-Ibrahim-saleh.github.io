@@ -76,15 +76,15 @@ nav.scrolled {
 }
 
 /* Dropdown Menu Styling */
+/* Dropdown Menu Styling */
 nav ul li .dropdown-menu {
   display: none;
   position: absolute;
+  top: 100%; /* Ensure the dropdown is directly below the "More" link */
+  left: 0; /* Align the dropdown relative to the "More" link */
   background-color: #444; /* Dark background for dropdown */
-  top: 100%;
-  left: 0;
-  padding: 10px 0; /* Padding for dropdown */
+  padding: 10px 0; /* Padding for dropdown items */
   border-radius: 5px; /* Rounded corners for dropdown */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
   z-index: 2000;
 }
 
@@ -95,6 +95,7 @@ nav ul li:hover .dropdown-menu {
 nav ul li .dropdown-menu li a {
   color: white; /* Text color for dropdown links */
   white-space: nowrap; /* Prevent text wrapping */
+  padding: 10px 15px; /* Padding for each dropdown item */
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
