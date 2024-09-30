@@ -24,7 +24,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 50px; /* Updated padding for better spacing */
+  padding: 10px 50px; /* Updated padding for better spacing */
   background: transparent; /* Make navbar transparent */
   transition: background-color 0.3s ease;
 }
@@ -45,12 +45,13 @@ nav.scrolled {
 .nav-links a {
   text-decoration: none;
   color: white; /* Link color for navbar */
-  font-weight: 500; /* Slightly bolder text */
-  padding: 8px 12px; /* Added padding for better click area */
-  border-radius: 4px; /* Rounded corners for links */
+  font-weight: 600; /* Bolder text */
+  padding: 10px 15px; /* Added padding for better click area */
+  border-radius: 5px; /* Rounded corners for links */
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
 }
 
+/* Navbar Link Hover Effects */
 .nav-links a:hover {
   background-color: rgba(255, 255, 255, 0.2); /* Subtle background on hover */
   color: #ddd; /* Lighten the text on hover */
@@ -60,31 +61,31 @@ nav.scrolled {
 nav ul li .dropdown-menu {
   display: none;
   position: absolute;
-  background-color: #444;
+  background-color: #444; /* Dark background for dropdown */
   top: 100%;
   left: 0;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 10px 0; /* Padding for dropdown */
+  border-radius: 5px; /* Rounded corners for dropdown */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
   z-index: 2000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Shadow for dropdown */
 }
 
 nav ul li:hover .dropdown-menu {
-  display: block;
+  display: block; /* Show dropdown on hover */
 }
 
 nav ul li .dropdown-menu li {
-  padding: 10px;
+  padding: 10px 15px; /* Vertical padding for dropdown items */
 }
 
 nav ul li .dropdown-menu li a {
-  color: white;
-  white-space: nowrap;
-  padding: 5px 10px; /* Padding for dropdown links */
-  transition: color 0.3s ease; /* Smooth transition for dropdown links */
+  color: white; /* Text color for dropdown links */
+  white-space: nowrap; /* Prevent text wrapping */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
 nav ul li .dropdown-menu li a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Subtle background on hover */
   color: #ddd; /* Lighten the text on hover */
 }
 
@@ -105,7 +106,6 @@ nav ul li .dropdown-menu li a:hover {
 /* Section Styles */
 section {
   padding: 50px 20px; /* Uniform padding for all sections */
-  /* Removed any borders or backgrounds */
 }
 
 /* Button Styles */
