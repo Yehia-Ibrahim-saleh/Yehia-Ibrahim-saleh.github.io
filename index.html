@@ -267,31 +267,9 @@
       const typedDescription =
         "I’m Yehia Ibrahim, a passionate Software Engineer with a Bachelor's degree in Computer Science. I proudly hold a dual degree from the Arab Academy for Science and Technology in Alexandria, Egypt, and the University of Northampton in London, United Kingdom. As a dedicated software developer, I thrive on building impactful projects that solve real-world problems.";
 
-      // Function to highlight specific words in the main text
-      function highlightMainText(text) {
-        return text
-          .replace(
-            /Software Engineer/g,
-            "<span class='highlight'>Software Engineer</span>"
-          )
-          .replace(/Front-end/g, "<span class='highlight'>Front-end</span>")
-          .replace(/Back-end/g, "<span class='highlight'>Back-end</span>");
-      }
-
-      // Get the main text element
-      const typedTextElement = document.getElementById("typed-text");
-      const highlightedMainText = highlightMainText(typedText);
-      typedTextElement.innerHTML = highlightedMainText;
-
       // Function to highlight specific words in the description
       function highlightText(text) {
         return text
-          .replace(
-            /Software Engineer/g,
-            "<span class='highlight'>Software Engineer</span>"
-          )
-          .replace(/Front-end/g, "<span class='highlight'>Front-end</span>")
-          .replace(/Back-end/g, "<span class='highlight'>Back-end</span>")
           .replace(
             /Yehia Ibrahim/g,
             "<span class='highlight'>Yehia Ibrahim</span>"
@@ -335,10 +313,13 @@
             typedTextElement.innerHTML +=
               "<span class='highlight'>Front-end</span>";
             textIndex += 9; // Move index forward to skip the highlighted text
-          } else if (typedText.slice(textIndex, textIndex + 9) === "Back-end") {
+          } else if (
+            typedText.slice(textIndex, textIndex + 14) ===
+            "Back-end Development"
+          ) {
             typedTextElement.innerHTML +=
-              "<span class='highlight'>Back-end</span>";
-            textIndex += 8; // Move index forward to skip the highlighted text
+              "<span class='highlight'>Back-end Development</span>";
+            textIndex += 16; // Move index forward to skip the highlighted text
           } else {
             typedTextElement.innerHTML += currentChar; // Add regular characters
           }
