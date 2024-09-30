@@ -9,6 +9,8 @@ body {
   font-family: Arial, sans-serif;
   background-color: white; /* Background color is white */
   color: black; /* Text color is black for contrast */
+  font-size: 1.2rem; /* Adjusted paragraph font size */
+
 }
 
 /* Navbar Styles */
@@ -116,7 +118,7 @@ nav.scrolled {
 }
 
 .hero-image img {
-  max-width: 60%; /* Make image smaller */
+  max-width: 40%; /* Make image smaller */
   height: auto; /* Maintain aspect ratio */
   border-radius: 10px; /* Rounded corners for image */
 }
