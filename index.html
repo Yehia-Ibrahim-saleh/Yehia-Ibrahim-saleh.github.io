@@ -267,7 +267,7 @@
       const typedDescription =
         "I’m Yehia Ibrahim, a passionate Software Engineer with a Bachelor's degree in Computer Science. I proudly hold a dual degree from the Arab Academy for Science and Technology in Alexandria, Egypt, and the University of Northampton in London, United Kingdom. As a dedicated software developer, I thrive on building impactful projects that solve real-world problems.";
 
-      // Function to highlight specific words
+      // Function to highlight specific words in the description
       function highlightText(text) {
         return text
           .replace(
@@ -300,7 +300,7 @@
         if (textIndex < typedText.length) {
           const currentChar = typedText.charAt(textIndex);
 
-          // Highlight specific words without using spans in typedText
+          // Check for specific words to highlight
           if (
             currentChar === "S" &&
             typedText.slice(textIndex, textIndex + 17) === "Software Engineer"
@@ -331,7 +331,7 @@
           setTimeout(type, 65); // Adjust typing speed
         } else {
           setTimeout(() => {
-            typedDescriptionElement.innerHTML = highlightedDescription; // Show highlighted description after typing
+            typedDescriptionElement.innerHTML = highlightedDescription; // Set the description after typing
           }, 500); // Wait before showing description
         }
       }
