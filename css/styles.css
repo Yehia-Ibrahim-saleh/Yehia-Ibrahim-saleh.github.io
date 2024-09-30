@@ -28,7 +28,7 @@ nav {
 }
 
 nav.scrolled {
-  background: rgba(186, 205, 255, 0.9); /* Slight transparency on scroll */
+  background: rgba(109, 151, 255, 0.9); /* Slight transparency on scroll */
 }
 
 /* Styling for the first letters */
