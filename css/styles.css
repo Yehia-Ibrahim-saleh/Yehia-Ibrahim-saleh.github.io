@@ -120,21 +120,60 @@ nav.scrolled .nav-links a:hover {
 }
 
 .hero-text p {
-  font-size: 1.2rem; /* Adjusted paragraph font size */
+  font-size: 1.25em; /* Adjusted font size for better visibility */
+  font-weight: 500;
   margin-bottom: 20px;
 }
 
 .hero-image {
   flex: 1; /* Allow image to take available space */
-  display: flex; /* Center the image */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  display: flex; /* Use flexbox for alignment */
+  justify-content: flex-end; /* Align image to the right */
+  align-items: center; /* Center the image vertically */
 }
 
 .hero-image img {
-  max-width: 70%; /* Make image smaller */
+  width: 100%; /* Make image take full width of the container */
   height: auto; /* Maintain aspect ratio */
+  max-width: none; /* Remove any max-width constraints */
   border-radius: 10px; /* Rounded corners for image */
+}
+/* About Me Section */
+/* About Me Section */
+#about {
+  background-color: #ffffff; /* White background for the section */
+  padding: 40px 20px; /* Padding for spacing */
+  height: calc(100vh - 40px); /* Full height minus padding */
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  margin-top: 20px; /* Space below the previous section */
+  position: relative; /* Ensure it doesn't overlap */
+}
+
+/* Heading Styles */
+#about h2 {
+  font-size: 2.5em; /* Adjusted size for better fit */
+  color: #333; /* Dark color for contrast */
+  margin-bottom: 90px; /* Space below the heading */
+}
+
+/* Paragraph Styles */
+.about-content p {
+  font-size: 1.25em; /* Adjusted font size for better visibility */
+  color: black; /* Medium gray for text color */
+  font-weight: 500;
+  margin-bottom: 15px; /* Space between paragraphs */
+  line-height: 1.4; /* Improve line spacing for readability */
+  text-align: left; /* Justify text for a cleaner look */
+}
+
+/* Strong Text Highlighting */
+.about-content strong {
+  color: blue; /* Highlight color for strong text */
+  font-weight: bolder; /* Ensure strong text is bold */
+  padding: 2px 4px; /* Slight padding for emphasis */
+  border-radius: 3px; /* Rounded corners for emphasis */
 }
 
 /* Section Styles */
@@ -170,15 +209,21 @@ section h2::after {
   background-color: transparent; /* Transparent button background */
   color: black; /* Button text color */
   text-decoration: none;
-  border: 2px solid black; /* Button border */
+  border: 3.5px solid black; /* Button border */
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
+  font-weight: bold;
 }
 
 .btn:hover,
 .btn-primary:hover {
-  background-color: black; /* Change background on hover */
   color: white; /* Change text color on hover */
+  font-weight: bolder; /* Make the logo bold */
+  border: 4px solid white; /* Button border */
+  border-radius: 5px;
+  text-decoration: blue;
+  transition: background-color 0.1s, color 0.1s;
+  background-color: blue;
 }
 
 /* Footer Styles */
@@ -284,4 +329,44 @@ footer a:hover {
   50% {
     border-color: transparent;
   }
+}
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9); /* Start slightly smaller and below */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1); /* End fully visible and at normal size */
+  }
+}
+
+@keyframes slideInScale {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.9); /* Start slightly smaller and from the left */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1); /* End fully visible and at normal size */
+  }
+}
+/* Responsive Design */
+@media (max-width: 600px) {
+  #about h2 {
+    font-size: 2em; /* Smaller heading on smaller screens */
+  }
+
+  .about-content p {
+    font-size: 1em; /* Smaller paragraph text on smaller screens */
+  }
+}
+
+/* Animated Text Class */
+.animated-text {
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.animated-text:hover {
+  transform: translateY(-3px); /* Slight lift effect on hover */
 }
