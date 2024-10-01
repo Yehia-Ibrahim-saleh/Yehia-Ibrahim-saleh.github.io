@@ -262,78 +262,98 @@
           nav.classList.remove("scrolled"); // Remove the 'scrolled' class when at the top
         }
       });
-      const typedText =
-        "A Software Engineer Specializing in Front-end and Back-end Development";
+      const part1 = "A ";
+      const part2 = "Software Engineer ";
+      const part3 = "Specializing in Front-end and Back-end Development";
+
+      const typedText = part1 + part2 + part3;
+
       const typedDescription =
         "I'm Yehia Ibrahim, a passionate Software Engineer with a Bachelor's degree in Computer Science. I proudly hold a dual degree from the Arab Academy for Science and Technology in Alexandria, Egypt, and the University of Northampton in London, United Kingdom. As a dedicated software developer, I thrive on building impactful projects that solve real-world problems.";
-
-      // Function to highlight specific words in the description
-      function highlightText(text) {
-        return text
-          .replace(
-            /Yehia Ibrahim/g,
-            "<span class='highlight'>Yehia Ibrahim</span>"
-          )
-          .replace(
-            /Arab Academy for Science and Technology/g,
-            "<span class='highlight'>Arab Academy for Science and Technology</span>"
-          )
-          .replace(
-            /University of Northampton/g,
-            "<span class='highlight'>University of Northampton</span>"
-          )
-          .replace(
-            /real-world problems/g,
-            "<span class='highlight'>real-world problems</span>"
-          );
-      }
-
-      const highlightedDescription = highlightText(typedDescription);
 
       const typedTextElement = document.getElementById("typed-text");
       const typedDescriptionElement =
         document.getElementById("typed-description");
 
       let textIndex = 0;
+      let descriptionIndex = 0;
+      let currentText = ""; // Store the current part of text
+      let currentDescription = ""; // Store the current part of description
 
+      // Function to type text and highlight specific words during typing
       function type() {
         if (textIndex < typedText.length) {
-          const currentChar = typedText.charAt(textIndex);
+          let currentChar = typedText.charAt(textIndex);
+          currentText += currentChar; // Add each character progressively
 
-          // Check for specific words to highlight
-          if (
-            typedText.slice(textIndex, textIndex + 17) === "Software Engineer"
-          ) {
-            typedTextElement.innerHTML +=
-              "<span class='highlight'>Software Engineer</span>";
-            textIndex += 16; // Move index forward to skip the highlighted text
-          } else if (
-            typedText.slice(textIndex, textIndex + 11) === "Front-end "
-          ) {
-            typedTextElement.innerHTML +=
-              "<span class='highlight'>Front-end</span>";
-            textIndex += 11; // Move index forward to skip the highlighted text
-          } else if (
-            typedText.slice(textIndex, textIndex + 16) ===
-            "Back-end Development"
-          ) {
-            typedTextElement.innerHTML +=
-              "<span class='highlight'>Back-end Development</span>";
-            textIndex += 16; // Move index forward to skip the highlighted text
-          } else {
-            typedTextElement.innerHTML += currentChar; // Add regular characters
+          // Check for specific words and highlight BEFORE they are fully typed
+          if (currentText.endsWith("Software Engineer ")) {
+            currentText = currentText.replace(
+              "Software Engineer ",
+              "<span class='highlight'>Software Engineer </span>"
+            );
+          } else if (currentText.endsWith("Front-end ")) {
+            currentText = currentText.replace(
+              "Front-end ",
+              "<span class='highlight'>Front-end </span>"
+            );
+          } else if (currentText.endsWith("Back-end ")) {
+            currentText = currentText.replace(
+              "Back-end ",
+              "<span class='highlight'>Back-end </span>"
+            );
           }
+
+          typedTextElement.innerHTML = currentText; // Update the HTML content with highlighted words
 
           textIndex++;
           setTimeout(type, 65); // Adjust typing speed
         } else {
-          setTimeout(() => {
-            typedDescriptionElement.innerHTML = highlightedDescription; // Set the description after typing
-          }, 500); // Wait before showing description
+          setTimeout(typeDescription, 500); // Start typing description after typed text
         }
       }
 
-      type(); // Start typing
+      // Function to type the description and highlight specific words during typing
+      function typeDescription() {
+        if (descriptionIndex < typedDescription.length) {
+          let currentChar = typedDescription.charAt(descriptionIndex);
+          currentDescription += currentChar; // Add each character progressively
+
+          // Check for specific words and highlight BEFORE they are fully typed
+          if (currentDescription.endsWith("Yehia Ibrahim")) {
+            currentDescription = currentDescription.replace(
+              "Yehia Ibrahim",
+              "<span class='highlight'>Yehia Ibrahim</span>"
+            );
+          } else if (
+            currentDescription.endsWith(
+              "Arab Academy for Science and Technology"
+            )
+          ) {
+            currentDescription = currentDescription.replace(
+              "Arab Academy for Science and Technology",
+              "<span class='highlight'>Arab Academy for Science and Technology</span>"
+            );
+          } else if (currentDescription.endsWith("University of Northampton")) {
+            currentDescription = currentDescription.replace(
+              "University of Northampton",
+              "<span class='highlight'>University of Northampton</span>"
+            );
+          } else if (currentDescription.endsWith("real-world problems")) {
+            currentDescription = currentDescription.replace(
+              "real-world problems",
+              "<span class='highlight'>real-world problems</span>"
+            );
+          }
+
+          typedDescriptionElement.innerHTML = currentDescription; // Update description content with highlighted words
+
+          descriptionIndex++;
+          setTimeout(typeDescription, 15); // Adjust typing speed for description
+        }
+      }
+
+      type(); // Start typing animation for the text
     </script>
   </body>
 </html>

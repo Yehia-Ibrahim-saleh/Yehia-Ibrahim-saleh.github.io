@@ -36,19 +36,21 @@ nav.scrolled {
   text-decoration: none; /* Remove underline */
   color: black; /* Default color for the entire name */
   font-weight: bold; /* Make the logo bold */
-  transition: color 0.3s ease; /* Smooth transition for hover */
-}
-
-.logo a .first-letter {
-  color: blue; /* First letters in blue */
+  transition: color 0.3s ease, background-color 0.3s ease, border 0.3s ease; /* Smooth transition for hover */
+  padding: 10px 15px; /* Padding for the logo */
+  border: 2px solid transparent; /* Transparent border for logo */
+  border-radius: 5px; /* Rounded corners for logo */
 }
 
 .logo a:hover {
+  background-color: rgb(255, 255, 255); /* White background on hover */
   color: blue; /* All text turns blue on hover */
 }
 
-.logo a:hover .first-letter {
-  color: blue; /* Ensure the first letters also stay blue on hover */
+nav.scrolled .logo a:hover {
+  background-color: rgb(255, 255, 255); /* White background on hover */
+  color: blue; /* All text turns blue on hover */
+  border: 2px solid black; /* Black border on hover */
 }
 
 .nav-links {
@@ -62,7 +64,7 @@ nav.scrolled {
 
 .nav-links a {
   text-decoration: none;
-  color: black; /* Text color is black */
+  color: black; /* Default text color */
   font-weight: 600; /* Bolder text */
   padding: 10px 15px; /* Padding for better click area */
   border-radius: 5px; /* Rounded corners for links */
@@ -71,7 +73,20 @@ nav.scrolled {
 
 /* Navbar Link Hover Effects */
 .nav-links a:hover {
+  background-color: rgb(255, 255, 255); /* White background on hover */
   color: blue; /* Change text color to blue on hover */
+}
+
+/* Scrolled state */
+nav.scrolled .nav-links a {
+  color: black; /* Text color when the navbar is scrolled */
+}
+
+/* Scrolled and hover state */
+nav.scrolled .nav-links a:hover {
+  background-color: rgb(255, 255, 255); /* White background on hover */
+  color: blue; /* Change to blue when hovered */
+  border: 2px solid black; /* Black border on hover */
 }
 
 /* Mobile Menu Toggle */
@@ -81,6 +96,7 @@ nav.scrolled {
   font-size: 1.5em;
   color: black; /* Adjusted menu toggle color to black */
 }
+
 /*--------------------------======================*/
 /* Hero Section */
 .hero {
@@ -89,7 +105,6 @@ nav.scrolled {
   align-items: center; /* Align items vertically */
   padding: 150px 20px; /* Added padding for header overlap */
   height: 100vh;
-  /*background: url("images/15.png") no-repeat center center/cover; /* Background image */
 }
 
 .hero-text {
@@ -189,21 +204,23 @@ footer a:hover {
 #typed-description {
   color: black; /* Ensure typed text is black */
 }
+
 /* Optional: Adjust the container for better appearance */
 #typed-text {
   font-size: 2rem; /* Adjust font size */
   color: black; /* Default text color */
-
   margin-bottom: 20px; /* Space between elements */
 }
 
 #typed-description {
   color: black; /* Default text color */
 }
+
 .highlight-alt {
-  color: blue; /* Change the color to green */
+  color: blue; /* Change the color to blue */
   font-weight: bold;
 }
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .nav-links {
@@ -231,7 +248,7 @@ footer a:hover {
     transform: translateY(0);
   }
 }
-/* Animations */
+
 @keyframes fadeInLeft {
   from {
     opacity: 0;
@@ -253,6 +270,7 @@ footer a:hover {
     transform: scale(1);
   }
 }
+
 @keyframes typing {
   from {
     width: 0;
