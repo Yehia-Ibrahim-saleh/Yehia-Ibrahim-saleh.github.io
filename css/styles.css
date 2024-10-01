@@ -138,7 +138,7 @@ nav.scrolled .nav-links a:hover {
   max-width: none; /* Remove any max-width constraints */
   border-radius: 10px; /* Rounded corners for image */
 }
-/* About Me Section */
+
 /* About Me Section */
 #about {
   background-color: #ffffff; /* White background for the section */
@@ -176,9 +176,79 @@ nav.scrolled .nav-links a:hover {
   border-radius: 3px; /* Rounded corners for emphasis */
 }
 
+/* skills */
+.full-screen-section {
+  height: 100vh; /* Full height of the viewport */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Center the content vertically */
+}
+
+.skills-header {
+  font-size: 3rem; /* Larger heading size */
+  color: #333; /* Dark color for contrast */
+  text-align: center; /* Center the heading */
+  margin-top: 90px; /* Space above the heading */
+  margin-bottom: 50px; /* Space above the heading */
+
+  width: 100%; /* Full width for the header */
+}
+
+.skills-container {
+  display: flex; /* Create a horizontal layout */
+  flex: 1; /* Allow this to fill the remaining space */
+  justify-content: flex-end; /* Align content to the right */
+  padding: 0 40px; /* Add padding to left and right for better use of space */
+}
+
+.skills-content {
+  flex: 1; /* Take up the other half of the section */
+  padding: 40px; /* Add padding */
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: flex-end; /* Align items to the right */
+  border-radius: 15px; /* Rounded corners for content area */
+  width: 100%; /* Ensure full width usage */
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns for skills */
+  gap: 40px; /* Space between grid items */
+  width: 100%; /* Make sure it uses the full width */
+}
+
+.skill {
+  background-color: #f9f9f9; /* Light background for skills */
+  padding: 40px; /* Padding for content */
+  border-radius: 10px; /* Rounded corners */
+  text-align: center; /* Center text */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s, box-shadow 0.3s; /* Transition for hover effect */
+}
+
+.skill:hover {
+  transform: translateY(-30px); /* Lift effect on hover */
+  box-shadow: 0 4px 20px rgba(116, 212, 244, 0.7); /* Deeper shadow on hover */
+}
+
+.skill h3 {
+  margin-top: 10px; /* Space above the skill title */
+  font-size: 2rem; /* Skill title size */
+  color: blue; /* Title color */
+}
+
+.skill p {
+  margin-top: 15px; /* Space above the paragraph */
+  font-size: 1.3rem; /* Paragraph font size */
+  color: #555; /* Paragraph color */
+  font-weight: 550;
+}
+
 /* Section Styles */
 section {
-  padding: 50px 20px; /* Uniform padding for all sections */
+  padding: 60px 80px; /* Uniform padding for all sections */
 }
 
 section h2 {
@@ -359,6 +429,16 @@ footer a:hover {
 
   .about-content p {
     font-size: 1em; /* Smaller paragraph text on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-image {
+    display: none; /* Hide image on smaller screens */
+  }
+
+  .skills-content {
+    padding: 20px; /* Adjust padding */
   }
 }
 
