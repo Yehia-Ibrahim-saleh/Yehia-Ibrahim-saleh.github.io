@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yehia Ibrahim's Portfolio</title>
@@ -26,10 +30,8 @@
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#testimonials"> My Values </a></li>
+          <li><a href="#contactForm">Contact</a></li>
         </ul>
         <div class="menu-toggle"><i class="fas fa-bars"></i></div>
       </nav>
@@ -68,11 +70,11 @@
           >.
         </p>
         <p class="animated-text">
-          During my studies, I participated in the <strong>ECPC</strong> in
-          2023, which sparked my interest in competitive programming. Although I
-          did not qualify for the next stage, this experience motivated me to
-          solve over <strong>200 problems</strong> on Codeforces and
-          <strong>100</strong> on LeetCode. My goal is to achieve
+          During my studies, I participated in the
+          <strong>Egyptian Collegiate Programming Contest (ECPC)</strong> in
+          2023, which sparked my interest in competitive programming.This
+          experience motivated me to solve over <strong>200 problems</strong> on
+          Codeforces and <strong>100</strong> on LeetCode. My goal is to achieve
           <strong>Grandmaster status</strong> on Codeforces and enhance my
           ranking on HackerRank.
         </p>
@@ -89,7 +91,7 @@
           Football has played a significant role in my life, teaching me
           valuable lessons in mental toughness, resilience, and effective
           communication. I played as a goalkeeper for
-          <strong>Karam FC</strong> during my youth and most recently for
+          <strong>Karama FC</strong> during my youth and most recently for
           <strong>Baynonah SC</strong> in the UAE U21 division in 2022. This
           experience not only helped me win numerous medals and trophies but
           also instilled in me the importance of teamwork, leadership, and
@@ -117,14 +119,14 @@
             <div class="skill">
               <i class="fas fa-laptop"></i>
               <h3>Web Development</h3>
-              <p>HTML, CSS, JavaScript, Flask, React</p>
+              <p>HTML, CSS, JavaScript, JSON, Flask, React</p>
             </div>
             <div class="skill">
               <i class="fas fa-robot"></i>
               <h3>Machine Learning</h3>
               <p>
                 TensorFlow, Keras, PyTorch, Scikit-learn, Pandas, Transformers,
-                Azure ML
+                Azure ML, spaCy, NLTK, hugging face Transformers
               </p>
             </div>
             <div class="skill">
@@ -135,7 +137,7 @@
             <div class="skill">
               <i class="fas fa-database"></i>
               <h3>Database Management</h3>
-              <p>MySQL, MongoDB, PostgreSQL, PHP</p>
+              <p>MySQL, MongoDB, PostgreSQL, PHP, Firebase Realtime Database</p>
             </div>
             <div class="skill">
               <i class="fas fa-git"></i>
@@ -148,150 +150,437 @@
     </section>
 
     <!-- Projects Section -->
-
     <section id="projects">
-      <h2>Projects</h2>
+      <h2 class="projects-header">Projects</h2>
       <div class="project-list">
         <div class="project">
-          <h3>Publishing Company - Power BI</h3>
-          <p>
-            Designed a Database Management System for a publishing company to
-            streamline operations and improve data accessibility.
-          </p>
-          <a href="#" class="btn-primary">View Project</a>
+          <div class="project-image">
+            <img
+              src="images/image.png"
+              alt="Publishing Company Project Image"
+            />
+          </div>
+          <div class="project-content">
+            <h3>Publishing-House-Data-Insights-Analysis</h3>
+            <p>
+              This project provides a streamlined Database Management System
+              (DBMS) for a fictional publishing company, managing key data such
+              as book titles, authors, publishers, and sales. It efficiently
+              organizes and tracks publications, authorship, distribution, and
+              sales transactions. Integrated with <strong>Power BI</strong>, the
+              system enables dynamic data visualization for actionable insights
+              on sales performance and distribution.
+            </p>
+            <a
+              href="https://github.com/yehiaibrahim1308/Publishing-House-Data-Insights-Analysis.git"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary"
+              >View Project Details
+            </a>
+          </div>
         </div>
+
         <div class="project">
-          <h3>SIC-XE Assembler - Python</h3>
-          <p>
-            Developed a SIC/XE assembler for converting assembly language
-            programs into machine code, enhancing understanding of low-level
-            programming.
-          </p>
-          <a href="#" class="btn-primary">View Project</a>
+          <div class="project-image">
+            <img
+              src="images/assembler.png"
+              alt="SIC-XE Assembler Project Image"
+            />
+          </div>
+          <div class="project-content">
+            <h3>SIC-XE Assembler</h3>
+            <p>
+              This project, developed in <strong>Python</strong>, focuses on
+              reading and processing SIC/XE assembler code from specified text
+              files. Its primary objective is to generate object code that
+              follows the SIC/XE format by utilizing the provided assembly
+              instructions and symbol tables.
+            </p>
+            <a
+              href="https://github.com/yehiaibrahim1308/SICXE-Assembler.git"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary"
+              >View Project Details
+            </a>
+          </div>
         </div>
+
         <div class="project">
-          <h3>RMI Internode Communication - Java</h3>
-          <p>
-            Created a distributed file system that supports file sharing across
-            multiple nodes, utilizing Java's Remote Method Invocation (RMI).
-          </p>
-          <a href="#" class="btn-primary">View Project</a>
+          <div class="project-image">
+            <img
+              src="images/0_T6LXs7zjaUstip0-.png"
+              alt="RMI Internode Communication Project Image"
+            />
+          </div>
+          <div class="project-content">
+            <h3>RMI for Node Communication</h3>
+            <p>
+              This project implements a distributed file system in
+              <strong>Java</strong>, utilizing Remote Method Invocation (RMI)
+              for inter-node communication. It supports core file
+              operations—upload, download, search, and delete—while ensuring
+              consistency through a logical clock and managing transaction order
+              using a priority queue.
+            </p>
+            <a
+              href="https://github.com/yehiaibrahim1308/-RMI-for-Node-Communication.git"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary"
+              >View Project Details
+            </a>
+          </div>
         </div>
+
         <div class="project">
-          <h3>Computer Guardian - HTML, CSS, JS</h3>
-          <p>
-            Developed a comprehensive platform for custom computer building,
-            allowing users to select and compare components.
-          </p>
-          <a href="#" class="btn-primary">View Project</a>
+          <div class="project-image">
+            <img src="images/guard.png" alt="Computer Guardian Project Image" />
+          </div>
+          <div class="project-content">
+            <h3>Computer Guardian</h3>
+            <p>
+              Computer Guardian is an all-in-one platform built with
+              <strong>PHP, HTML, CSS, and JavaScript</strong>, designed to
+              simplify custom PC building by offering tech guides, the latest
+              news, and seamless component purchasing. The platform integrates
+              dynamic content management powered by PHP, ensuring real-time data
+              updates from five partner stores across Egypt and a smooth user
+              experience. Users can easily find and purchase components like
+              graphic cards and processors, all in one place, without needing to
+              navigate multiple sites. Additionally, the platform keeps users
+              informed on the latest advancements in computer hardware and
+              software.
+            </p>
+            <a
+              href="https://github.com/yehiaibrahim1308/Computer-Guardian.git"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary"
+              >View Project Details</a
+            >
+          </div>
         </div>
+
         <div class="project">
-          <h3>Weather App - React</h3>
-          <p>
-            Built a responsive weather application using React and API
-            integration to provide real-time weather updates and forecasts.
-          </p>
-          <a href="#" class="btn-primary">View Project</a>
+          <div class="project-image small-image">
+            <img src="images/hey.png" alt="Weather App Project Image" />
+          </div>
+          <div class="project-content">
+            <h3>Hey Doc</h3>
+            <p>
+              Hey Doc is a medical chatbot designed to provide continuous
+              medical assistance, minimize unnecessary doctor visits, and
+              support individuals with social anxiety. The platform leverages
+              machine learning, deep learning, and various APIs to offer secure
+              mental health sessions, respond to medical inquiries, provide
+              emotional support, and deliver diagnostic predictions. Built with
+              <strong> Python</strong>, <strong>HTML</strong>,
+              <strong>CSS</strong>, and <strong>JavaScript</strong>, it
+              utilizes<strong> MongoDB</strong> for database management. Key
+              frameworks and tools include <strong>Scikit-learn</strong> for
+              machine learning algorithms, <strong>Pandas</strong> for data
+              manipulation, <strong>Flask</strong> for backend management,
+              <strong>Elevenlabs</strong> and <strong>Google APIs</strong> for
+              text-to-speech and speech-to-text, <strong>PubMed API</strong> for
+              medical article access, <strong>TensorFlow</strong> for deep
+              learning, and <strong>Transformers</strong> for NLP tasks.
+            </p>
+            <a
+              href="https://github.com/yehiaibrahim1308/Hey-Doc.git"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary"
+              >View Project Details</a
+            >
+          </div>
         </div>
+
         <div class="project">
-          <h3>Task Manager - Flask</h3>
-          <p>
-            Designed a task management web application that helps users organize
-            their tasks, set deadlines, and track progress.
-          </p>
-          <a href="#" class="btn-primary">View Project</a>
+          <div class="project-image small-image2">
+            <img src="images/calc.png" alt="Task Manager Project Image" />
+          </div>
+          <div class="project-content">
+            <h3>Calculator and Unit Converter</h3>
+            <p>
+              This <strong>Python</strong> project offers a Scientific
+              Calculator and Unit Converter with a user-friendly interface built
+              using the Tkinter library. The main menu allows users to switch
+              between the calculator and unit converters for temperature and
+              length measurements.
+            </p>
+            <a
+              href="https://github.com/yehiaibrahim1308/calculator-and-converter.git"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary"
+              >View Project Details
+            </a>
+          </div>
         </div>
       </div>
     </section>
+
     <!-- Services Section -->
+
     <section id="services">
-      <h2>Services</h2>
+      <h2>My Services</h2>
       <div class="service-list">
         <div class="service">
           <i class="fas fa-laptop-code"></i>
           <h3>Web Development</h3>
-          <p>Build high-quality, responsive websites and web applications.</p>
+          <p>
+            I create high-quality, responsive websites and web applications that
+            deliver dynamic user experiences, utilizing my expertise in React,
+            Next.js, and Tailwind CSS
+          </p>
         </div>
         <div class="service">
           <i class="fas fa-cloud"></i>
           <h3>Cloud Solutions</h3>
-          <p>Design and deploy scalable cloud-based architectures.</p>
+          <p>
+            I provide design and deployment services for cloud architectures
+            that efficiently scale to accommodate growing demands
+          </p>
         </div>
         <div class="service">
           <i class="fas fa-brain"></i>
           <h3>Machine Learning</h3>
           <p>
-            Create and optimize machine learning models for various
-            applications.
+            I offer services to create and optimize machine learning models for
+            diverse applications, ensuring they are effective and tailored to
+            meet specific requirements
           </p>
         </div>
         <div class="service">
           <i class="fas fa-tools"></i>
           <h3>Technical Consulting</h3>
           <p>
-            Provide expert advice on software architecture and best practices.
+            I offer expert guidance on software architecture and industry best
+            practices to help organizations build robust and efficient systems.
           </p>
         </div>
         <div class="service">
           <i class="fas fa-mobile-alt"></i>
           <h3>Mobile Development</h3>
-          <p>Develop cross-platform mobile applications for iOS and Android.</p>
+          <p>
+            I develop cross-platform mobile applications that seamlessly run on
+            both iOS and Android devices, ensuring a consistent and engaging
+            user experience
+          </p>
+        </div>
+        <div class="service">
+          <i class="fas fa-database"></i>
+          <h3>Advanced Database Management Solutions</h3>
+          <p>
+            I design and implement robust database management solutions using
+            MySQL, MongoDB, and PostgreSQL, ensuring efficient data storage,
+            retrieval, and security tailored to meet diverse application needs
+          </p>
         </div>
       </div>
     </section>
 
     <!-- Testimonials Section -->
     <section id="testimonials">
-      <h2>Testimonials</h2>
-      <div class="testimonial-list">
-        <blockquote>
-          <p>
-            "Yehia delivered an exceptional product on time and exceeded all
-            expectations."
-          </p>
-          <cite>- Client A</cite>
-        </blockquote>
-        <blockquote>
-          <p>
-            "His technical skills are top-notch. The project went smoothly and
-            the results were amazing!"
-          </p>
-          <cite>- Client B</cite>
-        </blockquote>
-        <blockquote>
-          <p>
-            "Working with Yehia was a pleasure. He brought innovative ideas and
-            executed them flawlessly."
-          </p>
-          <cite>- Client C</cite>
-        </blockquote>
-      </div>
+      <h2 class="why-choose-me-title">
+        <i class="fas fa-star"></i> Why Choose Me?
+      </h2>
+
+      <section id="why-choose-me">
+        <h3 class="section-subtitle">Skills That Set Me Apart</h3>
+        <ul class="skills-list">
+          <li>
+            <div class="skill-icon">💡</div>
+            <div class="skill-content">
+              <h4>Problem Solver</h4>
+              <p>
+                I thrive on finding efficient solutions to complex problems.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="skill-icon">🎯</div>
+            <div class="skill-content">
+              <h4>Detail-Oriented</h4>
+              <p>
+                I pay close attention to details, ensuring high-quality code and
+                design.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="skill-icon">🚀</div>
+            <div class="skill-content">
+              <h4>Adaptable</h4>
+              <p>
+                I quickly learn new technologies and adapt to changing project
+                requirements.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="skill-icon">🤝</div>
+            <div class="skill-content">
+              <h4>Team Player</h4>
+              <p>
+                I communicate effectively and work well within teams to achieve
+                project goals.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="skill-icon">📈</div>
+            <div class="skill-content">
+              <h4>Passionate Learner</h4>
+              <p>
+                I am committed to continuous learning and staying updated with
+                industry trends.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="skill-icon">🌟</div>
+            <div class="skill-content">
+              <h4>Innovative Thinker</h4>
+              <p>
+                I bring fresh ideas and creativity to every project I work on.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="skill-icon">🔒</div>
+            <div class="skill-content">
+              <h4>Security Conscious</h4>
+              <p>
+                I prioritize security best practices to safeguard data and
+                applications.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="skill-icon">📊</div>
+            <div class="skill-content">
+              <h4>Data-Driven</h4>
+              <p>
+                I use analytics and metrics to inform decisions and improve
+                outcomes.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="skill-icon">⚡</div>
+            <div class="skill-content">
+              <h4>Efficient Organizer</h4>
+              <p>
+                I excel at managing tasks and time effectively to meet
+                deadlines.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="skill-icon">🌍</div>
+            <div class="skill-content">
+              <h4>Culturally Aware</h4>
+              <p>
+                I embrace diversity and work effectively in multicultural
+                environments.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
-      <h2>Contact Me</h2>
-      <form action="https://formsubmit.co/your-email" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required />
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
+    <h2 class="professional-heading">Contact</h2>
+    <div id="contactForm">
+      <div class="contactForm-content">
+        <form class="contactForm-form">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="fullName"
+              required
+              placeholder="Type your Name here..."
+            />
+          </div>
+          <div class="form-group">
+            <label for="contactNumber">Number:</label>
+            <input
+              type="text"
+              id="contactNumber"
+              name="contactNumber"
+              placeholder="enter your Contact Number"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="yourname@example.com"
+            />
+          </div>
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+              placeholder="Type your message here..."
+            ></textarea>
+          </div>
+          <button type="submit" class="submit-button">Send Message</button>
+        </form>
+        <div id="responseMessage" class="response-message"></div>
 
-    <!-- Footer -->
-    <footer>
-      <p>
-        Connect with me on
-        <a href="https://github.com/yehiaibrahim1308">GitHub</a>
-      </p>
-      <p>Yehia Ibrahim © 2024. All Rights Reserved.</p>
-    </footer>
+        <div class="connect-with-me">
+          <h3>Connect with Me</h3>
+          <ul class="social-links">
+            <li>
+              <a
+                href="https://www.facebook.com/yahya.ibrahim.794/"
+                aria-label="Facebook"
+              >
+                <i class="fab fa-facebook-f"></i> Facebook
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/Yahya39551663" aria-label="Twitter">
+                <i class="fab fa-twitter"></i> Twitter
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/yehia-ibrahim-8154b0201/"
+                aria-label="LinkedIn"
+              >
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/yahya_ibrahim_1/"
+                aria-label="Instagram"
+              >
+                <i class="fab fa-instagram"></i> Instagram
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
     <!-- Script for Mobile Menu Toggle -->
+
     <script>
       window.addEventListener("scroll", function () {
         const header = document.querySelector("header");
@@ -399,5 +688,83 @@
 
       type(); // Start typing animation for the text
     </script>
+    <script type="module">
+      // Import the Firebase modules
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+      } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+
+      // Your Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyD3mtF3SUymZRu6obyxg9ppKLFdmgFyKZc",
+        authDomain: "form-814f2.firebaseapp.com",
+        projectId: "form-814f2",
+        storageBucket: "form-814f2.appspot.com",
+        messagingSenderId: "89138960600",
+        appId: "1:89138960600:web:ecba88a87c611fc3905fad",
+        measurementId: "G-P85MSPZWSN",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // Handle form submission
+
+      // Assuming Firebase imports are already present
+
+      document
+        .getElementById("contactForm")
+        .querySelector(".contactForm-form").onsubmit = async function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+        const data = {};
+        formData.forEach((value, key) => (data[key] = value));
+
+        console.log("Submitting data:", data); // Debug log
+
+        try {
+          // Add data to Firestore "contact" collection
+          const docRef = await addDoc(collection(db, "contact"), data);
+          console.log("Document written with ID: ", docRef.id); // Log document ID
+
+          // Show the modal with the success message
+          document.getElementById("modalMessage").textContent =
+            "Thank you! Your request has been submitted.";
+          document.getElementById("modal").style.display = "block";
+
+          this.reset();
+        } catch (error) {
+          // Show the modal with the error message
+          document.getElementById("modalMessage").textContent =
+            "There was an error submitting your request. Please try again.";
+          document.getElementById("modal").style.display = "block";
+          console.error("Error adding document: ", error); // Log the error
+        }
+      };
+
+      // Close the modal when the user clicks on <span> (x)
+      document.getElementById("closeModal").onclick = function () {
+        document.getElementById("modal").style.display = "none";
+      };
+
+      // Close the modal when the user clicks anywhere outside of the modal
+      window.onclick = function (event) {
+        const modal = document.getElementById("modal");
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+    <div id="modal" class="modal" style="display: none">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <p id="modalMessage">Your message will appear here.</p>
+      </div>
+    </div>
   </body>
 </html>
