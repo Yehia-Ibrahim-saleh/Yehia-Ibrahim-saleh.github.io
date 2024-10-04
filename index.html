@@ -611,6 +611,7 @@
           nav.classList.remove("scrolled"); // Remove the 'scrolled' class when at the top
         }
       });
+
       const part1 = "A ";
       const part2 = "Software Engineer ";
       const part3 = "Specializing in Front-end and Back-end Development";
@@ -635,21 +636,21 @@
           let currentChar = typedText.charAt(textIndex);
           currentText += currentChar; // Add each character progressively
 
-          // Check for specific words and highlight BEFORE they are fully typed
+          // Check for specific words and highlight AFTER they are fully typed
           if (currentText.endsWith("Software Engineer ")) {
             currentText = currentText.replace(
               "Software Engineer ",
-              "<span class='highlight'>Software Engineer </span>"
+              "<span class='highlight'>Software Engineer</span> "
             );
           } else if (currentText.endsWith("Front-end ")) {
             currentText = currentText.replace(
               "Front-end ",
-              "<span class='highlight'>Front-end </span>"
+              "<span class='highlight'>Front-end</span> "
             );
           } else if (currentText.endsWith("Back-end ")) {
             currentText = currentText.replace(
               "Back-end ",
-              "<span class='highlight'>Back-end </span>"
+              "<span class='highlight'>Back-end</span> "
             );
           }
 
@@ -668,7 +669,7 @@
           let currentChar = typedDescription.charAt(descriptionIndex);
           currentDescription += currentChar; // Add each character progressively
 
-          // Check for specific words and highlight BEFORE they are fully typed
+          // Check for specific words and highlight AFTER they are fully typed
           if (currentDescription.endsWith("Yehia Ibrahim")) {
             currentDescription = currentDescription.replace(
               "Yehia Ibrahim",
@@ -702,7 +703,7 @@
         }
       }
 
-      type(); // Start typing animation for the text
+      type();
     </script>
     <script type="module">
       // Import the Firebase modules
