@@ -1138,7 +1138,7 @@ footer {
 }
     
    
-/* Animated Text Class */
+/* Animated Text Class */   
 .animated-text {
   transition: transform 0.3s ease;
 }
