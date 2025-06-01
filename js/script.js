@@ -1,27 +1,91 @@
-// Mobile Menu Toggle and Navigation
-const menuToggle = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-links");
-const nav = document.querySelector("nav");
+// Optimized navbar functionality
+class NavbarController {
+  constructor() {
+    this.menuToggle = document.querySelector(".menu-toggle");
+    this.navLinks = document.querySelector(".nav-links");
+    this.nav = document.querySelector("nav");
+    this.isScrolled = false;
 
-// Toggle menu on click
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active"); // Toggle the active class on nav links
-  menuToggle.classList.toggle("active"); // Toggle the active class on the menu toggle
-});
-
-// Scroll effects for header
-window.addEventListener("scroll", function () {
-  const header = document.querySelector("header");
-  header.classList.toggle("scrolled", window.scrollY > 50);
-});
-
-window.addEventListener("scroll", function () {
-  const nav = document.querySelector("nav");
-  if (window.scrollY > 50) {
-    nav.classList.add("scrolled"); // Apply the 'scrolled' class to the navbar
-  } else {
-    nav.classList.remove("scrolled"); // Remove the 'scrolled' class when at the top
+    this.init();
   }
+
+  init() {
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    // Mobile menu toggle
+    this.menuToggle?.addEventListener("click", () => this.toggleMenu());
+
+    // Close menu when clicking on links (mobile)
+    this.navLinks?.addEventListener("click", (e) => {
+      if (e.target.tagName === "A" && window.innerWidth <= 768) {
+        this.closeMenu();
+      }
+    });
+
+    // Optimized scroll handler with throttling
+    let scrollTimeout;
+    window.addEventListener("scroll", () => {
+      if (scrollTimeout) return;
+
+      scrollTimeout = setTimeout(() => {
+        this.handleScroll();
+        scrollTimeout = null;
+      }, 16); // ~60fps
+    });
+
+    // Close menu on resize if window becomes large
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) {
+        this.closeMenu();
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (
+        !this.nav.contains(e.target) &&
+        this.navLinks?.classList.contains("active")
+      ) {
+        this.closeMenu();
+      }
+    });
+  }
+
+  toggleMenu() {
+    this.navLinks?.classList.toggle("active");
+
+    // Animate hamburger icon
+    const icon = this.menuToggle?.querySelector("i");
+    if (icon) {
+      icon.classList.toggle("fa-bars");
+      icon.classList.toggle("fa-times");
+    }
+  }
+
+  closeMenu() {
+    this.navLinks?.classList.remove("active");
+    const icon = this.menuToggle?.querySelector("i");
+    if (icon) {
+      icon.classList.add("fa-bars");
+      icon.classList.remove("fa-times");
+    }
+  }
+
+  handleScroll() {
+    const shouldBeScrolled = window.scrollY > 50;
+
+    if (shouldBeScrolled !== this.isScrolled) {
+      this.isScrolled = shouldBeScrolled;
+      this.nav?.classList.toggle("scrolled", this.isScrolled);
+    }
+  }
+}
+
+// Initialize navbar when DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  new NavbarController();
 });
 
 // Typing Animation
