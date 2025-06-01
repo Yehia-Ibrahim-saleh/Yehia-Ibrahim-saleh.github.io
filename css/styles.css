@@ -1,13 +1,4 @@
-:root {
-  --transition: 0.3s ease;
-  --text-color: #333;
-  --hover-color: #007bff;
-  --hover-bg: rgba(0, 123, 255, 0.1);
-  --scrolled-bg: #0073e6;
-  --border-color: #007bff;
-  --border-radius: 8px;
-  --nav-padding: 10px 15px;
-}
+/* Basic Reset */
 
 * {
   margin: 0;
@@ -16,11 +7,14 @@
 }
 
 body {
-  font-family: "Arial", sans-serif;
-  line-height: 1.6;
-  background: white;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  color: black;
+  font-size: 1.25rem;
 }
+
 /* Navbar Styles */
+
 header {
   position: fixed;
   top: 0;
@@ -420,6 +414,7 @@ nav.scrolled .hamburger-lines span {
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
+
 /* Mobile Menu Toggle */
 
 .menu-toggle {
