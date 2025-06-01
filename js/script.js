@@ -165,6 +165,7 @@ navLinks.addEventListener("keydown", (e) => {
     focusableElements[prevIndex].focus();
   }
 });
+//==============================================
 // Typing Animation
 const part1 = "A ";
 const part2 = "Software Engineer ";
