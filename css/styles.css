@@ -1,11 +1,9 @@
 :root {
   --transition: 0.3s ease;
-  --text-color: #333;
-  --hover-color: #007bff;
+  --text-color: #000000;
+  --hover-color: hsl(211, 100%, 50%);
   --hover-bg: rgba(0, 123, 255, 0.1);
   --scrolled-bg: #0073e6;
-  --border-color: #007bff;
-  --border-radius: 8px;
   --nav-padding: 10px 15px;
 }
 
@@ -41,7 +39,6 @@ nav {
 
 nav.scrolled {
   background-color: var(--scrolled-bg);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Hide navbar when scrolled deep */
@@ -63,7 +60,7 @@ nav.hidden {
   display: none;
   align-items: center;
   justify-content: center;
-  color: white;
+  color:  #007bff;
   font-size: 1.5rem;
   cursor: pointer;
   transition: all var(--transition);
