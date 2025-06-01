@@ -133,30 +133,34 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-document
+const contactForm = document
   .getElementById("contactForm")
-  ?.querySelector(".contactForm-form").onsubmit = async function (event) {
-  event.preventDefault();
+  ?.querySelector(".contactForm-form");
 
-  const formData = new FormData(this);
-  const data = {};
-  formData.forEach((value, key) => (data[key] = value));
+if (contactForm) {
+  contactForm.onsubmit = async function (event) {
+    event.preventDefault();
 
-  try {
-    const docRef = await addDoc(collection(db, "contact"), data);
+    const formData = new FormData(this);
+    const data = {};
+    formData.forEach((value, key) => (data[key] = value));
 
-    document.getElementById("modalMessage").textContent =
-      "Thank you! Your request has been submitted.";
-    document.getElementById("modal").style.display = "block";
+    try {
+      await addDoc(collection(db, "contact"), data);
 
-    this.reset();
-  } catch (error) {
-    document.getElementById("modalMessage").textContent =
-      "There was an error submitting your request. Please try again.";
-    document.getElementById("modal").style.display = "block";
-    console.error("Error adding document: ", error);
-  }
-};
+      document.getElementById("modalMessage").textContent =
+        "Thank you! Your request has been submitted.";
+      document.getElementById("modal").style.display = "block";
+
+      this.reset();
+    } catch (error) {
+      document.getElementById("modalMessage").textContent =
+        "There was an error submitting your request. Please try again.";
+      document.getElementById("modal").style.display = "block";
+      console.error("Error adding document: ", error);
+    }
+  };
+}
 
 document.getElementById("closeModal")?.addEventListener("click", () => {
   document.getElementById("modal").style.display = "none";
@@ -168,4 +172,5 @@ window.addEventListener("click", function (event) {
     modal.style.display = "none";
   }
 });
+
 
