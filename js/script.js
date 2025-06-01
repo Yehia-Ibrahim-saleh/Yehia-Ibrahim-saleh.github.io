@@ -1,171 +1,29 @@
-// Get DOM elements
-const navbar = document.getElementById("navbar");
-const menuToggle = document.getElementById("menu-toggle");
-const navLinks = document.getElementById("nav-links");
-const floatingHamburger = document.getElementById("floating-hamburger");
+// Mobile Menu Toggle and Navigation
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+const nav = document.querySelector("nav");
 
-// Scroll variables
-let lastScrollY = window.scrollY;
-let scrollThreshold = 300;
-
-// Scroll behavior
-window.addEventListener("scroll", () => {
-  const currentScrollY = window.scrollY;
-
-  // Add scrolled class when scrolling
-  if (currentScrollY > 50) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
-
-  // Hide navbar and show floating hamburger when scrolled deep
-  if (currentScrollY > scrollThreshold && currentScrollY > lastScrollY) {
-    navbar.classList.add("hidden");
-    floatingHamburger.classList.add("show");
-  } else if (currentScrollY < scrollThreshold || currentScrollY < lastScrollY) {
-    navbar.classList.remove("hidden");
-    floatingHamburger.classList.remove("show");
-  }
-
-  lastScrollY = currentScrollY;
-});
-
-// Toggle mobile menu
+// Toggle menu on click
 menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-  menuToggle.classList.toggle("active");
+  navLinks.classList.toggle("active"); // Toggle the active class on nav links
+  menuToggle.classList.toggle("active"); // Toggle the active class on the menu toggle
 });
 
-// Floating hamburger click
-floatingHamburger.addEventListener("click", () => {
-  navbar.classList.add("show-from-floating");
-  floatingHamburger.classList.remove("show");
-  navLinks.classList.add("active");
-  menuToggle.classList.add("active");
+// Scroll effects for header
+window.addEventListener("scroll", function () {
+  const header = document.querySelector("header");
+  header.classList.toggle("scrolled", window.scrollY > 50);
 });
 
-// Close menu when clicking on nav links
-navLinks.addEventListener("click", (e) => {
-  if (e.target.tagName === "A") {
-    navLinks.classList.remove("active");
-    menuToggle.classList.remove("active");
-    navbar.classList.remove("show-from-floating");
-  }
-});
-
-// Close menu when clicking outside
-document.addEventListener("click", (e) => {
-  if (!navbar.contains(e.target) && !floatingHamburger.contains(e.target)) {
-    navLinks.classList.remove("active");
-    menuToggle.classList.remove("active");
-    navbar.classList.remove("show-from-floating");
-  }
-});
-
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    const href = this.getAttribute("href");
-    if (href !== "#") {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }
-  });
-});
-
-// Add stagger animation to menu items
-function staggerMenuItems() {
-  const menuItems = navLinks.querySelectorAll("li");
-  menuItems.forEach((item, index) => {
-    item.style.transitionDelay = `${index * 0.1}s`;
-  });
-}
-
-// Initialize stagger animation
-staggerMenuItems();
-
-// Throttle scroll events for better performance
-let ticking = false;
-
-function updateScroll() {
-  const currentScrollY = window.scrollY;
-
-  if (currentScrollY > 50) {
-    navbar.classList.add("scrolled");
+window.addEventListener("scroll", function () {
+  const nav = document.querySelector("nav");
+  if (window.scrollY > 50) {
+    nav.classList.add("scrolled"); // Apply the 'scrolled' class to the navbar
   } else {
-    navbar.classList.remove("scrolled");
-  }
-
-  if (currentScrollY > scrollThreshold && currentScrollY > lastScrollY) {
-    navbar.classList.add("hidden");
-    floatingHamburger.classList.add("show");
-  } else if (currentScrollY < scrollThreshold || currentScrollY < lastScrollY) {
-    navbar.classList.remove("hidden");
-    floatingHamburger.classList.remove("show");
-  }
-
-  lastScrollY = currentScrollY;
-  ticking = false;
-}
-
-// Optimized scroll handler
-window.addEventListener("scroll", () => {
-  if (!ticking) {
-    requestAnimationFrame(updateScroll);
-    ticking = true;
+    nav.classList.remove("scrolled"); // Remove the 'scrolled' class when at the top
   }
 });
 
-// Handle keyboard navigation
-menuToggle.addEventListener("keydown", (e) => {
-  if (e.key === "Enter" || e.key === " ") {
-    e.preventDefault();
-    menuToggle.click();
-  }
-});
-
-floatingHamburger.addEventListener("keydown", (e) => {
-  if (e.key === "Enter" || e.key === " ") {
-    e.preventDefault();
-    floatingHamburger.click();
-  }
-});
-
-// Handle escape key to close menu
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    navLinks.classList.remove("active");
-    menuToggle.classList.remove("active");
-    navbar.classList.remove("show-from-floating");
-  }
-});
-
-// Add focus management for accessibility
-navLinks.addEventListener("keydown", (e) => {
-  const focusableElements = navLinks.querySelectorAll("a");
-  const currentIndex = Array.from(focusableElements).indexOf(
-    document.activeElement
-  );
-
-  if (e.key === "ArrowDown") {
-    e.preventDefault();
-    const nextIndex = (currentIndex + 1) % focusableElements.length;
-    focusableElements[nextIndex].focus();
-  } else if (e.key === "ArrowUp") {
-    e.preventDefault();
-    const prevIndex =
-      currentIndex === 0 ? focusableElements.length - 1 : currentIndex - 1;
-    focusableElements[prevIndex].focus();
-  }
-});
-//==============================================
 // Typing Animation
 const part1 = "A ";
 const part2 = "Software Engineer ";
