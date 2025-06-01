@@ -1,34 +1,35 @@
-// Mobile Menu Toggle and Navigation
+// ----------------------
+// 1. Mobile Menu Toggle
+// ----------------------
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
 const nav = document.querySelector("nav");
 
-// Toggle menu on click
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active"); // Toggle the active class on nav links
-  menuToggle.classList.toggle("active"); // Toggle the active class on the menu toggle
+menuToggle?.addEventListener("click", () => {
+  navLinks?.classList.toggle("active");
+  menuToggle.classList.toggle("active");
 });
 
-// Scroll effects for header
 window.addEventListener("scroll", function () {
   const header = document.querySelector("header");
-  header.classList.toggle("scrolled", window.scrollY > 50);
+  header?.classList.toggle("scrolled", window.scrollY > 50);
 });
 
 window.addEventListener("scroll", function () {
   const nav = document.querySelector("nav");
   if (window.scrollY > 50) {
-    nav.classList.add("scrolled"); // Apply the 'scrolled' class to the navbar
+    nav?.classList.add("scrolled");
   } else {
-    nav.classList.remove("scrolled"); // Remove the 'scrolled' class when at the top
+    nav?.classList.remove("scrolled");
   }
 });
 
-// Typing Animation
+// ----------------------
+// 2. Typing Effect
+// ----------------------
 const part1 = "A ";
 const part2 = "Software Engineer ";
 const part3 = "Specializing in Front-end and Back-end Development";
-
 const typedText = part1 + part2 + part3;
 
 const typedDescription =
@@ -39,16 +40,14 @@ const typedDescriptionElement = document.getElementById("typed-description");
 
 let textIndex = 0;
 let descriptionIndex = 0;
-let currentText = ""; // Store the current part of text
-let currentDescription = ""; // Store the current part of description
+let currentText = "";
+let currentDescription = "";
 
-// Function to type text and highlight specific words during typing
 function type() {
   if (textIndex < typedText.length) {
     let currentChar = typedText.charAt(textIndex);
-    currentText += currentChar; // Add each character progressively
+    currentText += currentChar;
 
-    // Check for specific words and highlight AFTER they are fully typed
     if (currentText.endsWith("Software Engineer ")) {
       currentText = currentText.replace(
         "Software Engineer ",
@@ -66,22 +65,19 @@ function type() {
       );
     }
 
-    typedTextElement.innerHTML = currentText; // Update the HTML content with highlighted words
-
+    typedTextElement.innerHTML = currentText;
     textIndex++;
-    setTimeout(type, 65); // Adjust typing speed
+    setTimeout(type, 65);
   } else {
-    setTimeout(typeDescription, 500); // Start typing description after typed text
+    setTimeout(typeDescription, 500);
   }
 }
 
-// Function to type the description and highlight specific words during typing
 function typeDescription() {
   if (descriptionIndex < typedDescription.length) {
     let currentChar = typedDescription.charAt(descriptionIndex);
-    currentDescription += currentChar; // Add each character progressively
+    currentDescription += currentChar;
 
-    // Check for specific words and highlight AFTER they are fully typed
     if (currentDescription.endsWith("Yehia Ibrahim")) {
       currentDescription = currentDescription.replace(
         "Yehia Ibrahim",
@@ -106,18 +102,17 @@ function typeDescription() {
       );
     }
 
-    typedDescriptionElement.innerHTML = currentDescription; // Update description content with highlighted words
-
+    typedDescriptionElement.innerHTML = currentDescription;
     descriptionIndex++;
-    setTimeout(typeDescription, 15); // Adjust typing speed
+    setTimeout(typeDescription, 15);
   }
 }
 
-// Start typing animation
 type();
 
-// Firebase Configuration and Form Handling
-// Import the Firebase modules
+// ----------------------
+// 3. Firebase Form Handling
+// ----------------------
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 import {
   getFirestore,
@@ -125,7 +120,6 @@ import {
   addDoc,
 } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
-// Your Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyD3mtF3SUymZRu6obyxg9ppKLFdmgFyKZc",
   authDomain: "form-814f2.firebaseapp.com",
@@ -136,55 +130,41 @@ const firebaseConfig = {
   measurementId: "G-P85MSPZWSN",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Handle form submission
-document.addEventListener("DOMContentLoaded", function () {
-  const contactForm = document
-    .getElementById("contactForm")
-    .querySelector(".contactForm-form");
+document
+  .getElementById("contactForm")
+  ?.querySelector(".contactForm-form").onsubmit = async function (event) {
+  event.preventDefault();
 
-  contactForm.onsubmit = async function (event) {
-    event.preventDefault();
+  const formData = new FormData(this);
+  const data = {};
+  formData.forEach((value, key) => (data[key] = value));
 
-    const formData = new FormData(this);
-    const data = {};
-    formData.forEach((value, key) => (data[key] = value));
+  try {
+    const docRef = await addDoc(collection(db, "contact"), data);
 
-    console.log("Submitting data:", data); // Debug log
+    document.getElementById("modalMessage").textContent =
+      "Thank you! Your request has been submitted.";
+    document.getElementById("modal").style.display = "block";
 
-    try {
-      // Add data to Firestore "contact" collection
-      const docRef = await addDoc(collection(db, "contact"), data);
-      console.log("Document written with ID: ", docRef.id); // Log document ID
+    this.reset();
+  } catch (error) {
+    document.getElementById("modalMessage").textContent =
+      "There was an error submitting your request. Please try again.";
+    document.getElementById("modal").style.display = "block";
+    console.error("Error adding document: ", error);
+  }
+};
 
-      // Show the modal with the success message
-      document.getElementById("modalMessage").textContent =
-        "Thank you! Your request has been submitted.";
-      document.getElementById("modal").style.display = "block";
+document.getElementById("closeModal")?.addEventListener("click", () => {
+  document.getElementById("modal").style.display = "none";
+});
 
-      this.reset();
-    } catch (error) {
-      // Show the modal with the error message
-      document.getElementById("modalMessage").textContent =
-        "There was an error submitting your request. Please try again.";
-      document.getElementById("modal").style.display = "block";
-      console.error("Error adding document: ", error); // Log the error
-    }
-  };
-
-  // Close the modal when the user clicks on <span> (x)
-  document.getElementById("closeModal").onclick = function () {
-    document.getElementById("modal").style.display = "none";
-  };
-
-  // Close the modal when the user clicks anywhere outside of the modal
-  window.onclick = function (event) {
-    const modal = document.getElementById("modal");
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-  };
+window.addEventListener("click", function (event) {
+  const modal = document.getElementById("modal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
 });
