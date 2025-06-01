@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html>More actions
 <html lang="en">
   <head>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    More actions
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yehia Ibrahim's Portfolio</title>
@@ -17,33 +16,47 @@
   </head>
   <body>
     <!-- Navbar -->
-
     <header>
       <nav>
+      <nav id="navbar">
         <div class="logo">
           <a href="#">
             <span class="first-letter">Y</span>ehia
             <span class="first-letter">I</span>brahim
           </a>
+          <a href="#"
+            ><span class="first-letter">Y</span>our<span class="first-letter"
+              >B</span
+            >rand</a
+          >
         </div>
 
         <ul class="nav-links">
           <li><a href="#about">About Me</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#testimonials"> My Values </a></li>
           <li><a href="#testimonials">My Values</a></li>
           <li><a href="#contactForm">Contact</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
 
-        <button class="menu-toggle" aria-label="Toggle menu">
-          <i class="fas fa-bars"></i>
+        <button class="menu-toggle" id="menu-toggle">
+          <div class="hamburger-lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </button>
       </nav>
+      <button class="floating-hamburger" id="floating-hamburger">☰</button>
     </header>
 
+    <!-- =============================================================== -->
     <!-- Hero Section -->
 
     <section class="hero">
@@ -605,7 +618,7 @@
         <p>&copy; 2024 Yehia Ibrahim. All rights reserved.</p>
         <p>Designed with care and passion.</p>
       </div>
-    </footer>
+    </footer>More actions
 
     <!-- Link to external JavaScript file -->
     <script type="module" src="js/script.js"></script>
