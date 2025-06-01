@@ -1,153 +1,170 @@
-class NavbarController {
-  constructor() {
-    this.menuToggle = document.querySelector(".menu-toggle");
-    this.navLinks = document.querySelector(".nav-links");
-    this.nav = document.querySelector("nav");
-    this.floatingHamburger = document.querySelector(".floating-hamburger");
-    this.isScrolled = false;
-    this.isHidden = false;
-    this.lastScrollY = 0;
-    this.hideThreshold = 200; // Hide navbar after scrolling 200px
+// Get DOM elements
+const navbar = document.getElementById("navbar");
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+const floatingHamburger = document.getElementById("floating-hamburger");
 
-    this.init();
+// Scroll variables
+let lastScrollY = window.scrollY;
+let scrollThreshold = 300;
+
+// Scroll behavior
+window.addEventListener("scroll", () => {
+  const currentScrollY = window.scrollY;
+
+  // Add scrolled class when scrolling
+  if (currentScrollY > 50) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
   }
 
-  init() {
-    this.bindEvents();
+  // Hide navbar and show floating hamburger when scrolled deep
+  if (currentScrollY > scrollThreshold && currentScrollY > lastScrollY) {
+    navbar.classList.add("hidden");
+    floatingHamburger.classList.add("show");
+  } else if (currentScrollY < scrollThreshold || currentScrollY < lastScrollY) {
+    navbar.classList.remove("hidden");
+    floatingHamburger.classList.remove("show");
   }
 
-  bindEvents() {
-    // Mobile menu toggle
-    this.menuToggle?.addEventListener("click", () => this.toggleMenu());
-
-    // Floating hamburger toggle
-    this.floatingHamburger?.addEventListener("click", () =>
-      this.showNavFromFloating()
-    );
-
-    // Close menu when clicking on links (mobile)
-    this.navLinks?.addEventListener("click", (e) => {
-      if (e.target.tagName === "A" && window.innerWidth <= 768) {
-        this.closeMenu();
-      }
-    });
-
-    // Optimized scroll handler with throttling
-    let scrollTimeout;
-    window.addEventListener("scroll", () => {
-      if (scrollTimeout) return;
-
-      scrollTimeout = setTimeout(() => {
-        this.handleScroll();
-        scrollTimeout = null;
-      }, 16); // ~60fps
-    });
-
-    // Close menu on resize if window becomes large
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 768) {
-        this.closeMenu();
-        this.showNavbar(); // Always show navbar on desktop
-      }
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (
-        !this.nav.contains(e.target) &&
-        !this.floatingHamburger.contains(e.target) &&
-        this.navLinks?.classList.contains("active")
-      ) {
-        this.closeMenu();
-      }
-
-      // Hide navbar if clicking outside when shown from floating menu
-      if (
-        !this.nav.contains(e.target) &&
-        !this.floatingHamburger.contains(e.target) &&
-        this.nav?.classList.contains("show-from-floating")
-      ) {
-        this.hideNavbar();
-      }
-    });
-  }
-
-  toggleMenu() {
-    this.navLinks?.classList.toggle("active");
-
-    // Animate hamburger icon
-    const icon = this.menuToggle?.querySelector("i");
-    if (icon) {
-      icon.classList.toggle("fa-bars");
-      icon.classList.toggle("fa-times");
-    }
-  }
-
-  closeMenu() {
-    this.navLinks?.classList.remove("active");
-    const icon = this.menuToggle?.querySelector("i");
-    if (icon) {
-      icon.classList.add("fa-bars");
-      icon.classList.remove("fa-times");
-    }
-  }
-
-  showNavFromFloating() {
-    this.nav?.classList.add("show-from-floating");
-    this.floatingHamburger?.classList.remove("show");
-
-    // Auto-hide after 5 seconds if no interaction
-    setTimeout(() => {
-      if (this.nav?.classList.contains("show-from-floating")) {
-        this.hideNavbar();
-      }
-    }, 5000);
-  }
-
-  hideNavbar() {
-    if (window.innerWidth <= 768) return; // Don't hide on mobile
-
-    this.nav?.classList.add("hidden");
-    this.nav?.classList.remove("show-from-floating");
-    this.floatingHamburger?.classList.add("show");
-    this.isHidden = true;
-  }
-
-  showNavbar() {
-    this.nav?.classList.remove("hidden");
-    this.nav?.classList.remove("show-from-floating");
-    this.floatingHamburger?.classList.remove("show");
-    this.isHidden = false;
-  }
-
-  handleScroll() {
-    const currentScrollY = window.scrollY;
-    const shouldBeScrolled = currentScrollY > 50;
-
-    // Handle scrolled state
-    if (shouldBeScrolled !== this.isScrolled) {
-      this.isScrolled = shouldBeScrolled;
-      this.nav?.classList.toggle("scrolled", this.isScrolled);
-    }
-
-    // Handle navbar hiding (desktop only)
-    if (window.innerWidth > 768) {
-      if (currentScrollY > this.hideThreshold && !this.isHidden) {
-        this.hideNavbar();
-      } else if (currentScrollY <= this.hideThreshold && this.isHidden) {
-        this.showNavbar();
-      }
-    }
-
-    this.lastScrollY = currentScrollY;
-  }
-}
-
-// Initialize navbar when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
-  new NavbarController();
+  lastScrollY = currentScrollY;
 });
 
+// Toggle mobile menu
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  menuToggle.classList.toggle("active");
+});
+
+// Floating hamburger click
+floatingHamburger.addEventListener("click", () => {
+  navbar.classList.add("show-from-floating");
+  floatingHamburger.classList.remove("show");
+  navLinks.classList.add("active");
+  menuToggle.classList.add("active");
+});
+
+// Close menu when clicking on nav links
+navLinks.addEventListener("click", (e) => {
+  if (e.target.tagName === "A") {
+    navLinks.classList.remove("active");
+    menuToggle.classList.remove("active");
+    navbar.classList.remove("show-from-floating");
+  }
+});
+
+// Close menu when clicking outside
+document.addEventListener("click", (e) => {
+  if (!navbar.contains(e.target) && !floatingHamburger.contains(e.target)) {
+    navLinks.classList.remove("active");
+    menuToggle.classList.remove("active");
+    navbar.classList.remove("show-from-floating");
+  }
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    const href = this.getAttribute("href");
+    if (href !== "#") {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
+  });
+});
+
+// Add stagger animation to menu items
+function staggerMenuItems() {
+  const menuItems = navLinks.querySelectorAll("li");
+  menuItems.forEach((item, index) => {
+    item.style.transitionDelay = `${index * 0.1}s`;
+  });
+}
+
+// Initialize stagger animation
+staggerMenuItems();
+
+// Throttle scroll events for better performance
+let ticking = false;
+
+function updateScroll() {
+  const currentScrollY = window.scrollY;
+
+  if (currentScrollY > 50) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+
+  if (currentScrollY > scrollThreshold && currentScrollY > lastScrollY) {
+    navbar.classList.add("hidden");
+    floatingHamburger.classList.add("show");
+  } else if (currentScrollY < scrollThreshold || currentScrollY < lastScrollY) {
+    navbar.classList.remove("hidden");
+    floatingHamburger.classList.remove("show");
+  }
+
+  lastScrollY = currentScrollY;
+  ticking = false;
+}
+
+// Optimized scroll handler
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    requestAnimationFrame(updateScroll);
+    ticking = true;
+  }
+});
+
+// Handle keyboard navigation
+menuToggle.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    menuToggle.click();
+  }
+});
+
+floatingHamburger.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    floatingHamburger.click();
+  }
+});
+
+// Handle escape key to close menu
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    navLinks.classList.remove("active");
+    menuToggle.classList.remove("active");
+    navbar.classList.remove("show-from-floating");
+  }
+});
+
+// Add focus management for accessibility
+navLinks.addEventListener("keydown", (e) => {
+  const focusableElements = navLinks.querySelectorAll("a");
+  const currentIndex = Array.from(focusableElements).indexOf(
+    document.activeElement
+  );
+
+  if (e.key === "ArrowDown") {
+    e.preventDefault();
+    const nextIndex = (currentIndex + 1) % focusableElements.length;
+    focusableElements[nextIndex].focus();
+  } else if (e.key === "ArrowUp") {
+    e.preventDefault();
+    const prevIndex =
+      currentIndex === 0 ? focusableElements.length - 1 : currentIndex - 1;
+    focusableElements[prevIndex].focus();
+  }
+});
 // Typing Animation
 const part1 = "A ";
 const part2 = "Software Engineer ";

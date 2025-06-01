@@ -17,33 +17,31 @@
   <body>
     <!-- Navbar -->
     <header>
-      <nav>
+      <nav id="navbar">
         <div class="logo">
-          <a href="#">
-            <span class="first-letter">Y</span>ehia
-            <span class="first-letter">I</span>brahim
-          </a>
+          <a href="#"
+            ><span class="first-letter">Y</span>our<span class="first-letter"
+              >B</span
+            >rand</a
+          >
         </div>
-
-        <ul class="nav-links">
-          <li><a href="#about">About Me</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#testimonials">My Values</a></li>
-          <li><a href="#contactForm">Contact</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-
-        <button class="menu-toggle" aria-label="Toggle menu">
-          <i class="fas fa-bars"></i>
+        <button class="menu-toggle" id="menu-toggle">
+          <div class="hamburger-lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </button>
       </nav>
+      <button class="floating-hamburger" id="floating-hamburger">☰</button>
     </header>
-
-    <!-- Floating Hamburger (appears when navbar is hidden) -->
-    <button class="floating-hamburger" aria-label="Show navigation">
-      <i class="fas fa-bars"></i>
-    </button>
     <!-- Hero Section -->
 
     <section class="hero">
