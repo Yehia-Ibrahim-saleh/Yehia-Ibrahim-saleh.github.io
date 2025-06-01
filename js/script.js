@@ -113,6 +113,8 @@ type();
 // ----------------------
 // 3. Firebase Form Handling
 // ----------------------
+// Import statements remain at top, script type=module used in HTML
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 import {
   getFirestore,
@@ -133,9 +135,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const contactForm = document
-  .getElementById("contactForm")
-  ?.querySelector(".contactForm-form");
+const contactFormContainer = document.getElementById("contactForm");
+const contactForm = contactFormContainer?.querySelector(".contactForm-form");
 
 if (contactForm) {
   contactForm.onsubmit = async function (event) {
@@ -172,5 +173,3 @@ window.addEventListener("click", function (event) {
     modal.style.display = "none";
   }
 });
-
-
