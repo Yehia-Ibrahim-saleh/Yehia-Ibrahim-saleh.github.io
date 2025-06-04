@@ -1,4 +1,4 @@
-<!DOCTYPE html>More actions
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <link
@@ -8,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yehia Ibrahim's Portfolio</title>
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -16,50 +16,50 @@
   </head>
   <body>
     <!-- Navbar -->
+    <!-- Navbar -->
     <header>
-      <nav>
       <nav id="navbar">
         <div class="logo">
           <a href="#">
             <span class="first-letter">Y</span>ehia
             <span class="first-letter">I</span>brahim
           </a>
-          <a href="#"
-            ><span class="first-letter">Y</span>our<span class="first-letter"
-              >B</span
-            >rand</a
-          >
         </div>
 
-        <ul class="nav-links">
+        <!-- Navigation Links -->
+        <ul class="nav-links" id="nav-links">
           <li><a href="#about">About Me</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#testimonials">My Values</a></li>
+          <li><a href="#testimonials">Why Me?</a></li>
           <li><a href="#contactForm">Contact</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <div class="nav-underline"></div>
         </ul>
 
-        <button class="menu-toggle" id="menu-toggle">
-          <div class="hamburger-lines">
-            <span></span>
-            <span></span>
-            <span></span>
+        <!-- Hamburger Menu (Mobile Only) -->
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-label="Toggle navigation menu"
+        >
+          <div class="hamburger">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
           </div>
         </button>
       </nav>
-      <button class="floating-hamburger" id="floating-hamburger">☰</button>
     </header>
 
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top">
+      ↑
+    </button>
     <!-- =============================================================== -->
     <!-- Hero Section -->
 
-    <section class="hero">
+    <section id="home" class="hero">
       <div class="hero-text">
         <h1 id="typed-text"></h1>
         <!-- This is where the typing effect will display -->
@@ -519,108 +519,108 @@
     </section>
 
     <!-- Contact Section -->
+    <section id="contactForm">
+      <h2 class="professional-heading">Contact</h2>
+      <div id="contactForm">
+        <div class="contactForm-content">
+          <form class="contactForm-form">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="fullName"
+                required
+                placeholder="Type your Name here..."
+              />
+            </div>
+            <div class="form-group">
+              <label for="contactNumber">Number:</label>
+              <input
+                type="text"
+                id="contactNumber"
+                name="contactNumber"
+                placeholder="enter your Contact Number"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="yourname@example.com"
+              />
+            </div>
+            <div class="form-group">
+              <label for="message">Message:</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+                placeholder="Type your message here..."
+              ></textarea>
+            </div>
+            <button type="submit" class="submit-button">Send Message</button>
+          </form>
+          <div id="responseMessage" class="response-message"></div>
 
-    <h2 class="professional-heading">Contact</h2>
-    <div id="contactForm">
-      <div class="contactForm-content">
-        <form class="contactForm-form">
-          <div class="form-group">
-            <label for="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="fullName"
-              required
-              placeholder="Type your Name here..."
-            />
+          <div class="connect-with-me">
+            <h3>Connect with Me</h3>
+            <ul class="social-links">
+              <li>
+                <a
+                  href="https://www.facebook.com/yahya.ibrahim.794/"
+                  aria-label="Facebook"
+                >
+                  <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+              </li>
+              <li>
+                <a href="https://x.com/Yahya39551663" aria-label="Twitter">
+                  <i class="fab fa-twitter"></i> Twitter
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/yehia-ibrahim-8154b0201/"
+                  aria-label="LinkedIn"
+                >
+                  <i class="fab fa-linkedin-in"></i> LinkedIn
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/yahya_ibrahim_1/"
+                  aria-label="Instagram"
+                >
+                  <i class="fab fa-instagram"></i> Instagram
+                </a>
+              </li>
+            </ul>
           </div>
-          <div class="form-group">
-            <label for="contactNumber">Number:</label>
-            <input
-              type="text"
-              id="contactNumber"
-              name="contactNumber"
-              placeholder="enter your Contact Number"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              placeholder="yourname@example.com"
-            />
-          </div>
-          <div class="form-group">
-            <label for="message">Message:</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="4"
-              required
-              placeholder="Type your message here..."
-            ></textarea>
-          </div>
-          <button type="submit" class="submit-button">Send Message</button>
-        </form>
-        <div id="responseMessage" class="response-message"></div>
-
-        <div class="connect-with-me">
-          <h3>Connect with Me</h3>
-          <ul class="social-links">
-            <li>
-              <a
-                href="https://www.facebook.com/yahya.ibrahim.794/"
-                aria-label="Facebook"
-              >
-                <i class="fab fa-facebook-f"></i> Facebook
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/Yahya39551663" aria-label="Twitter">
-                <i class="fab fa-twitter"></i> Twitter
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/yehia-ibrahim-8154b0201/"
-                aria-label="LinkedIn"
-              >
-                <i class="fab fa-linkedin-in"></i> LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.instagram.com/yahya_ibrahim_1/"
-                aria-label="Instagram"
-              >
-                <i class="fab fa-instagram"></i> Instagram
-              </a>
-            </li>
-          </ul>
         </div>
       </div>
-    </div>
 
-    <!-- Modal -->
-    <div id="modal" class="modal" style="display: none">
-      <div class="modal-content">
-        <span id="closeModal" class="close">&times;</span>
-        <p id="modalMessage">Your message will appear here.</p>
+      <!-- Modal -->
+      <div id="modal" class="modal" style="display: none">
+        <div class="modal-content">
+          <span id="closeModal" class="close">&times;</span>
+          <p id="modalMessage">Your message will appear here.</p>
+        </div>
       </div>
-    </div>
-
+    </section>
     <footer>
       <div class="footer-content">
         <p>&copy; 2024 Yehia Ibrahim. All rights reserved.</p>
         <p>Designed with care and passion.</p>
       </div>
-    </footer>More actions
+    </footer>
 
     <!-- Link to external JavaScript file -->
-    <script type="module" src="js/script.js"></script>
+    <script type="module" src="calc.js"></script>
   </body>
 </html>
