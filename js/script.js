@@ -125,17 +125,6 @@ function moveUnderlineToActiveOrHide() {
 function initNavUnderline() {
   if (!navLinksList || !navUnderline || !navLinksAll) return;
 
-  // On hover/focus, move underline to hovered link; on leave, return to active or hide
-  navLinksAll.forEach((link) => {
-    link.addEventListener("mouseenter", () => moveUnderlineTo(link));
-    link.addEventListener("focus", () => moveUnderlineTo(link));
-    link.addEventListener("mouseleave", moveUnderlineToActiveOrHide);
-    link.addEventListener("blur", moveUnderlineToActiveOrHide);
-    link.addEventListener("click", () => {
-      setTimeout(moveUnderlineToActiveOrHide, 10);
-    });
-  });
-
   // On window resize, reposition underline to current active link or hide
   window.addEventListener("resize", moveUnderlineToActiveOrHide);
 }
@@ -292,6 +281,11 @@ function initSmoothScrolling() {
     // Track clicks to differentiate from keyboard focus
     link.addEventListener("mousedown", function () {
       this.dataset.clicked = "true";
+    });
+
+    // Do NOT move the underline on hover/focus!
+    link.addEventListener("click", () => {
+      setTimeout(moveUnderlineToActiveOrHide, 10);
     });
   });
 }
@@ -714,3 +708,12 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
+
+// Debounce underline update on scroll
+let underlineScrollTimeout = null;
+window.addEventListener("scroll", () => {
+  if (underlineScrollTimeout) clearTimeout(underlineScrollTimeout);
+  underlineScrollTimeout = setTimeout(() => {
+    highlightCurrentSection(); // This should call moveUnderlineToActiveOrHide()
+  }, 300); // Adjust delay as needed
+});

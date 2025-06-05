@@ -195,24 +195,11 @@ body.is-scrolling .nav-links a:hover {
   color: inherit !important;
 }
 .nav-links a.active {
+  color: var(--primary-blue);
+  font-weight: 600;
+  transform: translateY(-2px);
 }
-.nav-links a.special-active {
-  animation: pulse-glow 2s infinite alternate;
-}
-@keyframes pulse-glow {
-  0% {
-    box-shadow: 0 0 5px rgba(231, 76, 60, 0.3);
-  }
-  100% {
-    box-shadow: 0 0 15px rgba(231, 76, 60, 0.5);
-  }
-}
-.nav-links a.contact-active {
-  color: #e74c3c !important;
-  background: rgba(231, 76, 60, 0.1);
-  border-radius: 4px;
-  padding: 5px 10px;
-}
+
 body:not(.is-scrolling) .nav-links a:hover {
   color: #2980b9;
 }
@@ -231,9 +218,9 @@ body:not(.is-scrolling) .nav-links a:hover {
   height: 3px;
   background: linear-gradient(90deg, var(--accent-gold), #ffed4e);
   border-radius: 2px;
-  /* Remove box-shadow for a sharp, clean look */
   box-shadow: none;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    left 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
   pointer-events: none;
   z-index: 2;
   width: 0;
