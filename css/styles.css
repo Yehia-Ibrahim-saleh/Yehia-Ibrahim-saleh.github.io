@@ -169,11 +169,11 @@ header {
   text-decoration: none;
   color: inherit;
   font-weight: 500;
+  color: var(--primary-text, #222);
+  transition: color 0.2s, font-weight 0.2s;
   font-size: 1.3rem;
   padding: 12px 0;
   position: relative;
-  transition: all 0.3s ease;
-  opacity: 0.9;
   will-change: transform;
 }
 #navbar.scrolled .nav-links a {
@@ -183,6 +183,7 @@ header {
 #navbar.scrolled .nav-links a.active,
 #navbar.scrolled .nav-links a:focus {
   color: var(--primary-blue);
+  font-weight: 700;
 }
 body.nav-locked .nav-links a {
   pointer-events: none;
@@ -213,19 +214,18 @@ body:not(.is-scrolling) .nav-links a:hover {
 
 .nav-underline {
   position: absolute;
-  bottom: 0;
   left: 0;
+  bottom: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--accent-gold), #ffed4e);
+  background: linear-gradient(90deg, #ffd700, #ffed4e);
   border-radius: 2px;
   box-shadow: none;
-  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-    left 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    left 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
   pointer-events: none;
   z-index: 2;
   width: 0;
-  opacity: 1;
-  /* Ensure no offset or blur */
+  opacity: 0;
   margin: 0;
   padding: 0;
 }

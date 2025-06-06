@@ -14,6 +14,7 @@ let ticking = false;
 let isProgrammaticScroll = false;
 let currentActiveSection = null;
 let scrollTimeout;
+let underlineScrollTimeout = null;
 
 // Configuration
 const NAV_CONFIG = {
@@ -33,38 +34,94 @@ function updateNavbarBackground() {
   }
 }
 
+// --- Nav Underline Animation ---
+const navLinksList = document.getElementById("nav-links");
+const navUnderline = navLinksList?.querySelector(".nav-underline");
+const navLinksAll = navLinksList?.querySelectorAll("a");
+
+// Helper to move the underline to a given link
+function moveUnderlineTo(link) {
+  if (!link || !navUnderline) {
+    if (navUnderline) {
+      navUnderline.style.opacity = "0";
+      navUnderline.style.width = "0";
+    }
+    return;
+  }
+  const linkRect = link.getBoundingClientRect();
+  const parentRect = navLinksList.getBoundingClientRect();
+  navUnderline.style.width = linkRect.width + "px"; // or +4 for a little extra
+  navUnderline.style.left = linkRect.left - parentRect.left + "px";
+  navUnderline.style.opacity = "1";
+}
+
+// Only move underline to the active link, or hide if none
+function moveUnderlineToActiveOrHide() {
+  if (!navLinksList || !navUnderline) return;
+  const active = navLinksList.querySelector("a.active");
+  if (active) {
+    moveUnderlineTo(active);
+  } else {
+    navUnderline.style.opacity = "0";
+    navUnderline.style.width = "0";
+  }
+}
+
+// On window resize, reposition underline to current active link or hide
+window.addEventListener("resize", moveUnderlineToActiveOrHide);
+
+// ===== UPDATE NAVIGATION HIGHLIGHTS =====
+function setActiveNavItem(sectionId) {
+  currentActiveSection = sectionId;
+  navLinksAll.forEach((link) => {
+    link.classList.remove("active");
+  });
+  navLinksAll.forEach((link) => {
+    const linkSection = link.getAttribute("href").substring(1);
+    if (linkSection === sectionId) {
+      link.classList.add("active");
+    }
+  });
+  moveUnderlineToActiveOrHide();
+  enforceSingleBoldNav();
+}
+
 // ===== SECTION HIGHLIGHTING FUNCTIONALITY =====
 function highlightCurrentSection() {
   if (isProgrammaticScroll) return;
 
-  let current = "";
-  const scrollPosition = window.scrollY + NAV_CONFIG.offset;
+  const navbarHeight = getNavbarOffset();
+  const bottomGlassHeight = getBottomGlassOffset();
+  const scrollY = window.scrollY;
+  let activeSectionId = null;
+  let minDistance = Infinity;
 
-  // Find which section is currently in view
+  // Calculate the "true" visible viewport (excluding navbar and bottom glass)
+  const visibleTop = scrollY + navbarHeight;
+  const visibleBottom = scrollY + window.innerHeight - bottomGlassHeight;
+
   sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
+    const rect = section.getBoundingClientRect();
+    const sectionTop = rect.top + scrollY;
+    const sectionBottom = sectionTop + section.offsetHeight;
 
-    if (
-      scrollPosition >= sectionTop &&
-      scrollPosition < sectionTop + sectionHeight
-    ) {
-      current = section.getAttribute("id");
+    // Section is visible if any part is within the visible viewport (not hidden by navbar or bottom glass)
+    if (sectionBottom > visibleTop && sectionTop < visibleBottom) {
+      // Find the section whose top is closest to the visibleTop
+      const distance = Math.abs(sectionTop - visibleTop);
+      if (distance < minDistance) {
+        minDistance = distance;
+        activeSectionId = section.getAttribute("id");
+      }
     }
   });
 
-  // Only update if the active section has changed
-  if (current && current !== currentActiveSection) {
-    setActiveNavItem(current);
+  if (activeSectionId && activeSectionId !== currentActiveSection) {
+    setActiveNavItem(activeSectionId);
   }
-
-  if (!current) {
-    // Remove all active classes if no section is active (e.g., at the top)
-    navLinksAll.forEach((link) =>
-      link.classList.remove("active", "special-active")
-    );
+  if (!activeSectionId) {
+    navLinksAll.forEach((link) => link.classList.remove("active"));
     moveUnderlineToActiveOrHide();
-    return;
   }
 }
 
@@ -88,71 +145,6 @@ function clearAllNavEffects() {
   });
 }
 
-// --- Nav Underline Animation ---
-const navLinksList = document.getElementById("nav-links");
-const navUnderline = navLinksList?.querySelector(".nav-underline");
-const navLinksAll = navLinksList?.querySelectorAll("a");
-
-// Helper to move the underline to a given link
-function moveUnderlineTo(link) {
-  if (!link || !navUnderline) {
-    if (navUnderline) {
-      navUnderline.style.opacity = "0";
-      navUnderline.style.width = "0";
-    }
-    return;
-  }
-  const linkRect = link.getBoundingClientRect();
-  const parentRect = navLinksList.getBoundingClientRect();
-  navUnderline.style.width = linkRect.width + "px";
-  navUnderline.style.left = linkRect.left - parentRect.left + "px";
-  navUnderline.style.opacity = "1";
-}
-
-function moveUnderlineToActiveOrHide() {
-  if (!navLinksList || !navUnderline) return;
-  // Find the active link
-  const active = navLinksList.querySelector("a.active");
-  if (active) {
-    moveUnderlineTo(active);
-  } else {
-    navUnderline.style.opacity = "0";
-    navUnderline.style.width = "0";
-  }
-}
-
-// Initialize nav underline functionality
-function initNavUnderline() {
-  if (!navLinksList || !navUnderline || !navLinksAll) return;
-
-  // On window resize, reposition underline to current active link or hide
-  window.addEventListener("resize", moveUnderlineToActiveOrHide);
-}
-
-// ===== UPDATE NAVIGATION HIGHLIGHTS =====
-function setActiveNavItem(sectionId) {
-  currentActiveSection = sectionId;
-
-  navLinksArray.forEach((link) => {
-    const linkSection = link.getAttribute("href").substring(1);
-    const isActive = linkSection === sectionId;
-    const isSpecial = NAV_CONFIG.specialSections.includes(linkSection);
-
-    // Clear all states first
-    link.classList.remove("active", "special-active");
-
-    // Apply active states
-    if (isActive) {
-      link.classList.add("active");
-      if (isSpecial) {
-        link.classList.add("special-active");
-      }
-    }
-  });
-
-  moveUnderlineToActiveOrHide();
-}
-
 // ===== SMOOTH SCROLL TO SECTION =====
 function scrollToSection(sectionId) {
   // Clear any pending scroll events
@@ -172,7 +164,7 @@ function scrollToSection(sectionId) {
 
     // Perform smooth scroll
     window.scrollTo({
-      top: section.offsetTop - NAV_CONFIG.offset,
+      top: section.offsetTop - getNavbarOffset(),
       behavior: "smooth",
     });
 
@@ -231,19 +223,39 @@ function handleScroll() {
   ticking = false;
 }
 
+// Debounce underline update on scroll (1 second delay)
+window.addEventListener("scroll", () => {
+  if (underlineScrollTimeout) clearTimeout(underlineScrollTimeout);
+  underlineScrollTimeout = setTimeout(() => {
+    if (!isProgrammaticScroll) {
+      highlightCurrentSection(); // Only update underline if not locked
+    }
+  }, 1000); // 1 second delay
+});
+
 // ===== SMOOTH SCROLLING FOR NAVIGATION LINKS =====
 function initSmoothScrolling() {
-  navLinksArray.forEach((link) => {
+  navLinksAll.forEach((link) => {
     link.addEventListener("click", function (e) {
       const href = this.getAttribute("href");
-
       if (href.startsWith("#")) {
         e.preventDefault();
-
         const targetSection = href.substring(1);
 
-        // Use our enhanced scroll function
-        scrollToSection(targetSection);
+        // Always remove .active from all links before adding to the clicked link
+        navLinksAll.forEach((l) => l.classList.remove("active"));
+        this.classList.add("active");
+        moveUnderlineTo(this);
+        enforceSingleBoldNav();
+
+        isProgrammaticScroll = true;
+
+        window.scrollTo({
+          top:
+            document.getElementById(targetSection).offsetTop -
+            getNavbarOffset(),
+          behavior: "smooth",
+        });
 
         // Close mobile menu if open
         if (window.innerWidth <= 768) {
@@ -251,41 +263,14 @@ function initSmoothScrolling() {
           menuToggle?.classList.remove("active");
           document.body.style.overflow = "";
         }
+
+        // Wait for scroll to finish, then resume tracking after 1 second
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          isProgrammaticScroll = false;
+          highlightCurrentSection(); // Resume normal tracking
+        }, 1000); // 1 second delay
       }
-    });
-
-    // Enhanced hover management
-    link.addEventListener("mouseenter", function () {
-      if (!this.classList.contains("active")) {
-        this.classList.add("hover");
-      }
-    });
-
-    link.addEventListener("mouseleave", function () {
-      this.classList.remove("hover");
-    });
-
-    // Handle focus events to prevent persistent focus styling
-    link.addEventListener("focus", function () {
-      // Only allow focus styling if not clicked
-      if (!this.dataset.clicked) {
-        this.classList.add("focused");
-      }
-    });
-
-    link.addEventListener("blur", function () {
-      this.classList.remove("focused");
-      delete this.dataset.clicked;
-    });
-
-    // Track clicks to differentiate from keyboard focus
-    link.addEventListener("mousedown", function () {
-      this.dataset.clicked = "true";
-    });
-
-    // Do NOT move the underline on hover/focus!
-    link.addEventListener("click", () => {
-      setTimeout(moveUnderlineToActiveOrHide, 10);
     });
   });
 }
@@ -689,7 +674,6 @@ function init() {
   initScrollToTop();
   initBlurRevealAnimation();
   initEventListeners();
-  initNavUnderline();
   initFormHandling();
   initTypingAnimation(); // Initialize typing animation
 
@@ -710,10 +694,44 @@ if (document.readyState === "loading") {
 }
 
 // Debounce underline update on scroll
-let underlineScrollTimeout = null;
+let debounceTimeout;
 window.addEventListener("scroll", () => {
-  if (underlineScrollTimeout) clearTimeout(underlineScrollTimeout);
-  underlineScrollTimeout = setTimeout(() => {
-    highlightCurrentSection(); // This should call moveUnderlineToActiveOrHide()
-  }, 300); // Adjust delay as needed
+  if (debounceTimeout) clearTimeout(debounceTimeout);
+  debounceTimeout = setTimeout(() => {
+    if (!isProgrammaticScroll) {
+      highlightCurrentSection(); // Only update underline if not locked
+    }
+  }, 1000); // 1 second delay
 });
+
+function getNavbarOffset() {
+  // Dynamically get the navbar height (including padding/border)
+  const navbarEl = document.getElementById("navbar");
+  return navbarEl ? navbarEl.offsetHeight : 0;
+}
+
+function getBottomGlassOffset() {
+  const glass = document.querySelector(".bottom-glass");
+  return glass ? glass.offsetHeight : 0;
+}
+
+// Enforce single bold navigation link
+function enforceSingleBoldNav() {
+  navLinksAll.forEach((link) => {
+    if (!link.classList.contains("active") && !link.matches(":hover")) {
+      link.style.fontWeight = "500";
+      link.style.color = "var(--primary-text, #222)";
+    } else if (link.classList.contains("active")) {
+      link.style.fontWeight = "700";
+      link.style.color = "var(--primary-blue)";
+    }
+    // If hovered, let CSS handle the bold and color
+  });
+}
+
+// Re-run bold enforcement on scroll and resize
+window.addEventListener("scroll", enforceSingleBoldNav);
+window.addEventListener("resize", enforceSingleBoldNav);
+
+// Initial enforcement
+enforceSingleBoldNav();
