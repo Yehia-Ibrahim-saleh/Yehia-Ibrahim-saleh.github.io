@@ -175,6 +175,15 @@ header {
   padding: 12px 0;
   position: relative;
   will-change: transform;
+  display: block;
+  padding: 12px 16px;
+  font-size: 1rem; /* Base font size */
+  font-weight: 500;
+  color: var(--text-dark);
+  border-radius: 8px;
+  background: transparent;
+  transition: all 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 #navbar.scrolled .nav-links a {
   color: var(--text-dark);
@@ -267,62 +276,193 @@ body:not(.is-scrolling) .nav-links a:hover {
 /* ==========================================================
    6. HAMBURGER MENU (Mobile Only)
    ========================================================== */
+/* Default: Hide hamburger menu */
 .menu-toggle {
   display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 12px;
-  border-radius: var(--border-radius);
-  transition: all var(--transition-smooth);
-}
-.menu-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  transform: scale(1.1);
-}
-#navbar.scrolled .menu-toggle:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-.hamburger {
-  position: relative;
-  width: 26px;
-  height: 20px;
-}
-.hamburger-line {
-  position: absolute;
-  height: 3px;
-  width: 100%;
-  background-color: var(--text-light);
-  border-radius: 3px;
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  transform-origin: center;
-}
-#navbar.scrolled .hamburger-line {
-  background-color: var(--text-dark);
-}
-.hamburger-line:nth-child(1) {
-  top: 0;
-}
-.hamburger-line:nth-child(2) {
-  top: 50%;
-  transform: translateY(-50%);
-}
-.hamburger-line:nth-child(3) {
-  bottom: 0;
-}
-.menu-toggle.active .hamburger-line:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-  background-color: var(--accent-gold);
-}
-.menu-toggle.active .hamburger-line:nth-child(2) {
-  opacity: 0;
-  transform: translateY(-50%) scaleX(0);
-}
-.menu-toggle.active .hamburger-line:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-  background-color: var(--accent-gold);
 }
 
+/* Show hamburger menu only on smaller screens */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-smooth);
+    z-index: 1200;
+    position: relative;
+  }
+
+  .hamburger {
+    position: relative;
+    width: 26px;
+    height: 20px;
+  }
+
+  .hamburger-line {
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: var(--primary-blue);
+    border-radius: 3px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform-origin: center;
+  }
+
+  .hamburger-line:nth-child(1) {
+    top: 0;
+  }
+
+  .hamburger-line:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .hamburger-line:nth-child(3) {
+    bottom: 0;
+  }
+
+  /* Animated Hamburger to X */
+  .menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background: var(--accent-gold);
+  }
+
+  .menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background: var(--accent-gold);
+  }
+
+  /* Hamburger Menu Container */
+  .nav-links {
+    position: fixed;
+    top: var(--navbar-height); /* Align under the navbar */
+    right: 0; /* Stick to the right side of the window */
+    width: 300px; /* Fixed width for the menu */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    box-shadow: none; /* Remove box shadow */
+    border-radius: 12px 0 0 12px; /* Rounded corners on the left side */
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%); /* Start off-screen */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 1100;
+
+    /* Vertical layout */
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Spacing between links */
+  }
+
+  /* Active state for menu */
+  .nav-links.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0); /* Slide in from the right */
+  }
+
+  /* Link styling */
+  .nav-links a {
+    display: block;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-weight: normal; /* Default font weight */
+    color: var(--text-dark);
+    border-radius: 8px;
+    background: transparent;
+    transition: color 0.3s ease, font-weight 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Hover and active state */
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--primary-blue); /* Change font color to blue */
+    font-weight: bold; /* Make font bold */
+  }
+
+  /* Animation from hamburger icon to menu */
+  .menu-toggle.active + .nav-links {
+    animation: slideInFromIcon 0.5s ease-out;
+  }
+
+  @keyframes slideInFromIcon {
+    from {
+      transform: translateX(100%) scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Add a subtle ripple effect */
+  .nav-links a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease;
+    z-index: 0;
+  }
+
+  .nav-links a:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* Staggered animation for links */
+  .nav-links li {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .nav-links.active li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-links.active li:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .nav-links.active li:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  .nav-links.active li:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  .nav-links.active li:nth-child(4) {
+    transition-delay: 0.4s;
+  }
+  .nav-links.active li:nth-child(5) {
+    transition-delay: 0.5s;
+  }
+  .nav-links.active li:nth-child(6) {
+    transition-delay: 0.6s;
+  }
+  .nav-links.active li:nth-child(7) {
+    transition-delay: 0.7s;
+  }
+  .nav-links.active li:nth-child(8) {
+    transition-delay: 0.8s;
+  }
+}
 /* ==========================================================
    7. SCROLL TO TOP BUTTON
    ========================================================== */
@@ -1096,41 +1236,112 @@ footer {
   }
   .menu-toggle {
     display: block;
+    z-index: 1200;
   }
   .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    flex-direction: column;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.95),
-      rgba(255, 255, 255, 0.9)
-    );
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    gap: 0;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(20px);
-    border-radius: 0 0 15px 15px;
-  }
-  .nav-links.active {
-    max-height: 380px;
-    padding: 30px 0;
-  }
-  .nav-links li {
-    width: 100%;
-    text-align: center;
+    position: fixed;
+    top: var(--navbar-height); /* Align under the navbar */
+    right: 0; /* Stick to the right side of the window */
+    width: 300px; /* Fixed width for the menu */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    box-shadow: none; /* Remove box shadow */
+    border-radius: 12px 0 0 12px; /* Rounded corners on the left side */
+    padding: 20px;
     opacity: 0;
-    transform: translateY(-40px);
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+    transform: translateX(100%); /* Start off-screen */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 1100;
+
+    /* Vertical layout */
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Spacing between links */
   }
+
+  /* Active state for menu */
+  .nav-links.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0); /* Slide in from the right */
+  }
+
+  /* Link styling */
+  .nav-links a {
+    display: block;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-weight: normal; /* Default font weight */
+    color: var(--text-dark);
+    border-radius: 8px;
+    background: transparent;
+    transition: color 0.3s ease, font-weight 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Hover and active state */
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--primary-blue); /* Change font color to blue */
+    font-weight: bold; /* Make font bold */
+  }
+
+  /* Animation from hamburger icon to menu */
+  .menu-toggle.active + .nav-links {
+    animation: slideInFromIcon 0.5s ease-out;
+  }
+
+  @keyframes slideInFromIcon {
+    from {
+      transform: translateX(100%) scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Add a subtle ripple effect */
+  .nav-links a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease;
+    z-index: 0;
+  }
+
+  .nav-links a:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* Improve hover animation for text */
+  .nav-links a:hover {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transform: translateX(6px);
+  }
+
+  /* Staggered animation for links */
+  .nav-links li {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
   .nav-links.active li {
     opacity: 1;
     transform: translateY(0);
   }
+
   .nav-links.active li:nth-child(1) {
     transition-delay: 0.1s;
   }
@@ -1146,155 +1357,14 @@ footer {
   .nav-links.active li:nth-child(5) {
     transition-delay: 0.5s;
   }
-  .nav-links a {
-    display: block;
-    padding: 18px 25px;
-    font-size: 1.15rem;
-    border-radius: 12px;
-    margin: 0 20px;
-    transition: all var(--transition-smooth);
-    color: var(--text-dark);
+  .nav-links.active li:nth-child(6) {
+    transition-delay: 0.6s;
   }
-  .nav-links a:hover,
-  .nav-links a.active,
-  .nav-links a:focus {
-    background: linear-gradient(
-      135deg,
-      rgba(0, 115, 230, 0.1),
-      rgba(255, 215, 0, 0.1)
-    );
-    transform: translateX(8px) scale(1.02);
-    color: var(--primary-blue);
+  .nav-links.active li:nth-child(7) {
+    transition-delay: 0.7s;
   }
-  .nav-links a::after {
-    display: none;
-  }
-  .scroll-to-top {
-    bottom: 25px;
-    right: 25px;
-    width: 50px;
-    height: 50px;
-    font-size: 1.4rem;
-  }
-  .hero {
-    flex-direction: column;
-    padding: 80px 20px;
-    height: auto;
-  }
-  .hero-text {
-    margin-right: 0;
-    text-align: center;
-  }
-  .hero-image {
-    justify-content: center;
-    margin-top: 20px;
-  }
-  .hero-image img {
-    max-width: 100%;
-  }
-  .projects-header {
-    font-size: 2.8rem;
-    margin-bottom: 60px;
-  }
-  .project-list {
-    padding: 0 10px;
-  }
-  .project {
-    flex-direction: column;
-  }
-  .project-image img {
-    max-height: 200px;
-  }
-  .project-content h3 {
-    font-size: 1.8rem;
-  }
-  .project-content p {
-    font-size: 1.2rem;
-  }
-  #services h2 {
-    font-size: 2.2rem;
-    margin-bottom: 40px;
-  }
-  .service {
-    padding: 15px;
-  }
-  .service h3 {
-    font-size: 1.4rem;
-  }
-  .service p {
-    font-size: 0.9rem;
-  }
-  .why-choose-me-title {
-    font-size: 2.2rem;
-  }
-  .section-subtitle {
-    font-size: 1.5rem;
-  }
-  .skills-list li {
-    padding: 15px;
-  }
-  .skill-content h4 {
-    font-size: 1.3rem;
-  }
-  .skill-content p {
-    font-size: 1rem;
-  }
-  .contactForm-content {
-    flex-direction: column;
-  }
-  .professional-heading {
-    font-size: 2.2rem;
-  }
-  .professional-heading::after {
-    width: 50px;
-  }
-  #contactForm {
-    padding: 40px 20px;
-  }
-  #contactForm h2 {
-    font-size: 1.8rem;
-  }
-  .form-group label {
-    font-size: 1rem;
-  }
-  .form-group input,
-  .form-group textarea {
-    padding: 12px;
-  }
-  .submit-button {
-    font-size: 1rem;
-  }
-  .connect-with-me h3 {
-    font-size: 1.3rem;
-  }
-  .nav-links {
-    flex-direction: column;
-    display: none;
-  }
-  .menu-toggle {
-    display: block;
-  }
-  .menu-toggle.active + .nav-links {
-    display: flex;
-  }
-  .skills-header {
-    font-size: 2.5rem;
-    margin-top: 50px;
-  }
-  .skill i {
-    font-size: 40px;
-  }
-  .skill h3 {
-    font-size: 1.8rem;
-  }
-  .skill p {
-    font-size: 1.2rem;
-  }
-  .skills-image {
-    display: none;
-  }
-  .skills-content {
-    padding: 20px;
+  .nav-links.active li:nth-child(8) {
+    transition-delay: 0.8s;
   }
 }
 @media (max-width: 600px) {
@@ -1356,4 +1426,35 @@ footer {
 }
 .animated-text:hover {
   transform: translateY(-3px);
+}
+
+/* Link styling */
+.nav-links a {
+  text-decoration: none;
+  font-weight: normal; /* Default font weight */
+  color: var(--text-dark); /* Default color */
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+/* Hover and active state */
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary-blue); /* Change font color to blue */
+  font-weight: bold; /* Make font bold */
+}
+
+/* Navbar Links */
+#navbar .nav-links a {
+  text-decoration: none;
+  font-weight: normal;
+  color: var(--text-dark);
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+#navbar .nav-links a:hover,
+#navbar .nav-links a.active {
+  color: var(--primary-blue) !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
 }
