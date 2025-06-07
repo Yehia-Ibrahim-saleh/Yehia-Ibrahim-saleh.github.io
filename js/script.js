@@ -645,6 +645,90 @@ function initFormHandling() {
   };
 }
 
+// ===== ABOUT ANIMATIONS =====
+function animateWords(card) {
+  const p = card.querySelector("p");
+  if (!p) return;
+  const html = p.innerHTML;
+  // Split by words, keep tags
+  const words = html.split(/(\s+|<[^>]+>)/g).filter(Boolean);
+  p.innerHTML = "";
+  words.forEach((word, i) => {
+    if (word.match(/^<[^>]+>$/)) {
+      p.innerHTML += word;
+    } else {
+      const span = document.createElement("span");
+      span.textContent = word;
+      span.style.opacity = 0;
+      span.style.display = "inline-block";
+      span.style.transform = "translateY(20px) scale(0.95)";
+      span.style.transition =
+        "opacity 0.45s cubic-bezier(.4,0,.2,1), transform 0.45s cubic-bezier(.4,0,.2,1)";
+      span.style.transitionDelay = `${i * 0.045}s`;
+      p.appendChild(span);
+    }
+  });
+  setTimeout(() => {
+    p.querySelectorAll("span").forEach((span) => {
+      span.style.opacity = 1;
+      span.style.transform = "translateY(0) scale(1.08)";
+      setTimeout(() => {
+        span.style.transform = "translateY(0) scale(1)";
+      }, 350);
+    });
+  }, 100);
+}
+
+// Enhance initAboutAnimations:
+function initAboutAnimations() {
+  const cards = document.querySelectorAll(".about-card, .about-cta");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(
+            () => {
+              entry.target.classList.add("revealed");
+              // Animate words if needed
+              if (entry.target.dataset.animate === "words") {
+                animateWords(entry.target);
+              }
+            },
+            entry.target.dataset.delay ? Number(entry.target.dataset.delay) : 0
+          );
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+  cards.forEach((el, i) => {
+    el.dataset.delay = i * 180;
+    observer.observe(el);
+  });
+}
+
+// ===== ABOUT SECTION ENTER ANIMATION =====
+function aboutSectionEnterAnimation() {
+  const aboutSection = document.getElementById("about");
+  if (!aboutSection) return;
+
+  function checkAboutInView() {
+    const rect = aboutSection.getBoundingClientRect();
+    const windowHeight =
+      window.innerHeight || document.documentElement.clientHeight;
+    // Trigger when top is in lower 80% of viewport and bottom is below top
+    if (rect.top < windowHeight * 0.8 && rect.bottom > windowHeight * 0.1) {
+      aboutSection.classList.add("section-visible");
+    } else {
+      aboutSection.classList.remove("section-visible");
+    }
+  }
+
+  window.addEventListener("scroll", checkAboutInView, { passive: true });
+  window.addEventListener("resize", checkAboutInView, { passive: true });
+  setTimeout(checkAboutInView, 100);
+}
+
 // ===== INITIALIZATION FUNCTION =====
 function init() {
   // Check if required elements exist
@@ -660,6 +744,8 @@ function init() {
   initEventListeners();
   initFormHandling();
   initTypingAnimation(); // Initialize typing animation
+  initAboutAnimations(); // Initialize about animations
+  aboutSectionEnterAnimation();
 
   // Set initial states
   updateNavbarBackground();
