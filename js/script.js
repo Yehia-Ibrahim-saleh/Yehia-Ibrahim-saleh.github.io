@@ -358,12 +358,16 @@ function handleResize() {
 // ===== EVENT LISTENERS =====
 function initEventListeners() {
   // Optimized scroll listener using requestAnimationFrame
-  window.addEventListener("scroll", function () {
-    if (!ticking) {
-      requestAnimationFrame(handleScroll);
-      ticking = true;
-    }
-  });
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!ticking) {
+        requestAnimationFrame(handleScroll);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
 
   // Resize listener
   window.addEventListener("resize", handleResize);
