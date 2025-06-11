@@ -809,3 +809,156 @@ window.addEventListener("resize", enforceSingleBoldNav);
 
 // Initial enforcement
 enforceSingleBoldNav();
+
+// Modal logic for project cards
+
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("project-modal");
+  const modalImg = modal.querySelector(".modal-image img");
+  const modalTitle = modal.querySelector(".modal-title");
+  const modalDesc = modal.querySelector(".modal-description");
+  const modalDetails = modal.querySelector(".modal-details");
+  const modalGithub = modal.querySelector(".modal-github");
+  const carouselWrapper = modal.querySelector(".carousel-wrapper");
+  const leftArrow = modal.querySelector(".carousel-arrow.left");
+  const rightArrow = modal.querySelector(".carousel-arrow.right");
+  const indicators = modal.querySelector(".carousel-indicators");
+  const modalClose = document.createElement("button");
+
+  modalClose.className = "modal-close";
+  modalClose.innerHTML = "×";
+  modal.appendChild(modalClose);
+
+  let images = [];
+  let currentImgIdx = 0;
+
+  function showImage(idx) {
+    if (!images.length) return;
+    modalImg.style.opacity = 0;
+    setTimeout(() => {
+      modalImg.src = images[idx];
+      modalImg.style.opacity = 1;
+    }, 120);
+    // Update indicators
+    if (indicators) {
+      indicators.innerHTML = "";
+      images.forEach((_, i) => {
+        const dot = document.createElement("span");
+        dot.className = "dot" + (i === idx ? " active" : "");
+        dot.addEventListener("click", () => {
+          currentImgIdx = i;
+          showImage(currentImgIdx);
+        });
+        indicators.appendChild(dot);
+      });
+    }
+    // Show/hide arrows
+    if (images.length > 1) {
+      leftArrow.style.display = "";
+      rightArrow.style.display = "";
+    } else {
+      leftArrow.style.display = "none";
+      rightArrow.style.display = "none";
+    }
+  }
+
+  leftArrow.addEventListener("click", function (e) {
+    e.stopPropagation();
+    currentImgIdx = (currentImgIdx - 1 + images.length) % images.length;
+    showImage(currentImgIdx);
+  });
+  rightArrow.addEventListener("click", function (e) {
+    e.stopPropagation();
+    currentImgIdx = (currentImgIdx + 1) % images.length;
+    showImage(currentImgIdx);
+  });
+
+  // Open modal with project data
+  function openModal(card) {
+    const glass = document.querySelector(".bottom-glass");
+    const scrollToTopBtn = document.getElementById("scroll-to-top");
+    if (scrollToTopBtn) {
+      scrollToTopBtn.classList.add("hidden");
+    }
+    // Hide scroll-to-top button
+    if (glass) {
+      glass.classList.add("hidden"); // Hide bottom glass
+    }
+    // Support multiple images via data-images (comma separated), fallback to data-image
+    const imgsAttr = card.getAttribute("data-images");
+    if (imgsAttr) {
+      images = imgsAttr
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
+    } else {
+      images = [card.getAttribute("data-image")];
+    }
+    currentImgIdx = 0;
+    showImage(currentImgIdx);
+
+    modalImg.alt = card.getAttribute("data-title") + " Preview";
+    modalTitle.textContent = card.getAttribute("data-title");
+    modalDesc.textContent = card.getAttribute("data-description");
+    modalDetails.innerHTML = card.getAttribute("data-details");
+    modalGithub.href = card.getAttribute("data-github");
+    modal.style.display = "flex";
+    setTimeout(() => {
+      modal.classList.add("active");
+      modal.querySelector(".modal-content").focus();
+    }, 10);
+    document.body.style.overflow = "hidden";
+  }
+
+  // Close modal
+  function closeModal() {
+    const scrollToTopBtn = document.getElementById("scroll-to-top");
+    if (scrollToTopBtn) {
+      scrollToTopBtn.classList.remove("hidden");
+    }
+    const glass = document.querySelector(".bottom-glass");
+    if (glass) {
+      glass.classList.remove("hidden");
+    }
+    modal.classList.remove("active");
+    setTimeout(() => {
+      modal.style.display = "none";
+      document.body.style.overflow = "";
+    }, 220);
+  }
+
+  // Only trigger modal from the Quick View button
+  document.querySelectorAll(".project.card").forEach((card) => {
+    const btn = card.querySelector(".btn-primary");
+    if (!btn) return;
+
+    btn.addEventListener("click", function (e) {
+      openModal(card);
+      e.stopPropagation();
+    });
+
+    btn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        openModal(card);
+        e.preventDefault();
+      }
+    });
+  });
+
+  modalClose.addEventListener("click", closeModal);
+
+  // Click-away to close
+  modal.addEventListener("mousedown", function (e) {
+    if (e.target === modal) closeModal();
+  });
+
+  // Escape key to close
+  document.addEventListener("keydown", function (e) {
+    if (
+      modal.style.display === "flex" &&
+      (e.key === "Escape" || e.key === "Esc")
+    ) {
+      closeModal();
+    }
+  });
+});

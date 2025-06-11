@@ -865,11 +865,20 @@
     </section>
 
     <!-- Projects Section -->
-
+    <!-- Projects Section -->
     <section id="projects">
       <h2 class="projects-header">Projects</h2>
       <div class="project-list">
-        <div class="project">
+        <!-- Example project card with data attributes for modal -->
+        <div
+          class="project card"
+          tabindex="0"
+          data-title="Publishing-House-Data-Insights-Analysis"
+          data-images="images/image.png,images/image2.png,images/image3.png"
+          data-description="This project provides a streamlined Database Management System (DBMS) for a fictional publishing company, managing key data such as book titles, authors, publishers, and sales. It efficiently organizes and tracks publications, authorship, distribution, and sales transactions. Integrated with Power BI, the system enables dynamic data visualization for actionable insights on sales performance and distribution."
+          data-details="Built with: <strong>SQL, Power BI, ERD, Data Modeling</strong>.<br>Features: Efficient DBMS, dynamic reporting, sales analytics, and publisher/author management."
+          data-github="https://github.com/yehiaibrahim1308/Publishing-House-Data-Insights-Analysis.git"
+        >
           <div class="project-image">
             <img
               src="images/image.png"
@@ -881,23 +890,30 @@
             <p>
               This project provides a streamlined Database Management System
               (DBMS) for a fictional publishing company, managing key data such
-              as book titles, authors, publishers, and sales. It efficiently
-              organizes and tracks publications, authorship, distribution, and
-              sales transactions. Integrated with <strong>Power BI</strong>, the
-              system enables dynamic data visualization for actionable insights
-              on sales performance and distribution.
+              as book titles, authors, publishers, and sales. Integrated with
+              <strong>Power BI</strong> for dynamic data visualization.
             </p>
-            <a
-              href="https://github.com/yehiaibrahim1308/Publishing-House-Data-Insights-Analysis.git"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
               class="btn-primary"
-              >View Project Details
-            </a>
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="project-modal"
+            >
+              Quick View
+            </button>
           </div>
         </div>
 
-        <div class="project">
+        <!-- Repeat for each project, updating data-* attributes accordingly -->
+        <div
+          class="project card"
+          tabindex="0"
+          data-title="SIC-XE Assembler"
+          data-images="images/assembler.png,images/assembler2.png,images/assembler3.png"
+          data-description="This project, developed in Python, focuses on reading and processing SIC/XE assembler code from specified text files. Its primary objective is to generate object code that follows the SIC/XE format by utilizing the provided assembly instructions and symbol tables."
+          data-details="Built with: <strong>Python</strong>.<br>Features: Assembly parsing, object code generation, symbol table management."
+          data-github="https://github.com/yehiaibrahim1308/SICXE-Assembler.git"
+        >
           <div class="project-image">
             <img
               src="images/assembler.png"
@@ -907,23 +923,30 @@
           <div class="project-content">
             <h3>SIC-XE Assembler</h3>
             <p>
-              This project, developed in <strong>Python</strong>, focuses on
-              reading and processing SIC/XE assembler code from specified text
-              files. Its primary objective is to generate object code that
-              follows the SIC/XE format by utilizing the provided assembly
-              instructions and symbol tables.
+              Developed in <strong>Python</strong>, this project reads and
+              processes SIC/XE assembler code, generating object code using
+              assembly instructions and symbol tables.
             </p>
-            <a
-              href="https://github.com/yehiaibrahim1308/SICXE-Assembler.git"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
               class="btn-primary"
-              >View Project Details
-            </a>
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="project-modal"
+            >
+              Quick View
+            </button>
           </div>
         </div>
 
-        <div class="project">
+        <div
+          class="project card"
+          tabindex="0"
+          data-title="RMI for Node Communication"
+          data-images="images/0_T6LXs7zjaUstip0-.png,images/0_T6LXs7zjaUstip0-_2.png,images/0_T6LXs7zjaUstip0-_3.png"
+          data-description="This project implements a distributed file system in Java, utilizing Remote Method Invocation (RMI) for inter-node communication. It supports core file operations—upload, download, search, and delete—while ensuring consistency through a logical clock and managing transaction order using a priority queue."
+          data-details="Built with: <strong>Java, RMI</strong>.<br>Features: Distributed file operations, logical clock, transaction ordering."
+          data-github="https://github.com/yehiaibrahim1308/-RMI-for-Node-Communication.git"
+        >
           <div class="project-image">
             <img
               src="images/0_T6LXs7zjaUstip0-.png"
@@ -933,110 +956,152 @@
           <div class="project-content">
             <h3>RMI for Node Communication</h3>
             <p>
-              This project implements a distributed file system in
-              <strong>Java</strong>, utilizing Remote Method Invocation (RMI)
-              for inter-node communication. It supports core file
-              operations—upload, download, search, and delete—while ensuring
-              consistency through a logical clock and managing transaction order
-              using a priority queue.
+              Distributed file system in <strong>Java</strong> using RMI for
+              inter-node communication. Supports upload, download, search, and
+              delete with logical clock consistency.
             </p>
-            <a
-              href="https://github.com/yehiaibrahim1308/-RMI-for-Node-Communication.git"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
               class="btn-primary"
-              >View Project Details
-            </a>
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="project-modal"
+            >
+              Quick View
+            </button>
           </div>
         </div>
 
-        <div class="project">
+        <div
+          class="project card"
+          tabindex="0"
+          data-title="Computer Guardian"
+          data-images="images/guard.png,images/guard2.png,images/guard3.png"
+          data-description="Computer Guardian is an all-in-one platform built with PHP, HTML, CSS, and JavaScript, designed to simplify custom PC building by offering tech guides, the latest news, and seamless component purchasing."
+          data-details="Built with: <strong>PHP, HTML, CSS, JavaScript</strong>.<br>Features: Dynamic content management, real-time updates, component purchasing, tech news."
+          data-github="https://github.com/yehiaibrahim1308/Computer-Guardian.git"
+        >
           <div class="project-image">
             <img src="images/guard.png" alt="Computer Guardian Project Image" />
           </div>
           <div class="project-content">
             <h3>Computer Guardian</h3>
             <p>
-              Computer Guardian is an all-in-one platform built with
-              <strong>PHP, HTML, CSS, and JavaScript</strong>, designed to
-              simplify custom PC building by offering tech guides, the latest
-              news, and seamless component purchasing. The platform integrates
-              dynamic content management powered by PHP, ensuring real-time data
-              updates from five partner stores across Egypt and a smooth user
-              experience. Users can easily find and purchase components like
-              graphic cards and processors, all in one place, without needing to
-              navigate multiple sites. Additionally, the platform keeps users
-              informed on the latest advancements in computer hardware and
-              software.
+              All-in-one platform for PC building, tech guides, and component
+              purchasing. Built with
+              <strong>PHP, HTML, CSS, JavaScript</strong>.
             </p>
-            <a
-              href="https://github.com/yehiaibrahim1308/Computer-Guardian.git"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
               class="btn-primary"
-              >View Project Details</a
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="project-modal"
             >
+              Quick View
+            </button>
           </div>
         </div>
 
-        <div class="project">
+        <div
+          class="project card"
+          tabindex="0"
+          data-title="Hey Doc"
+          data-images="images/hey.png,images/hey2.png,images/hey3.png"
+          data-description="Hey Doc is a medical chatbot designed to provide continuous medical assistance, minimize unnecessary doctor visits, and support individuals with social anxiety. The platform leverages machine learning, deep learning, and various APIs."
+          data-details="Built with: <strong>Python, HTML, CSS, JavaScript, MongoDB</strong>.<br>Frameworks: <strong>Flask, Scikit-learn, Pandas, TensorFlow, Transformers</strong>.<br>APIs: <strong>Elevenlabs, Google APIs, PubMed API</strong>."
+          data-github="https://github.com/yehiaibrahim1308/Hey-Doc.git"
+        >
           <div class="project-image small-image">
-            <img src="images/hey.png" alt="Weather App Project Image" />
+            <img src="images/hey.png" alt="Hey Doc Project Image" />
           </div>
           <div class="project-content">
             <h3>Hey Doc</h3>
             <p>
-              Hey Doc is a medical chatbot designed to provide continuous
-              medical assistance, minimize unnecessary doctor visits, and
-              support individuals with social anxiety. The platform leverages
-              machine learning, deep learning, and various APIs to offer secure
-              mental health sessions, respond to medical inquiries, provide
-              emotional support, and deliver diagnostic predictions. Built with
-              <strong> Python</strong>, <strong>HTML</strong>,
-              <strong>CSS</strong>, and <strong>JavaScript</strong>, it
-              utilizes<strong> MongoDB</strong> for database management. Key
-              frameworks and tools include <strong>Scikit-learn</strong> for
-              machine learning algorithms, <strong>Pandas</strong> for data
-              manipulation, <strong>Flask</strong> for backend management,
-              <strong>Elevenlabs</strong> and <strong>Google APIs</strong> for
-              text-to-speech and speech-to-text, <strong>PubMed API</strong> for
-              medical article access, <strong>TensorFlow</strong> for deep
-              learning, and <strong>Transformers</strong> for NLP tasks.
+              Medical chatbot for continuous assistance, built with
+              <strong>Python</strong> and modern ML/NLP frameworks.
             </p>
-            <a
-              href="https://github.com/yehiaibrahim1308/Hey-Doc.git"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
               class="btn-primary"
-              >View Project Details</a
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="project-modal"
             >
+              Quick View
+            </button>
           </div>
         </div>
 
-        <div class="project">
+        <div
+          class="project card"
+          tabindex="0"
+          data-title="Calculator and Unit Converter"
+          data-images="images/calc.png,images/calc2.png,images/calc3.png"
+          data-description="This Python project offers a Scientific Calculator and Unit Converter with a user-friendly interface built using the Tkinter library. The main menu allows users to switch between the calculator and unit converters for temperature and length measurements."
+          data-details="Built with: <strong>Python, Tkinter</strong>.<br>Features: Scientific calculator, temperature and length unit converters."
+          data-github="https://github.com/yehiaibrahim1308/calculator-and-converter.git"
+        >
           <div class="project-image small-image2">
-            <img src="images/calc.png" alt="Task Manager Project Image" />
+            <img
+              src="images/calc.png"
+              alt="Calculator and Unit Converter Project Image"
+            />
           </div>
           <div class="project-content">
             <h3>Calculator and Unit Converter</h3>
             <p>
-              This <strong>Python</strong> project offers a Scientific
-              Calculator and Unit Converter with a user-friendly interface built
-              using the Tkinter library. The main menu allows users to switch
-              between the calculator and unit converters for temperature and
-              length measurements.
+              <strong>Python</strong> project: Scientific Calculator and Unit
+              Converter with a Tkinter GUI.
             </p>
-            <a
-              href="https://github.com/yehiaibrahim1308/calculator-and-converter.git"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
               class="btn-primary"
-              >View Project Details
-            </a>
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="project-modal"
+            >
+              Quick View
+            </button>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Modal Overlay for Project Details -->
+    <div id="project-modal" class="modal-overlay" style="display: none">
+      <div class="modal-content" role="dialog" aria-modal="true" tabindex="-1">
+        <button class="modal-close" aria-label="Close">&times;</button>
+        <div class="modal-image">
+          <div class="carousel-wrapper">
+            <button
+              class="carousel-arrow left"
+              aria-label="Previous image"
+              style="display: none"
+            >
+              &#8592;
+            </button>
+            <img src="" alt="Project Preview" />
+            <button
+              class="carousel-arrow right"
+              aria-label="Next image"
+              style="display: none"
+            >
+              &#8594;
+            </button>
+          </div>
+          <div class="carousel-indicators"></div>
+        </div>
+        <div class="modal-info">
+          <h2 class="modal-title"></h2>
+          <p class="modal-description"></p>
+          <div class="modal-details"></div>
+          <a
+            href="#"
+            class="btn-primary modal-github"
+            target="_blank"
+            rel="noopener noreferrer"
+            >View on GitHub</a
+          >
+        </div>
+      </div>
+    </div>
 
     <!-- Services Section -->
 
@@ -1313,7 +1378,6 @@
     </footer>
 
     <!-- Link to external JavaScript file -->
-    <!-- tsParticles CDN -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.3.0/tsparticles.bundle.min.js"></script>
     <script type="module" src="js/script.js"></script>
   </body>
