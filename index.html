@@ -865,7 +865,6 @@
     </section>
 
     <!-- Projects Section -->
-    <!-- Projects Section -->
     <section id="projects">
       <h2 class="projects-header">Projects</h2>
       <div class="project-list">
@@ -874,7 +873,7 @@
           class="project card"
           tabindex="0"
           data-title="Publishing-House-Data-Insights-Analysis"
-          data-images="images/image.png,images/image2.png,images/image3.png"
+          data-images="images/image.png,images/public1.png,images/public 2.png"
           data-description="This project provides a streamlined Database Management System (DBMS) for a fictional publishing company, managing key data such as book titles, authors, publishers, and sales. It efficiently organizes and tracks publications, authorship, distribution, and sales transactions. Integrated with Power BI, the system enables dynamic data visualization for actionable insights on sales performance and distribution."
           data-details="Built with: <strong>SQL, Power BI, ERD, Data Modeling</strong>.<br>Features: Efficient DBMS, dynamic reporting, sales analytics, and publisher/author management."
           data-github="https://github.com/yehiaibrahim1308/Publishing-House-Data-Insights-Analysis.git"
@@ -909,7 +908,7 @@
           class="project card"
           tabindex="0"
           data-title="SIC-XE Assembler"
-          data-images="images/assembler.png,images/assembler2.png,images/assembler3.png"
+          data-images="images/assembler.png"
           data-description="This project, developed in Python, focuses on reading and processing SIC/XE assembler code from specified text files. Its primary objective is to generate object code that follows the SIC/XE format by utilizing the provided assembly instructions and symbol tables."
           data-details="Built with: <strong>Python</strong>.<br>Features: Assembly parsing, object code generation, symbol table management."
           data-github="https://github.com/yehiaibrahim1308/SICXE-Assembler.git"
@@ -942,7 +941,7 @@
           class="project card"
           tabindex="0"
           data-title="RMI for Node Communication"
-          data-images="images/0_T6LXs7zjaUstip0-.png,images/0_T6LXs7zjaUstip0-_2.png,images/0_T6LXs7zjaUstip0-_3.png"
+          data-images="images/0_T6LXs7zjaUstip0-.png,images/rmi1.png"
           data-description="This project implements a distributed file system in Java, utilizing Remote Method Invocation (RMI) for inter-node communication. It supports core file operations—upload, download, search, and delete—while ensuring consistency through a logical clock and managing transaction order using a priority queue."
           data-details="Built with: <strong>Java, RMI</strong>.<br>Features: Distributed file operations, logical clock, transaction ordering."
           data-github="https://github.com/yehiaibrahim1308/-RMI-for-Node-Communication.git"
@@ -975,7 +974,7 @@
           class="project card"
           tabindex="0"
           data-title="Computer Guardian"
-          data-images="images/guard.png,images/guard2.png,images/guard3.png"
+          data-images="images/guard.png,images/guardian.png,images/guardian2.png"
           data-description="Computer Guardian is an all-in-one platform built with PHP, HTML, CSS, and JavaScript, designed to simplify custom PC building by offering tech guides, the latest news, and seamless component purchasing."
           data-details="Built with: <strong>PHP, HTML, CSS, JavaScript</strong>.<br>Features: Dynamic content management, real-time updates, component purchasing, tech news."
           data-github="https://github.com/yehiaibrahim1308/Computer-Guardian.git"
@@ -983,6 +982,7 @@
           <div class="project-image">
             <img src="images/guard.png" alt="Computer Guardian Project Image" />
           </div>
+
           <div class="project-content">
             <h3>Computer Guardian</h3>
             <p>
@@ -1005,7 +1005,7 @@
           class="project card"
           tabindex="0"
           data-title="Hey Doc"
-          data-images="images/hey.png,images/hey2.png,images/hey3.png"
+          data-images="images/hey.png,images/heydoc.mp4"
           data-description="Hey Doc is a medical chatbot designed to provide continuous medical assistance, minimize unnecessary doctor visits, and support individuals with social anxiety. The platform leverages machine learning, deep learning, and various APIs."
           data-details="Built with: <strong>Python, HTML, CSS, JavaScript, MongoDB</strong>.<br>Frameworks: <strong>Flask, Scikit-learn, Pandas, TensorFlow, Transformers</strong>.<br>APIs: <strong>Elevenlabs, Google APIs, PubMed API</strong>."
           data-github="https://github.com/yehiaibrahim1308/Hey-Doc.git"
@@ -1034,7 +1034,7 @@
           class="project card"
           tabindex="0"
           data-title="Calculator and Unit Converter"
-          data-images="images/calc.png,images/calc2.png,images/calc3.png"
+          data-images="images/calc.png"
           data-description="This Python project offers a Scientific Calculator and Unit Converter with a user-friendly interface built using the Tkinter library. The main menu allows users to switch between the calculator and unit converters for temperature and length measurements."
           data-details="Built with: <strong>Python, Tkinter</strong>.<br>Features: Scientific calculator, temperature and length unit converters."
           data-github="https://github.com/yehiaibrahim1308/calculator-and-converter.git"
@@ -1277,68 +1277,136 @@
 
     <!-- Contact Section -->
     <section id="contactForm">
-      <h2 class="professional-heading">Contact</h2>
+      <h2 class="professional-heading">Get In Touch</h2>
       <div id="contactForm">
         <div class="contactForm-content">
-          <form class="contactForm-form">
-            <div class="form-group">
-              <label for="name">Name:</label>
-              <input
-                type="text"
-                id="name"
-                name="fullName"
-                required
-                placeholder="Type your Name here..."
-              />
-            </div>
-            <div class="form-group">
-              <label for="contactNumber">Number:</label>
-              <input
-                type="text"
-                id="contactNumber"
-                name="contactNumber"
-                placeholder="enter your Contact Number"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                placeholder="yourname@example.com"
-              />
-            </div>
-            <div class="form-group">
-              <label for="message">Message:</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="4"
-                required
-                placeholder="Type your message here..."
-              ></textarea>
-            </div>
-            <button type="submit" class="submit-button">Send Message</button>
-          </form>
-          <div id="responseMessage" class="response-message"></div>
+          <div class="form-container">
+            <form class="contactForm-form" id="contactFormElement">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="fullName"
+                  required
+                  placeholder="Enter your full name..."
+                />
+              </div>
+              <div class="form-group">
+                <label for="contactNumber">Phone Number</label>
+                <div class="phone-input-container">
+                  <!-- Custom Dropdown for Country Code -->
+                  <div
+                    class="custom-country-dropdown"
+                    id="countryDropdown"
+                    tabindex="0"
+                  >
+                    <div
+                      class="custom-country-selected"
+                      id="countrySelected"
+                      tabindex="0"
+                    >
+                      🇺🇸 +1 (US)
+                    </div>
+                    <ul class="custom-country-options" id="countryOptions">
+                      <li data-value="+1" class="selected">
+                        🇺🇸 +1 United States
+                      </li>
+                      <li data-value="+971">🇦🇪 +971 United Arab Emirates</li>
+                      <li data-value="+44">🇬🇧 +44 United Kingdom</li>
+                      <li data-value="+33">🇫🇷 +33 France</li>
+                      <li data-value="+49">🇩🇪 +49 Germany</li>
+                      <li data-value="+39">🇮🇹 +39 Italy</li>
+                      <li data-value="+34">🇪🇸 +34 Spain</li>
+                      <li data-value="+7">🇷🇺 +7 Russia</li>
+                      <li data-value="+86">🇨🇳 +86 China</li>
+                      <li data-value="+81">🇯🇵 +81 Japan</li>
+                      <li data-value="+82">🇰🇷 +82 South Korea</li>
+                      <li data-value="+91">🇮🇳 +91 India</li>
+                      <li data-value="+92">🇵🇰 +92 Pakistan</li>
+                      <li data-value="+880">🇧🇩 +880 Bangladesh</li>
+                      <li data-value="+20">🇪🇬 +20 Egypt</li>
+                      <li data-value="+966">🇸🇦 +966 Saudi Arabia</li>
+                      <li data-value="+962">🇯🇴 +962 Jordan</li>
+                      <li data-value="+961">🇱🇧 +961 Lebanon</li>
+                      <li data-value="+60">🇲🇾 +60 Malaysia</li>
+                      <li data-value="+65">🇸🇬 +65 Singapore</li>
+                      <li data-value="+852">🇭🇰 +852 Hong Kong</li>
+                      <li data-value="+61">🇦🇺 +61 Australia</li>
+                      <li data-value="+64">🇳🇿 +64 New Zealand</li>
+                      <li data-value="+55">🇧🇷 +55 Brazil</li>
+                      <li data-value="+52">🇲🇽 +52 Mexico</li>
+                      <li data-value="+54">🇦🇷 +54 Argentina</li>
+                      <li data-value="+56">🇨🇱 +56 Chile</li>
+                      <li data-value="+57">🇨🇴 +57 Colombia</li>
+                    </ul>
+                    <input
+                      type="hidden"
+                      name="countryCode"
+                      id="countryCode"
+                      value="+1"
+                    />
+                    <span class="custom-country-arrow"></span>
+                  </div>
+                  <!-- Phone Number Input -->
+                  <input
+                    type="tel"
+                    id="contactNumber"
+                    name="phoneNumber"
+                    placeholder="123456789"
+                    required
+                    pattern="[0-9]+"
+                    title="Please enter numbers only"
+                    class="phone-number-input"
+                  />
+                </div>
+                <div class="phone-error" id="phoneError"></div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="yourname@example.com"
+                />
+              </div>
+              <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                  placeholder="Tell us about your project or inquiry..."
+                ></textarea>
+              </div>
+              <button type="submit" class="submit-button">
+                <i class="fas fa-paper-plane" style="margin-right: 10px"></i>
+                Send Message
+              </button>
+            </form>
+
+            <div class="response-message" id="responseMessage"></div>
+          </div>
 
           <div class="connect-with-me">
-            <h3>Connect with Me</h3>
+            <h3>Connect With Me</h3>
             <ul class="social-links">
               <li>
                 <a
                   href="https://www.facebook.com/yahya.ibrahim.794/"
                   aria-label="Facebook"
                 >
-                  <i class="fab fa-facebook-f"></i> Facebook
+                  <i class="fab fa-facebook-f"></i>
+                  Facebook
                 </a>
               </li>
               <li>
                 <a href="https://x.com/Yahya39551663" aria-label="Twitter">
-                  <i class="fab fa-twitter"></i> Twitter
+                  <i class="fab fa-twitter"></i>
+                  Twitter
                 </a>
               </li>
               <li>
@@ -1346,7 +1414,8 @@
                   href="https://www.linkedin.com/in/yehia-ibrahim-8154b0201/"
                   aria-label="LinkedIn"
                 >
-                  <i class="fab fa-linkedin-in"></i> LinkedIn
+                  <i class="fab fa-linkedin-in"></i>
+                  LinkedIn
                 </a>
               </li>
               <li>
@@ -1354,22 +1423,16 @@
                   href="https://www.instagram.com/yahya_ibrahim_1/"
                   aria-label="Instagram"
                 >
-                  <i class="fab fa-instagram"></i> Instagram
+                  <i class="fab fa-instagram"></i>
+                  Instagram
                 </a>
               </li>
             </ul>
           </div>
         </div>
       </div>
-
-      <!-- Modal -->
-      <div id="modal" class="modal" style="display: none">
-        <div class="modal-content">
-          <span id="closeModal" class="close">&times;</span>
-          <p id="modalMessage">Your message will appear here.</p>
-        </div>
-      </div>
     </section>
+
     <footer>
       <div class="footer-content">
         <p>&copy; 2024 Yehia Ibrahim. All rights reserved.</p>
