@@ -299,108 +299,72 @@ body:not(.is-scrolling) .nav-links a:hover {
   border-radius: 3px;
 }
 
-/* Independent animations for each line */
+/* Separate keyframes for each line with ultra-smooth breathing effect */
+@keyframes waveMotion1 {
+  0%,
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+  50% {
+    width: 45%;
+    opacity: 0.95;
+  }
+}
+
+@keyframes waveMotion2 {
+  0%,
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+  50% {
+    width: 45%;
+    opacity: 0.92;
+  }
+}
+
+@keyframes waveMotion3 {
+  0%,
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+  50% {
+    width: 45%;
+    opacity: 0.94;
+  }
+}
+
+/* Independent animations for each line with staggered timing for sequential effect */
 .hamburger-line:nth-child(1) {
   top: 0;
-  animation: waveMotion1 2s infinite ease-in-out alternate;
+  animation: waveMotion1 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  animation-delay: 0s; /* First line starts immediately */
+  transform-origin: center;
+  will-change: width, opacity;
 }
 
 .hamburger-line:nth-child(2) {
   top: 50%;
   transform: translateY(-50%);
-  animation: waveMotion2 2.2s infinite ease-in-out alternate;
+  animation: waveMotion2 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  animation-delay: 0.8s; /* Second line starts after 0.8s */
+  transform-origin: center;
+  will-change: width, opacity;
 }
 
 .hamburger-line:nth-child(3) {
   bottom: 0;
-  animation: waveMotion3 2.5s infinite ease-in-out alternate;
+  animation: waveMotion3 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  animation-delay: 1.6s; /* Third line starts after 1.6s */
+  transform-origin: center;
+  will-change: width, opacity;
 }
 
 /* Stop all animations when menu is active */
 .menu-toggle.active .hamburger-line {
   animation: none;
-}
-
-/* Separate keyframes for each line with different patterns */
-@keyframes waveMotion1 {
-  0% {
-    width: 105%;
-  }
-  15% {
-    width: 90%;
-  }
-  30% {
-    width: 75%;
-  }
-  45% {
-    width: 60%;
-  }
-  60% {
-    width: 45%;
-  } /* Gentle shrink */
-  75% {
-    width: 60%;
-  }
-  90% {
-    width: 75%;
-  }
-  105% {
-    width: 90%;
-  } /* Reset smoothly */
-}
-
-@keyframes waveMotion2 {
-  0% {
-    width: 105%;
-  }
-  15% {
-    width: 90%;
-  }
-  30% {
-    width: 75%;
-  }
-  45% {
-    width: 60%;
-  }
-  60% {
-    width: 45%;
-  } /* Gentle shrink */
-  75% {
-    width: 60%;
-  }
-  90% {
-    width: 75%;
-  }
-  105% {
-    width: 90%;
-  }
-}
-
-@keyframes waveMotion3 {
-  0% {
-    width: 105%;
-  }
-  15% {
-    width: 90%;
-  }
-  30% {
-    width: 75%;
-  }
-  45% {
-    width: 60%;
-  }
-  60% {
-    width: 45%;
-  } /* Gentle shrink */
-  75% {
-    width: 60%;
-  }
-  90% {
-    width: 75%;
-  }
-  105% {
-    width: 90%;
-  }
 }
 
 /* Default: Hide hamburger menu */
@@ -628,17 +592,31 @@ body:not(.is-scrolling) .nav-links a:hover {
   visibility: hidden;
   transform: translateY(25px) scale(0.8);
   z-index: 1002 !important;
+  animation: buttonFloat 3s ease-in-out infinite;
 }
 .scroll-to-top.visible {
   opacity: 1;
   visibility: visible;
   transform: translateY(0) scale(1);
+  animation: buttonFloat 3s ease-in-out infinite;
 }
 .scroll-to-top:hover {
   background: linear-gradient(135deg, var(--accent-gold), #ffed4e);
   transform: translateY(-8px) scale(1.2);
   box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
-  animation: pulse 1.5s ease-in-out infinite;
+  animation: buttonFloat 3s ease-in-out infinite,
+    pulse 1.5s ease-in-out infinite;
+}
+
+/* Floating animation for gentle up-and-down motion */
+@keyframes buttonFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1);
+  }
 }
 @keyframes pulse {
   0%,
@@ -2375,15 +2353,19 @@ body:not(.is-scrolling) .nav-links a:hover {
   min-height: 120px;
 }
 
+/* Dynamic Phone Input Container with Fixed Phone Width */
 .phone-input-container {
   display: flex;
   align-items: stretch;
   position: relative;
-  overflow: visible;
+  overflow: hidden; /* Hide any overflow content */
   background: #ffffff;
   border: 2px solid #0073e6;
   border-radius: 13px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  max-width: 500px; /* Fixed container width */
+  box-sizing: border-box; /* Include borders in width calculation */
 }
 
 .phone-input-container:hover {
@@ -2396,9 +2378,12 @@ body:not(.is-scrolling) .nav-links a:hover {
   transform: translateY(-2px);
 }
 
+/* Fixed Width Phone Number Input with Overflow Protection */
 .phone-number-input {
-  flex: 1;
-  padding: 14px 20px;
+  flex: 0 0 200px; /* Fixed 200px width */
+  min-width: 200px;
+  max-width: 200px;
+  padding: 14px 16px; /* Reduced horizontal padding */
   border: none;
   border-radius: 0;
   font-size: 1.08rem;
@@ -2408,6 +2393,11 @@ body:not(.is-scrolling) .nav-links a:hover {
   color: #1a237e;
   font-weight: 500;
   outline: none;
+  text-align: center;
+  overflow: hidden; /* Prevent text overflow */
+  white-space: nowrap; /* Keep text on single line */
+  text-overflow: ellipsis; /* Add ellipsis if text is too long */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .phone-error {
@@ -2425,9 +2415,11 @@ body:not(.is-scrolling) .nav-links a:hover {
   color: #f59e0b;
 }
 
+/* Dynamic Country Dropdown with Flexible Width */
 .custom-country-dropdown {
   position: relative;
-  min-width: 140px;
+  min-width: 120px;
+  max-width: calc(100% - 200px); /* Flexible width minus fixed phone input */
   font-size: 1.08rem;
   font-family: inherit;
   font-weight: 500;
@@ -2437,7 +2429,17 @@ body:not(.is-scrolling) .nav-links a:hover {
   border-radius: 0;
   cursor: pointer;
   outline: none;
+  flex: 1 1 auto;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
   border-right: 1px solid #cbd5e1;
+}
+
+/* Ensure dropdown opens with exact same width as container */
+.custom-country-dropdown.open .custom-country-options {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
 }
 
 .custom-country-selected {
@@ -2445,12 +2447,21 @@ body:not(.is-scrolling) .nav-links a:hover {
   border-radius: 0;
   background: transparent;
   outline: none;
-  user-select: text;
-  cursor: text;
+  user-select: none; /* Prevent text selection */
+  cursor: pointer; /* Always show pointer cursor */
   position: relative;
-  min-height: 20px;
+  min-height: 48px; /* Match container height for proper centering */
+  max-height: 48px;
+  height: 48px; /* Explicit height for consistency */
   display: flex;
-  align-items: center;
+  align-items: center; /* Vertically center content */
+  justify-content: flex-start; /* Align text to start */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 1.2; /* Ensure proper line height */
 }
 
 .custom-country-selected:empty::before {
@@ -2467,7 +2478,7 @@ body:not(.is-scrolling) .nav-links a:hover {
 .custom-country-selected::after {
   content: "";
   position: absolute;
-  right: 8px;
+  right: 12px; /* Moved slightly more inward for better balance */
   top: 50%;
   width: 0;
   height: 0;
@@ -2476,6 +2487,8 @@ body:not(.is-scrolling) .nav-links a:hover {
   border-top: 4px solid #0073e6;
   transform: translateY(-50%);
   transition: transform 0.2s;
+  cursor: pointer; /* Make arrow clickable */
+  z-index: 10; /* Ensure arrow is above other elements */
 }
 
 .custom-country-dropdown.open .custom-country-selected::after {
@@ -2494,32 +2507,38 @@ body:not(.is-scrolling) .nav-links a:hover {
   box-shadow: 0 8px 25px rgba(0, 60, 120, 0.15);
   max-height: 250px;
   overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
   display: none;
-  padding: 12px 0;
+  padding: 8px 0;
   margin: 0;
   list-style: none;
   line-height: 1.4;
-  min-width: 300px;
+  min-width: inherit; /* Match parent dropdown width exactly */
+  width: 100%; /* Fill parent width completely */
   white-space: nowrap;
   z-index: 2147483647;
+  box-sizing: border-box; /* Include borders in width calculation */
 }
 
 .custom-country-options li {
-  padding: 16px 24px;
+  padding: 12px 5px; /* Reduced left padding from 24px to 16px */
   font-size: 1rem;
   background: transparent;
   color: #1a237e;
   transition: all 0.3s ease;
   cursor: pointer;
   border-bottom: 1px solid #f0f4fa;
-  margin: 0 8px;
+  margin: 0 4px; /* Reduced horizontal margin from 8px to 4px */
   border-radius: 8px;
   display: flex;
   align-items: center;
-  min-height: 52px;
+  min-height: 48px; /* Reduced from 52px */
   line-height: 1.4;
   font-weight: 400;
   letter-spacing: 0.025em;
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
+  overflow: hidden; /* Prevent content overflow */
+  text-overflow: ellipsis; /* Add ellipsis for long text */
 }
 
 .custom-country-options li:first-child {
@@ -2536,8 +2555,12 @@ body:not(.is-scrolling) .nav-links a:hover {
 
 .custom-country-options li:hover,
 .custom-country-options li.selected {
-  background: linear-gradient(90deg, #e3f0ff 0%, #f0f7ff 100%);
-  color: #0073e6;
+  background: linear-gradient(
+    90deg,
+    #e3f0ff 0%,
+    #f0f7ff 100%
+  ); /* Blue background */
+  color: #0073e6; /* Blue text */
   font-weight: 500;
   transform: translateX(4px);
   box-shadow: 0 2px 8px rgba(0, 115, 230, 0.15);
@@ -2546,15 +2569,20 @@ body:not(.is-scrolling) .nav-links a:hover {
 
 .custom-country-options li:active {
   transform: translateX(2px) scale(0.98);
-  background: linear-gradient(90deg, #cbe3ff 0%, #e3f0ff 100%);
+  background: linear-gradient(
+    90deg,
+    #cbe3ff 0%,
+    #e3f0ff 100%
+  ); /* Darker blue on active */
 }
 
 .custom-country-options li.selected::after {
   content: "✓";
   margin-left: auto;
-  color: #0073e6;
+  color: #ffd700; /* Gold checkmark */
   font-weight: bold;
   font-size: 1.1rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Custom scrollbar */
@@ -3261,9 +3289,14 @@ footer {
     font-size: 14px; /* Smaller font size for message text */
   }
 
+  .modal-title {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
   .modal-button {
     font-size: 14px; /* Smaller font size for buttons */
-    padding: 10px 15px; /* Adjust padding */
+    padding: 8px 12px; /* Adjust padding */
   }
   .hero {
     padding: 24px 2vw 10px 2vw;

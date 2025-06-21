@@ -8,6 +8,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yehia Ibrahim's Portfolio</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='yGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23007bff;stop-opacity:1' /><stop offset='100%25' style='stop-color:%230056b3;stop-opacity:1' /></linearGradient><linearGradient id='iGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23ffd700;stop-opacity:1' /><stop offset='100%25' style='stop-color:%23ff8c00;stop-opacity:1' /></linearGradient><filter id='textShadow'><feDropShadow dx='1' dy='2' stdDeviation='2' flood-color='%23000000' flood-opacity='0.4'/></filter></defs><text x='35' y='75' font-family='Inter,SF Pro Display,system-ui,sans-serif' font-size='70' font-weight='900' text-anchor='middle' fill='url(%23yGrad)' filter='url(%23textShadow)' letter-spacing='-8'>Y</text><text x='65' y='75' font-family='Inter,SF Pro Display,system-ui,sans-serif' font-size='70' font-weight='900' text-anchor='middle' fill='url(%23iGrad)' filter='url(%23textShadow)' letter-spacing='-8'>I</text></svg>"
+    />
     <link rel="stylesheet" href="css/styles.css" />
     <link
       rel="stylesheet"
@@ -1289,7 +1293,9 @@
                   id="name"
                   name="fullName"
                   required
-                  placeholder="Enter your full name..."
+                  placeholder="Please enter your name ......."
+                  autocomplete="off"
+                  spellcheck="false"
                 />
               </div>
               <div class="form-group">
@@ -1370,6 +1376,8 @@
                   name="email"
                   required
                   placeholder="yourname@example.com"
+                  autocomplete="off"
+                  spellcheck="false"
                 />
               </div>
               <div class="form-group">
@@ -1380,6 +1388,8 @@
                   rows="5"
                   required
                   placeholder="Tell us about your project or inquiry..."
+                  autocomplete="off"
+                  spellcheck="false"
                 ></textarea>
               </div>
               <button type="submit" class="submit-button">
