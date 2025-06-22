@@ -578,51 +578,13 @@ function animateWords(card) {
 }
 
 function initAboutAnimations() {
-  const cards = document.querySelectorAll(".about-card, .about-cta");
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setTimeout(
-            () => {
-              entry.target.classList.add("revealed");
-              // Animate words if needed
-              if (entry.target.dataset.animate === "words") {
-                animateWords(entry.target);
-              }
-            },
-            entry.target.dataset.delay ? Number(entry.target.dataset.delay) : 0
-          );
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
-  cards.forEach((el, i) => {
-    el.dataset.delay = i * 180;
-    observer.observe(el);
-  });
+  // Animation disabled for About section
+  return;
 }
 
 function aboutSectionEnterAnimation() {
-  const aboutSection = document.getElementById("about");
-  if (!aboutSection) return;
-
-  function checkAboutInView() {
-    const rect = aboutSection.getBoundingClientRect();
-    const windowHeight =
-      window.innerHeight || document.documentElement.clientHeight;
-    // Trigger when top is in lower 80% of viewport and bottom is below top
-    if (rect.top < windowHeight * 0.8 && rect.bottom > windowHeight * 0.1) {
-      aboutSection.classList.add("section-visible");
-    } else {
-      aboutSection.classList.remove("section-visible");
-    }
-  }
-
-  window.addEventListener("scroll", checkAboutInView, { passive: true });
-  window.addEventListener("resize", checkAboutInView, { passive: true });
-  setTimeout(checkAboutInView, 100);
+  // Animation disabled for About section
+  return;
 }
 
 // =============================================================================
@@ -730,7 +692,6 @@ document.addEventListener("DOMContentLoaded", function () {
     currentImgIdx = (currentImgIdx + 1) % images.length;
     showImage(currentImgIdx);
   });
-
   // Open modal with project data
   function openModal(card) {
     // Prevent multiple modals from animating at once
@@ -795,43 +756,59 @@ document.addEventListener("DOMContentLoaded", function () {
     backdropLayers.appendChild(particleLayer);
     document.body.appendChild(backdropLayers);
 
-    // Get card position and create morphing clone
+    // Get PRECISE card position accounting for scroll and transforms
     const cardRect = card.getBoundingClientRect();
-    const cardClone = card.cloneNode(true);
+    const cardStyles = window.getComputedStyle(card);
 
-    // Calculate exact modal target dimensions first
-    const modalTargetWidth = Math.min(1000, window.innerWidth * 0.9);
-    const modalTargetHeight = Math.min(650, window.innerHeight * 0.9);
+    // Calculate EXACT modal target dimensions with proper viewport constraints
+    const viewportPadding = 40; // Consistent padding from viewport edges
+    const maxModalWidth = 1000;
+    const maxModalHeight = 650;
+
+    const modalTargetWidth = Math.min(
+      maxModalWidth,
+      window.innerWidth - viewportPadding * 2
+    );
+    const modalTargetHeight = Math.min(
+      maxModalHeight,
+      window.innerHeight - viewportPadding * 2
+    );
     const modalTargetLeft = (window.innerWidth - modalTargetWidth) / 2;
     const modalTargetTop = (window.innerHeight - modalTargetHeight) / 2;
 
-    // Style the morphing clone to start exactly like the card
-    cardClone.style.position = "fixed";
-    cardClone.style.top = cardRect.top + "px";
-    cardClone.style.left = cardRect.left + "px";
-    cardClone.style.width = cardRect.width + "px";
-    cardClone.style.height = cardRect.height + "px";
-    cardClone.style.zIndex = "9999";
-    cardClone.style.borderRadius = window.getComputedStyle(card).borderRadius;
-    cardClone.style.boxShadow = "none";
-    cardClone.style.background = window.getComputedStyle(card).backgroundColor;
-    cardClone.style.overflow = "hidden";
-    cardClone.style.pointerEvents = "none";
-    cardClone.style.transform = "scale(1)";
-    cardClone.style.transition =
-      "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+    // Create PERFECT morphing clone with exact positioning
+    const cardClone = card.cloneNode(true);
+
+    // Apply IDENTICAL initial styling to match card exactly
+    Object.assign(cardClone.style, {
+      position: "fixed",
+      top: `${cardRect.top}px`,
+      left: `${cardRect.left}px`,
+      width: `${cardRect.width}px`,
+      height: `${cardRect.height}px`,
+      zIndex: "9999",
+      borderRadius: cardStyles.borderRadius,
+      boxShadow: cardStyles.boxShadow,
+      background: cardStyles.backgroundColor,
+      overflow: "hidden",
+      pointerEvents: "none",
+      transform: "scale(1)",
+      transformOrigin: "center center",
+      transition: "all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+      margin: "0",
+      padding: cardStyles.padding,
+      border: cardStyles.border,
+    });
 
     document.body.appendChild(cardClone);
 
-    // Hide original card smoothly
-    card.style.transition = "all 0.3s ease";
-    card.style.opacity = "0";
-    card.style.transform = "scale(0.95)";
-    card.style.pointerEvents = "none";
-
-    // No backdrop animation since we removed the gray background
-
-    // Prepare modal data
+    // Hide original card smoothly with perfect timing
+    Object.assign(card.style, {
+      transition: "all 0.3s ease",
+      opacity: "0",
+      transform: "scale(0.98)",
+      pointerEvents: "none",
+    }); // Prepare modal data first (before transformation)
     const imgsAttr = card.getAttribute("data-images");
     if (imgsAttr) {
       images = imgsAttr
@@ -850,109 +827,124 @@ document.addEventListener("DOMContentLoaded", function () {
     modalDetails.innerHTML = card.getAttribute("data-details");
     modalGithub.href = card.getAttribute("data-github");
 
-    // Morphing transformation to exact modal size
+    // PHASE 1: Start morphing transformation (smooth and precise)
     setTimeout(() => {
-      cardClone.style.top = modalTargetTop + "px";
-      cardClone.style.left = modalTargetLeft + "px";
-      cardClone.style.width = modalTargetWidth + "px";
-      cardClone.style.height = modalTargetHeight + "px";
-      cardClone.style.borderRadius = "24px";
-      cardClone.style.boxShadow = "none";
-      cardClone.style.transform = "scale(1)";
-
-      // Fade out clone content
-      Array.from(cardClone.children).forEach((child) => {
-        child.style.transition = "opacity 0.3s ease";
-        child.style.opacity = "0";
+      // Transform clone to exact modal dimensions and position
+      Object.assign(cardClone.style, {
+        top: `${modalTargetTop}px`,
+        left: `${modalTargetLeft}px`,
+        width: `${modalTargetWidth}px`,
+        height: `${modalTargetHeight}px`,
+        borderRadius: "24px",
+        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+        transform: "scale(1)",
       });
-    }, 100);
 
-    // Replace with modal at exact same position and size
+      // Gradually fade out clone content to prepare for modal content
+      const cloneChildren = Array.from(cardClone.children);
+      cloneChildren.forEach((child, index) => {
+        setTimeout(() => {
+          child.style.transition = "opacity 0.2s ease";
+          child.style.opacity = "0";
+        }, index * 30);
+      });
+    }, 50);
+
+    // PHASE 2: Prepare modal at exact clone position (seamless replacement)
     setTimeout(() => {
-      // Show modal
+      // Pre-configure modal
       modal.style.display = "flex";
       modal.style.opacity = "0";
       modal.style.visibility = "visible";
       modal.style.background = "transparent";
-      modal.style.boxShadow = "none";
+      modal.style.justifyContent = "center";
+      modal.style.alignItems = "center";
 
       const modalContent = modal.querySelector(".modal-content");
-      modalContent.style.opacity = "0";
-      modalContent.style.transform = "scale(1)";
-      modalContent.style.transition =
-        "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
 
-      // Position modal content exactly where clone is
-      modalContent.style.position = "fixed";
-      modalContent.style.top = modalTargetTop + "px";
-      modalContent.style.left = modalTargetLeft + "px";
-      modalContent.style.width = modalTargetWidth + "px";
-      modalContent.style.height = modalTargetHeight + "px";
-      modalContent.style.margin = "0";
-      modalContent.style.borderRadius = "24px";
-      modalContent.style.zIndex = "10000";
-      modalContent.style.boxShadow = "none";
-      modalContent.style.filter = "none";
-
-      // Seamless transition
-      setTimeout(() => {
-        cardClone.style.opacity = "0";
-
-        modal.style.opacity = "1";
-        modal.classList.add("active");
-        modalContent.style.opacity = "1";
-        modalContent.style.transform = "scale(1)";
-
-        // Remove clone
-        setTimeout(() => {
-          cardClone.remove();
-        }, 300);
-      }, 50);
+      // Position modal content exactly where clone will be
+      Object.assign(modalContent.style, {
+        position: "fixed",
+        top: `${modalTargetTop}px`,
+        left: `${modalTargetLeft}px`,
+        width: `${modalTargetWidth}px`,
+        height: `${modalTargetHeight}px`,
+        margin: "0",
+        borderRadius: "24px",
+        zIndex: "10000",
+        opacity: "0",
+        transform: "scale(1)",
+        transition: "opacity 0.4s ease, transform 0.1s ease",
+        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      });
     }, 400);
 
-    // Final cleanup
+    // PHASE 3: Seamless clone-to-modal transition
     setTimeout(() => {
       const modalContent = modal.querySelector(".modal-content");
+
+      // Fade out clone and fade in modal simultaneously
+      cardClone.style.opacity = "0";
+      modal.style.opacity = "1";
+      modal.classList.add("active");
+      modalContent.style.opacity = "1";
+
+      // Remove clone after fade completes
+      setTimeout(() => {
+        if (cardClone.parentNode) {
+          cardClone.remove();
+        }
+      }, 400);
+    }, 650);
+
+    // PHASE 4: Final modal setup and cleanup
+    setTimeout(() => {
+      const modalContent = modal.querySelector(".modal-content");
+
+      // Allow modal to focus
       modalContent.focus();
 
-      // Reset to normal modal behavior but keep no shadows
-      modalContent.style.position = "";
-      modalContent.style.top = "";
-      modalContent.style.left = "";
-      modalContent.style.width = "";
-      modalContent.style.height = "";
-      modalContent.style.margin = "";
-      modalContent.style.borderRadius = "";
-      modalContent.style.zIndex = "";
-      modalContent.style.transform = "";
-      modalContent.style.transition = "";
-      modalContent.style.boxShadow = "none";
-      modalContent.style.filter = "none";
+      // Gradually reset modal to normal behavior
+      Object.assign(modalContent.style, {
+        position: "",
+        top: "",
+        left: "",
+        width: "",
+        height: "",
+        margin: "",
+        borderRadius: "",
+        zIndex: "",
+        transform: "",
+        transition: "",
+      });
 
-      modal.style.boxShadow = "none";
-      modal.style.filter = "none";
-
-      // Fade out particles
+      // Fade out particles with staggered timing
       Array.from(particleLayer.children).forEach((particle, index) => {
         setTimeout(() => {
           particle.style.opacity = "0";
           particle.style.transform = "scale(0)";
-        }, index * 30);
+        }, index * 40);
       });
 
-      // Remove backdrop
+      // Remove backdrop after particles fade
       setTimeout(() => {
-        backdropLayers.remove();
-      }, 500);
+        if (backdropLayers.parentNode) {
+          backdropLayers.remove();
+        }
+      }, 800);
 
-      // Restore original card
-      card.style.transition = "";
-      card.style.transform = "";
-      card.style.opacity = "";
-      card.style.pointerEvents = "";
+      // Restore original card with subtle timing
+      setTimeout(() => {
+        Object.assign(card.style, {
+          transition: "",
+          transform: "",
+          opacity: "",
+          pointerEvents: "",
+        });
+      }, 100);
 
       document.body.classList.remove("modal-animating");
-    }, 900);
+    }, 1100);
 
     document.body.style.overflow = "hidden";
   }
@@ -1318,14 +1310,20 @@ function setupCountryDropdown() {
   const selected = document.getElementById("countrySelected");
   const options = document.getElementById("countryOptions");
   const hiddenInput = document.getElementById("countryCode");
-
   if (!dropdown || !selected || !options || !hiddenInput) return;
-
   let originalText = "🇺🇸 +1 (US)";
   let filteredOptions = [];
-  // Configure dropdown - disable contenteditable to prevent manual typing
-  selected.setAttribute("contenteditable", "false");
-  selected.setAttribute("data-placeholder", "Click to select country...");
+  let isSearchMode = false;
+  let hasUserSelectedCountry = false; // Track if user has actually selected a country
+
+  // Configure dropdown - enable contenteditable for search functionality
+  selected.setAttribute("contenteditable", "true");
+  selected.setAttribute("data-placeholder", "Type to search countries...");
+
+  // Set initial state with proper placeholder visibility
+  selected.innerHTML =
+    '<span style="color: #94a3b8; font-style: italic;">Select country...</span>';
+  selected.style.color = "#94a3b8";
 
   // Helper functions
   const getAllCountryOptions = () =>
@@ -1349,21 +1347,25 @@ function setupCountryDropdown() {
     tempElement.style.fontFamily =
       window.getComputedStyle(selectedElement).fontFamily;
     tempElement.style.fontWeight =
-      window.getComputedStyle(selectedElement).fontWeight;
+      window.getComputedStyle(selectedElement).fontWeight; // Get the actual displayed text (handle both placeholder and actual country)
+    let displayText;
+    if (
+      selectedElement.innerHTML.includes("Select country") ||
+      selectedElement.innerHTML.includes("Type to search")
+    ) {
+      // Use placeholder text width
+      displayText = "Select country...";
+    } else {
+      // Use actual selected country text
+      displayText = selectedElement.textContent || "🇺🇸 +1 (US)";
+    }
 
-    // Get the actual displayed text
-    const displayText =
-      selectedElement.textContent ||
-      selectedElement.getAttribute("data-placeholder") ||
-      "🇺🇸 +1 (US)";
     tempElement.textContent = displayText;
 
     document.body.appendChild(tempElement);
     const textWidth = tempElement.offsetWidth;
-    document.body.removeChild(tempElement);
-
-    // Add padding space for arrow and padding (60px total: 40px padding + 20px for arrow)
-    const totalWidth = Math.max(120, Math.min(280, textWidth + 60));
+    document.body.removeChild(tempElement); // Add padding space for arrow and padding (60px total: 40px padding + 20px for arrow)
+    const totalWidth = Math.max(140, Math.min(280, textWidth + 60));
 
     console.log(
       `Adjusting separator: text="${displayText}", textWidth=${textWidth}, totalWidth=${totalWidth}`
@@ -1440,17 +1442,24 @@ function setupCountryDropdown() {
     const rect = selected.getBoundingClientRect();
     const dropdownRect = dropdown.getBoundingClientRect();
 
+    // Use consistent width - either expanded (when open) or current dropdown width
+    const consistentWidth = dropdown.classList.contains("open")
+      ? 280
+      : dropdownRect.width;
+
     Object.assign(options.style, {
       position: "fixed",
       left: rect.left + "px",
       top: rect.bottom + "px",
-      width: dropdownRect.width + "px" /* Match dropdown width exactly */,
+      width: consistentWidth + "px",
+      minWidth: consistentWidth + "px",
+      maxWidth: consistentWidth + "px",
       zIndex: "2147483647",
       display: "block",
+      boxSizing: "border-box",
     });
     document.body.appendChild(options);
   }
-
   function resetDropdown() {
     dropdown.appendChild(options);
     Object.assign(options.style, {
@@ -1458,8 +1467,11 @@ function setupCountryDropdown() {
       left: "",
       top: "",
       width: "",
+      minWidth: "",
+      maxWidth: "",
       zIndex: "",
       display: "",
+      boxSizing: "",
     });
   }
   function selectCountry(li) {
@@ -1469,6 +1481,7 @@ function setupCountryDropdown() {
     console.log(`Selecting country: ${shortFormat}`);
 
     originalText = shortFormat;
+    hasUserSelectedCountry = true; // Mark that user has made a selection
     selected.textContent = originalText;
     selected.style.color = "";
     hiddenInput.value = li.getAttribute("data-value");
@@ -1482,6 +1495,10 @@ function setupCountryDropdown() {
     // Close dropdown
     dropdown.classList.remove("open");
     resetDropdown();
+
+    // IMPORTANT: Disable contenteditable after selection
+    selected.setAttribute("contenteditable", "false");
+    selected.style.cursor = "pointer"; // Change cursor to indicate clickable
 
     // Important: Shift separator back to fit the selected country code
     console.log(
@@ -1540,11 +1557,13 @@ function setupCountryDropdown() {
     }
     return fullText;
   }
-
   function resetCountryDropdown() {
     originalText = "🇺🇸 +1 (US)";
-    selected.textContent = originalText;
-    selected.style.color = "";
+    hasUserSelectedCountry = false; // Reset selection tracking
+    selected.innerHTML =
+      '<span style="color: #94a3b8; font-style: italic;">Select country...</span>';
+    selected.style.color = "#94a3b8";
+    selected.setAttribute("contenteditable", "false"); // Start with editing disabled
     hiddenInput.value = "+1";
 
     options
@@ -1568,14 +1587,26 @@ function setupCountryDropdown() {
 
     // Toggle dropdown open/closed
     if (dropdown.classList.contains("open")) {
-      // Close dropdown
+      // Close dropdown and restore original country display
       dropdown.classList.remove("open");
       resetDropdown();
+
+      // Restore the original selected country text
+      selected.textContent = originalText;
+      selected.style.color = "#1a237e";
+      selected.setAttribute("contenteditable", "false"); // Disable editing when closed
+
       // Shift back to current country's width
       adjustSeparatorPosition();
     } else {
-      // Open dropdown - shift separator to make menu readable
+      // Open dropdown - reset to search state
       dropdown.classList.add("open");
+
+      // Reset dropdown to search state
+      resetDropdownToFirstTime();
+
+      // Enable contenteditable for search when opening
+      selected.setAttribute("contenteditable", "true");
 
       // Temporarily expand separator for better readability
       const dropdownElement = document.getElementById("countryDropdown");
@@ -1593,47 +1624,197 @@ function setupCountryDropdown() {
       }
 
       forceDropdownOnTop();
-      clearSearch();
+
       setTimeout(() => {
         // Update dropdown options width to match expanded width
         if (options.style.position === "fixed") {
           options.style.width = "280px";
         }
+        // Auto-focus for immediate typing
+        focusSearchInput();
       }, 100);
     }
-  }); // Add keyboard support for accessibility
+  }); // Enhanced keyboard support with search functionality
   selected.addEventListener("keydown", function (e) {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      // Toggle dropdown like clicking
-      if (dropdown.classList.contains("open")) {
-        dropdown.classList.remove("open");
-        resetDropdown();
-        adjustSeparatorPosition();
-      } else {
+    if (!dropdown.classList.contains("open")) {
+      // Handle dropdown opening
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
         dropdown.classList.add("open");
+        resetDropdownToFirstTime();
+        selected.setAttribute("contenteditable", "true"); // Enable editing when opening
         forceDropdownOnTop();
-        clearSearch();
         setTimeout(() => {
           adjustSeparatorPosition();
+          focusSearchInput();
         }, 100);
       }
-    } else if (e.key === "Escape") {
-      if (dropdown.classList.contains("open")) {
-        dropdown.classList.remove("open");
-        resetDropdown();
-        adjustSeparatorPosition();
+      return;
+    }
+
+    // When dropdown is open, handle search navigation
+    if (e.key === "Escape") {
+      dropdown.classList.remove("open");
+      resetDropdown();
+
+      // Restore the original selected country text
+      selected.textContent = originalText;
+      selected.style.color = "#1a237e";
+      selected.setAttribute("contenteditable", "false"); // Disable editing when closed
+
+      adjustSeparatorPosition();
+      e.preventDefault();
+    } else if (e.key === "Enter") {
+      // Select first visible option or keyboard-focused option
+      const keyboardFocused = options.querySelector("li.keyboard-focused");
+      const firstVisible = options.querySelector("li[data-value]:not(.hidden)");
+      const targetOption = keyboardFocused || firstVisible;
+
+      if (targetOption) {
+        selectCountry(targetOption);
       }
+      e.preventDefault();
+    } else if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      // Navigate through visible options
+      e.preventDefault();
+      const visibleOptions = Array.from(
+        options.querySelectorAll("li[data-value]:not(.hidden)")
+      );
+      if (visibleOptions.length === 0) return;
+
+      const currentFocused = options.querySelector("li.keyboard-focused");
+      let nextIndex = 0;
+
+      if (currentFocused) {
+        const currentIndex = visibleOptions.indexOf(currentFocused);
+        if (e.key === "ArrowDown") {
+          nextIndex = (currentIndex + 1) % visibleOptions.length;
+        } else {
+          nextIndex =
+            (currentIndex - 1 + visibleOptions.length) % visibleOptions.length;
+        }
+      }
+
+      // Remove previous focus
+      options.querySelectorAll("li.keyboard-focused").forEach((li) => {
+        li.classList.remove("keyboard-focused");
+      });
+
+      // Add focus to new option
+      const nextOption = visibleOptions[nextIndex];
+      nextOption.classList.add("keyboard-focused");
+      nextOption.scrollIntoView({ block: "nearest" });
     }
   });
+
+  // Add search functionality with input events
+  selected.addEventListener("input", function (e) {
+    if (!dropdown.classList.contains("open")) return;
+
+    const searchTerm = this.textContent.trim();
+    console.log("Search term:", searchTerm);
+
+    // Filter countries based on search term
+    filterCountries(searchTerm);
+
+    // Reset scroll position when searching
+    options.scrollTop = 0;
+
+    // Clear keyboard focus when filtering
+    options.querySelectorAll("li.keyboard-focused").forEach((li) => {
+      li.classList.remove("keyboard-focused");
+    });
+  });
+
+  // Handle focus management for seamless search experience
   selected.addEventListener("focus", function () {
-    // Prevent focus from making the field editable
-    this.blur();
+    // Only enable search when dropdown is open
+    if (dropdown.classList.contains("open")) {
+      // Clear placeholder and enable typing for search
+      if (this.innerHTML.includes("Type to search countries...")) {
+        this.textContent = "";
+        this.style.color = "#1a237e";
+      }
+    }
   });
 
   selected.addEventListener("blur", function () {
-    // No action needed since field is not editable
-  });
+    // Only restore if dropdown is closed
+    if (!dropdown.classList.contains("open")) {
+      // Restore the original country text when not searching
+      if (
+        !this.textContent.trim() ||
+        this.textContent === "Type to search countries..."
+      ) {
+        this.textContent = originalText;
+        this.style.color = "#1a237e";
+      }
+    }
+  }); // Reset dropdown to first-time search experience
+  function resetDropdownToFirstTime() {
+    console.log("Resetting dropdown to first-time search experience");
+
+    // Clear any previous search state
+    clearSearch();
+
+    // Reset scroll position to top
+    options.scrollTop = 0;
+
+    // Remove any keyboard focus highlights temporarily
+    const allOptions = getAllCountryOptions();
+    allOptions.forEach((option) => {
+      option.classList.remove("keyboard-focused");
+    });
+
+    // Only keep selected country highlighted if user has actually selected a country
+    if (!hasUserSelectedCountry) {
+      // No country selected yet - remove all selected highlights
+      allOptions.forEach((option) => {
+        option.classList.remove("selected");
+      });
+    }
+    // If a country was actually selected, keep the "selected" class for visual indicator
+
+    // Always show search placeholder when opening dropdown
+    selected.innerHTML =
+      '<span style="color: #94a3b8; font-style: italic;">Type to search countries...</span>';
+
+    // Enable contenteditable for search functionality
+    selected.setAttribute("contenteditable", "true");
+
+    // Reset filtered options to show all
+    filteredOptions = allOptions;
+
+    // Ensure dropdown shows from the beginning
+    setTimeout(() => {
+      options.scrollTop = 0;
+    }, 50);
+  }
+
+  // Focus search input for immediate typing
+  function focusSearchInput() {
+    const selected = document.getElementById("countrySelected");
+
+    // Focus the element for typing
+    selected.focus();
+
+    // Clear placeholder and enable typing
+    if (selected.innerHTML.includes("Type to search countries...")) {
+      selected.textContent = "";
+      selected.style.color = "#1a237e";
+    }
+
+    // Ensure contenteditable is enabled
+    selected.setAttribute("contenteditable", "true");
+
+    // Place cursor at the end
+    const range = document.createRange();
+    const selection = window.getSelection();
+    range.selectNodeContents(selected);
+    range.collapse(false);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
 
   // Option clicks
   options.querySelectorAll("li[data-value]").forEach((li) => {
@@ -1642,21 +1823,41 @@ function setupCountryDropdown() {
       e.stopPropagation();
       selectCountry(li);
     });
-  });
-  // Close on outside click
+  }); // Close on outside click
   document.addEventListener("click", function (e) {
     if (!dropdown.contains(e.target) && !options.contains(e.target)) {
-      dropdown.classList.remove("open");
-      resetDropdown();
-      adjustSeparatorPosition();
+      if (dropdown.classList.contains("open")) {
+        dropdown.classList.remove("open");
+        resetDropdown();
+
+        // Restore the original selected country text
+        selected.textContent = originalText;
+        selected.style.color = "#1a237e";
+        selected.setAttribute("contenteditable", "false"); // Disable editing when closed
+
+        adjustSeparatorPosition();
+      }
     }
   });
-
   // Update position on scroll/resize
   ["scroll", "resize"].forEach((event) => {
     window.addEventListener(event, () => {
-      if (dropdown.classList.contains("open")) forceDropdownOnTop();
-      adjustSeparatorPosition();
+      if (dropdown.classList.contains("open")) {
+        // Maintain expanded width during scrolling
+        const dropdownElement = document.getElementById("countryDropdown");
+        if (dropdownElement) {
+          const expandedWidth = 280; // Keep expanded width for readability
+          dropdownElement.style.flex = `0 0 ${expandedWidth}px`;
+          dropdownElement.style.minWidth = `${expandedWidth}px`;
+          dropdownElement.style.maxWidth = `${expandedWidth}px`;
+          dropdownElement.style.width = `${expandedWidth}px`;
+          dropdownElement.style.borderRight = "1px solid #cbd5e1";
+        }
+        forceDropdownOnTop();
+      } else {
+        // Only adjust to content when dropdown is closed
+        adjustSeparatorPosition();
+      }
     });
   });
 

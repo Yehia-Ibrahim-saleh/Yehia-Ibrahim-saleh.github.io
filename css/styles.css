@@ -1156,6 +1156,32 @@ body:not(.is-scrolling) .nav-links a:hover {
   transform: translateY(0) scale(1);
 }
 
+/* Override About section visibility - ensure always visible without animations */
+#about {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.about-card,
+.about-cta,
+.about-timeline-item,
+.about-content,
+.about-timeline,
+.about-timeline-cards {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Ensure all about section content is visible */
+#about * {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 /* ==========================================================
    10. SKILLS SECTION
    ========================================================== */
@@ -2055,11 +2081,17 @@ body:not(.is-scrolling) .nav-links a:hover {
   transform: scaleX(1);
 }
 
-.service i {
-  font-size: 40px;
-  color: #000;
-  margin-bottom: 15px;
-  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.skill i {
+  font-size: 3rem;
+  color: #0073e6;
+  margin-bottom: 1.5rem;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.skill:hover i {
+  color: #ffd700;
+  transform: scale(1.1);
 }
 
 .service h3 {
@@ -2072,20 +2104,9 @@ body:not(.is-scrolling) .nav-links a:hover {
   line-height: 1.3;
 }
 
-.service:nth-child(odd):hover h3 {
-  color: #0073e6;
-  transform: translateY(-2px);
-}
-.service:nth-child(odd):hover i {
-  color: #0073e6;
-}
-
-.service:nth-child(even):hover h3 {
-  color: #ffd700;
-  transform: translateY(-2px);
-}
-.service:nth-child(even):hover i {
-  color: #ffd700;
+/* Simple hover effects for skill cards */
+.skill:hover {
+  transform: translateY(-5px) scale(1.05);
 }
 .service p {
   color: #0f172a;
