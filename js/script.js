@@ -643,10 +643,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!modal) return;
 
-  const modalClose = document.createElement("button");
-  modalClose.className = "modal-close";
-  modalClose.innerHTML = "×";
-  modal.appendChild(modalClose);
+  // Check if modal close button already exists before creating
+  let modalClose = modal.querySelector(".modal-close");
+  if (!modalClose) {
+    modalClose = document.createElement("button");
+    modalClose.className = "modal-close";
+    modalClose.innerHTML = "×";
+    modal.appendChild(modalClose);
+  }
 
   let images = [];
   let currentImgIdx = 0;
@@ -904,6 +908,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Allow modal to focus
       modalContent.focus();
 
+      toggleModalClose2Visibility();
       // Gradually reset modal to normal behavior
       Object.assign(modalContent.style, {
         position: "",
@@ -984,8 +989,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Ensure only one close button event listener
   modalClose.addEventListener("click", closeModal);
-
+  const modalClose2 = modal.querySelector(".modal-close2");
+  if (modalClose2) {
+    modalClose2.addEventListener("click", closeModal);
+  }
   // Click-away to close
   modal.addEventListener("mousedown", function (e) {
     if (e.target === modal) closeModal();
@@ -2208,3 +2217,70 @@ document.addEventListener("DOMContentLoaded", function () {
     enforcePhoneInputBounds();
   }, 100);
 });
+
+// =============================================================================
+// ALWAYS VISIBLE ACTION BUTTON FUNCTIONALITY
+// =============================================================================
+
+document.addEventListener("DOMContentLoaded", function () {
+  const alwaysVisibleBtn = document.getElementById("always-visible-btn");
+  const body = document.body;
+
+  if (alwaysVisibleBtn) {
+    // Check if dark mode is already enabled from localStorage
+    if (localStorage.getItem("darkMode") === "enabled") {
+      body.classList.add("dark-mode");
+      updateButtonIcon(true);
+    }
+
+    alwaysVisibleBtn.addEventListener("click", function () {
+      // Toggle dark mode
+      body.classList.toggle("dark-mode");
+
+      const isDarkMode = body.classList.contains("dark-mode");
+
+      // Save preference to localStorage
+      if (isDarkMode) {
+        localStorage.setItem("darkMode", "enabled");
+      } else {
+        localStorage.setItem("darkMode", "disabled");
+      }
+
+      updateButtonIcon(isDarkMode);
+      toggleModalClose2Visibility();
+    });
+  }
+
+  function updateButtonIcon(isDarkMode) {
+    const icon = alwaysVisibleBtn.querySelector("i");
+    if (isDarkMode) {
+      icon.className = "fas fa-sun"; // Sun icon for light mode toggle
+    } else {
+      icon.className = "fas fa-moon"; // Moon icon for dark mode toggle
+    }
+  }
+});
+function toggleModalClose2Visibility() {
+  const modalClose2 = document.querySelector(".modal-close2");
+  const modalClose = document.querySelector(".modal-close"); // The default X button
+
+  if (!modalClose2) return;
+
+  // Check if the default X button is visible
+  const isDefaultXVisible =
+    modalClose &&
+    window.getComputedStyle(modalClose).display !== "none" &&
+    window.getComputedStyle(modalClose).visibility !== "hidden";
+
+  if (isDefaultXVisible) {
+    // If default X is visible, hide modal-close2
+    modalClose2.style.display = "none";
+    modalClose2.style.visibility = "hidden";
+    modalClose2.style.opacity = "0";
+  } else {
+    // If default X is hidden, show modal-close2
+    modalClose2.style.display = "block";
+    modalClose2.style.visibility = "visible";
+    modalClose2.style.opacity = "1";
+  }
+}

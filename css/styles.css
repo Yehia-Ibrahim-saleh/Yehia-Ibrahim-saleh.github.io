@@ -88,6 +88,30 @@ body.at-bottom .bottom-glass {
   transition-duration: 0.4s;
 }
 
+/* Dark mode bottom glass blur effect */
+body.dark-mode .bottom-glass {
+  background: linear-gradient(
+    to top,
+    rgba(26, 26, 26, 0.98) 0%,
+    rgba(26, 26, 26, 0.92) 30%,
+    rgba(26, 26, 26, 0.82) 70%,
+    rgba(26, 26, 26, 0) 100%
+  ) !important;
+  backdrop-filter: blur(16px) brightness(0.8) saturate(1.1) !important;
+  -webkit-backdrop-filter: blur(16px) brightness(0.8) saturate(1.1) !important;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.dark-mode.scrolled .bottom-glass {
+  backdrop-filter: blur(20px) brightness(0.7) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(20px) brightness(0.7) saturate(1.2) !important;
+}
+
+body.dark-mode.deep-scroll .bottom-glass {
+  backdrop-filter: blur(24px) brightness(0.6) saturate(1.3) !important;
+  -webkit-backdrop-filter: blur(24px) brightness(0.6) saturate(1.3) !important;
+}
+
 /* ==========================================================
    3. HEADER & NAVBAR
    ========================================================== */
@@ -629,6 +653,66 @@ body:not(.is-scrolling) .nav-links a:hover {
 }
 .scroll-to-top:active {
   transform: translateY(-5px) scale(1.1);
+}
+
+/* ==========================================================
+   ALWAYS VISIBLE ACTION BUTTON
+   ========================================================== */
+
+.always-visible-btn {
+  position: fixed;
+  bottom: 105px; /* Above the scroll-to-top button */
+  right: 35px;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  border: none;
+  border-radius: 50%;
+  color: #0073e6;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1003 !important;
+  animation: alwaysFloat 4s ease-in-out infinite;
+}
+
+.always-visible-btn:hover {
+  background: linear-gradient(135deg, #0073e6, #005bb5);
+  color: #ffd700;
+  transform: translateY(-8px) scale(1.2);
+  box-shadow: 0 12px 30px rgba(0, 115, 230, 0.4);
+  animation: alwaysFloat 4s ease-in-out infinite,
+    alwaysPulse 1.5s ease-in-out infinite;
+}
+
+.always-visible-btn:active {
+  transform: translateY(-5px) scale(1.1);
+}
+
+/* Floating animation for always visible button */
+@keyframes alwaysFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1);
+  }
+}
+
+@keyframes alwaysPulse {
+  0%,
+  100% {
+    box-shadow: 0 12px 30px rgba(0, 115, 230, 0.4);
+  }
+  50% {
+    box-shadow: 0 12px 40px rgba(0, 115, 230, 0.6);
+  }
 }
 
 /* ==========================================================
@@ -1648,8 +1732,8 @@ body:not(.is-scrolling) .nav-links a:hover {
 /* Modal Close Button */
 .modal-close {
   position: fixed;
-  top: calc(50% - 325px + 10px);
-  right: calc(50% - 480px + 10px);
+  top: 70px;
+  right: 220px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -1660,7 +1744,7 @@ body:not(.is-scrolling) .nav-links a:hover {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1100;
+  z-index: 9999;
   font-size: 1.5rem;
   color: #0073e6;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1754,6 +1838,7 @@ body:not(.is-scrolling) .nav-links a:hover {
 
 .carousel-indicators .dot.active {
   background: gold;
+  border: 1px solid gold;
   transform: scale(1.2);
 }
 
@@ -1828,11 +1913,6 @@ body:not(.is-scrolling) .nav-links a:hover {
   background: #1a84ed;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 115, 230, 0.3);
-}
-
-.modal-github.btn-primary:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 115, 230, 0.2);
 }
 
 /* ==========================================================
@@ -2576,12 +2656,8 @@ body:not(.is-scrolling) .nav-links a:hover {
 
 .custom-country-options li:hover,
 .custom-country-options li.selected {
-  background: linear-gradient(
-    90deg,
-    #e3f0ff 0%,
-    #f0f7ff 100%
-  ); /* Blue background */
-  color: #0073e6; /* Blue text */
+  background: linear-gradient(90deg, #444 0%, #555 100%); /* Blue background */
+  color: #ffd700; /* Blue text */
   font-weight: 500;
   transform: translateX(4px);
   box-shadow: 0 2px 8px rgba(0, 115, 230, 0.15);
@@ -3319,39 +3395,394 @@ footer {
     font-size: 14px; /* Smaller font size for buttons */
     padding: 8px 12px; /* Adjust padding */
   }
-  .hero {
-    padding: 24px 2vw 10px 2vw;
+}
+
+/* ==========================================================
+   DARK MODE STYLES
+   ========================================================== */
+
+/* Dark mode base styles */
+body.dark-mode {
+  background: #1a1a1a;
+  color: #e5e5e5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode navbar */
+body.dark-mode #navbar {
+  background-color: rgba(30, 30, 30, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode #navbar.scrolled {
+  background-color: rgba(20, 20, 20, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .logo a {
+  color: #ffffff !important;
+}
+
+body.dark-mode .nav-links a {
+  color: #ffffff !important;
+}
+
+body.dark-mode .nav-links a:hover,
+body.dark-mode .nav-links a.active {
+  color: #ffd700 !important;
+  font-weight: bold !important;
+}
+
+/* Dark mode sections */
+body.dark-mode section {
+  background: #1a1a1a;
+  color: #e5e5e5;
+}
+
+body.dark-mode .hero {
+  background: #1a1a1a;
+}
+
+body.dark-mode .hero-text h1 {
+  color: #e5e5e5;
+}
+
+body.dark-mode .hero-text p {
+  color: #ffffff;
+}
+
+/* Dark mode skills section */
+body.dark-mode .skills-container {
+  background: #1a1a1a;
+}
+
+body.dark-mode .skill {
+  background: linear-gradient(
+    120deg,
+    rgba(40, 40, 40, 0.9) 80%,
+    rgba(30, 30, 30, 0.9) 100%
+  );
+  border-top: 5px solid #ffd700;
+  border-bottom: 5px solid #0073e6;
+  border-left: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .skill h3 {
+  color: #0073e6 !important;
+  text-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+body.dark-mode .skill-list li {
+  color: #e5e5e5;
+}
+
+body.dark-mode .skill-list li:hover {
+  color: #ffd700 !important;
+  font-weight: bold !important;
+}
+
+/* Dark mode about section */
+body.dark-mode #about {
+  background: #1a1a1a !important;
+}
+
+body.dark-mode .about-content h2 {
+  color: #ffffff !important;
+  background: transparent !important;
+}
+
+/* Remove all white backgrounds from about section elements */
+body.dark-mode .about-card,
+body.dark-mode .about-content h2,
+body.dark-mode .about-icon,
+body.dark-mode .about-card p,
+body.dark-mode .about-card-inner {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Proper dark about card styling */
+body.dark-mode .about-card {
+  background: linear-gradient(
+    120deg,
+    rgba(40, 40, 40, 0.9) 80%,
+    rgba(30, 30, 30, 0.9) 100%
+  ) !important;
+  backdrop-filter: blur(2.5px) saturate(1.07) !important;
+  -webkit-backdrop-filter: blur(2.5px) saturate(1.07) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* About card text content */
+body.dark-mode .about-card p {
+  color: #ffffff !important;
+  background: transparent !important;
+}
+
+/* About card inner container */
+body.dark-mode .about-card-inner {
+  background: transparent !important;
+}
+
+/* About timeline containers */
+body.dark-mode .about-timeline,
+body.dark-mode .about-timeline-cards,
+body.dark-mode .about-timeline-item,
+body.dark-mode .about-content {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* About icons - keep the gradient but ensure no white background */
+body.dark-mode .about-icon {
+  background: linear-gradient(135deg, #ffd700 60%, #0073e6 100%) !important;
+}
+
+/* Dark mode timeline dots */
+body.dark-mode .about-timeline-dot {
+  background: linear-gradient(
+    135deg,
+    rgba(40, 40, 40, 0.9) 60%,
+    rgba(30, 30, 30, 0.9) 100%
+  ) !important;
+  border: 6px solid #ffd700 !important;
+  box-shadow: 0 0 24px rgba(255, 215, 0, 0.4), 0 0 0 8px rgba(30, 30, 30, 0.8) !important;
+  color: #ffd700 !important;
+}
+
+body.dark-mode .timeline-start-dot,
+body.dark-mode .timeline-end-dot {
+  background: linear-gradient(
+    135deg,
+    rgba(40, 40, 40, 0.9) 60%,
+    rgba(30, 30, 30, 0.9) 100%
+  ) !important;
+  border: 6px solid #0073e6 !important;
+  box-shadow: 0 0 24px rgba(0, 115, 230, 0.4), 0 0 0 8px rgba(30, 30, 30, 0.8) !important;
+  color: #0073e6 !important;
+}
+
+/* Dark mode hover states for timeline dots */
+body.dark-mode .about-timeline-item:hover .about-timeline-dot,
+body.dark-mode .about-card:hover ~ .about-timeline-dot {
+  background: linear-gradient(
+    135deg,
+    #ffd700 60%,
+    rgba(40, 40, 40, 0.9) 100%
+  ) !important;
+  border-color: #0073e6 !important;
+  box-shadow: 0 0 32px rgba(0, 115, 230, 0.6), 0 0 0 12px rgba(30, 30, 30, 0.9) !important;
+  color: #0073e6 !important;
+}
+
+/* Skills section header in dark mode */
+body.dark-mode .skills-header {
+  color: white;
+}
+
+/* Dark mode projects section */
+body.dark-mode #projects {
+  background: #1a1a1a !important;
+}
+
+body.dark-mode .projects-header {
+  color: #ffffff !important;
+}
+
+body.dark-mode .project.card {
+  background: linear-gradient(
+    120deg,
+    rgba(40, 40, 40, 0.9) 80%,
+    rgba(30, 30, 30, 0.9) 100%
+  ) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(2.5px) saturate(1.07) !important;
+  -webkit-backdrop-filter: blur(2.5px) saturate(1.07) !important;
+}
+
+body.dark-mode .project-image {
+  background: rgba(40, 40, 40, 0.7) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .project-content h3 {
+  color: #0073e6 !important;
+}
+
+body.dark-mode .project-content p {
+  color: #e5e5e5 !important;
+}
+
+body.dark-mode .project .project-content .btn-primary {
+  background: linear-gradient(
+    90deg,
+    rgba(40, 40, 40, 0.9) 0%,
+    rgba(30, 30, 30, 0.9) 100%
+  ) !important;
+  border: 2px solid #0073e6 !important;
+  color: #0073e6 !important;
+}
+
+body.dark-mode .project-content .btn-primary:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 115, 230, 0.2) 0%,
+    rgba(0, 115, 230, 0.1) 100%
+  ) !important;
+  color: #ffffff !important;
+  border: 2px solid #ffd700 !important;
+}
+
+/* Dark mode modal styles */
+body.dark-mode .modal-overlay {
+  background: rgba(10, 10, 10, 0.9) !important;
+  backdrop-filter: blur(15px) !important;
+}
+
+body.dark-mode .modal-content {
+  background: linear-gradient(
+    120deg,
+    rgba(30, 30, 30, 0.95) 80%,
+    rgba(20, 20, 20, 0.95) 100%
+  ) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) saturate(1.1) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(1.1) !important;
+}
+
+body.dark-mode .modal-close {
+  display: none;
+}
+.modal {
+  position: relative;
+  overflow-y: auto; /* allows scroll inside */
+}
+.modal-close2 {
+  position: sticky;
+  top: -10px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  margin-left: auto;
+  margin-right: -10px;
+  background: rgba(
+    40,
+    40,
+    40,
+    0.8
+  ) !important; /* Semi-transparent background */
+  border: 1px solid rgba(255, 215, 0, 0.3) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10000;
+  font-size: 1.5rem;
+  color: #ffd700;
+  transition: all 0.3s ease;
+  transform-origin: center;
+  animation: floatButton 3s ease-in-out infinite;
+}
+
+.modal-close2:hover {
+  background: none; /* Still no background on hover */
+  border: none;
+  box-shadow: none;
+  transform: rotate(180deg);
+  color: #0073e6; /* Optional hover color */
+  animation-play-state: paused;
+}
+
+/* Responsive adjustments - maintain floating position */
+@media (max-width: 1100px) {
+  .modal-close {
+    top: 15px !important;
+    right: 15px !important;
+    position: fixed !important;
+    z-index: 9999 !important;
   }
-  .hero-text h1 {
-    font-size: 1.25rem;
-    letter-spacing: 1px;
+
+  body.dark-mode .modal-close {
+    top: 15px !important;
+    right: 15px !important;
+    position: fixed !important;
+    z-index: 9999 !important;
   }
-  .hero-image img {
-    max-width: 220px;
+}
+
+@media (max-width: 768px) {
+  .modal-close {
+    position: fixed !important;
+    top: 12px !important;
+    right: 12px !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1.3rem !important;
+    z-index: 9999 !important;
   }
-  .about-card {
-    padding: 10px 2px 8px 2px;
-    border-radius: 12px;
-    font-size: 0.98rem;
+
+  body.dark-mode .modal-close {
+    position: fixed !important;
+    top: 12px !important;
+    right: 12px !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1.3rem !important;
+    background: rgba(40, 40, 40, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #ffd700 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+    z-index: 9999 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform-origin: center !important;
   }
-  .about-card .about-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 1rem;
+}
+
+@media (max-width: 480px) {
+  .modal-close {
+    position: fixed !important;
+    top: 10px !important;
+    right: 10px !important;
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 1.1rem !important;
+    z-index: 9999 !important;
   }
-  .about-timeline-dot,
-  .timeline-start-dot,
-  .timeline-end-dot {
-    width: 20px;
-    height: 20px;
-    font-size: 0.8rem;
-    border-width: 2px;
-    margin-bottom: 6px;
-  }
-  .about-content h2 {
-    font-size: 1.1rem;
-  }
-  .about-timeline-cards {
-    gap: 14px;
+
+  body.dark-mode .modal-close {
+    position: fixed !important;
+    top: 10px !important;
+    right: 10px !important;
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 1.1rem !important;
+    background: rgba(40, 40, 40, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #ffd700 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+    z-index: 9999 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform-origin: center !important;
   }
 }
