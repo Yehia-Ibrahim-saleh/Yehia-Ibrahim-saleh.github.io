@@ -881,6 +881,18 @@ document.addEventListener("DOMContentLoaded", function () {
         transition: "opacity 0.4s ease, transform 0.1s ease",
         boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
       });
+
+      // Hide ALL close buttons during animation
+      const modalClose = modal.querySelector(".modal-close");
+      const modalClose2 = modal.querySelector(".modal-close2");
+      if (modalClose) {
+        modalClose.style.opacity = "0";
+        modalClose.style.visibility = "hidden";
+      }
+      if (modalClose2) {
+        modalClose2.style.opacity = "0";
+        modalClose2.style.visibility = "hidden";
+      }
     }, 400);
 
     // PHASE 3: Seamless clone-to-modal transition
@@ -908,7 +920,23 @@ document.addEventListener("DOMContentLoaded", function () {
       // Allow modal to focus
       modalContent.focus();
 
-      toggleModalClose2Visibility();
+      // Reset close button visibility and let toggleModalClose2Visibility handle proper display
+      const modalClose = modal.querySelector(".modal-close");
+      const modalClose2 = modal.querySelector(".modal-close2");
+      if (modalClose) {
+        modalClose.style.opacity = "";
+        modalClose.style.visibility = "";
+      }
+      if (modalClose2) {
+        modalClose2.style.opacity = "";
+        modalClose2.style.visibility = "";
+      }
+
+      // Now properly manage which close button should be visible (with delay)
+      setTimeout(() => {
+        toggleModalClose2Visibility();
+      }, 50);
+
       // Gradually reset modal to normal behavior
       Object.assign(modalContent.style, {
         position: "",
@@ -2232,6 +2260,11 @@ document.addEventListener("DOMContentLoaded", function () {
       body.classList.add("dark-mode");
       updateButtonIcon(true);
     }
+
+    // Set initial modal close button visibility based on current theme
+    setTimeout(() => {
+      toggleModalClose2Visibility();
+    }, 100);
 
     alwaysVisibleBtn.addEventListener("click", function () {
       // Toggle dark mode

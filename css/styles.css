@@ -2134,6 +2134,12 @@ body:not(.is-scrolling) .nav-links a:hover {
   border-radius: 24px 24px 0 0;
 }
 
+.service:nth-child(odd):hover h3 {
+  color: #0073e6 !important;
+}
+.service:nth-child(even):hover h3 {
+  color: gold !important;
+}
 .service:nth-child(even)::before {
   content: "";
   position: absolute;
@@ -2656,7 +2662,6 @@ body:not(.is-scrolling) .nav-links a:hover {
 
 .custom-country-options li:hover,
 .custom-country-options li.selected {
-  background: linear-gradient(90deg, #444 0%, #555 100%); /* Blue background */
   color: #ffd700; /* Blue text */
   font-weight: 500;
   transform: translateX(4px);
@@ -3642,8 +3647,9 @@ body.dark-mode .project-content .btn-primary:hover {
 
 /* Dark mode modal styles */
 body.dark-mode .modal-overlay {
-  background: rgba(10, 10, 10, 0.9) !important;
-  backdrop-filter: blur(15px) !important;
+  background: rgba(30, 30, 30, 0.75) !important;
+  backdrop-filter: blur(5px) brightness(0.3) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(15px) brightness(0.3) saturate(1.2) !important;
 }
 
 body.dark-mode .modal-content {
@@ -3672,12 +3678,7 @@ body.dark-mode .modal-close {
   height: 36px;
   margin-left: auto;
   margin-right: -10px;
-  background: rgba(
-    40,
-    40,
-    40,
-    0.8
-  ) !important; /* Semi-transparent background */
+  background: rgba(40, 40, 40, 0.8); /* Semi-transparent background */
   border: 1px solid rgba(255, 215, 0, 0.3) !important;
   border-radius: 50% !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
@@ -3692,28 +3693,387 @@ body.dark-mode .modal-close {
   color: #ffd700;
   transition: all 0.3s ease;
   transform-origin: center;
-  animation: floatButton 3s ease-in-out infinite;
 }
 
 .modal-close2:hover {
-  background: none; /* Still no background on hover */
+  background: gold; /* Still no background on hover */
   border: none;
   box-shadow: none;
-  transform: rotate(180deg);
-  color: #0073e6; /* Optional hover color */
-  animation-play-state: paused;
+  transform: rotate(180deg) !important;
+  color: black; /* Optional hover color */
+  animation: none !important; /* Stop animation completely on hover */
+}
+
+/* modal content dark theme */
+
+/* Dark mode modal text content */
+body.dark-mode .modal-title {
+  color: #ffffff !important;
+}
+
+body.dark-mode .modal-description {
+  color: #e5e5e5 !important;
+}
+
+body.dark-mode .modal-details {
+  color: #ffffff !important;
+  background: rgba(40, 40, 40, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .modal-details strong {
+  color: #ffd700 !important;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 215, 0, 0.2),
+    rgba(0, 115, 230, 0.2)
+  ) !important;
+}
+
+/* Dark mode modal image */
+body.dark-mode .modal-image {
+  background: linear-gradient(
+    120deg,
+    rgba(40, 40, 40, 0.9),
+    rgba(30, 30, 30, 0.9)
+  ) !important;
+}
+
+body.dark-mode .modal-image img {
+  background: rgba(40, 40, 40, 0.8) !important;
+}
+
+/* Dark mode carousel controls */
+body.dark-mode .carousel-arrow {
+  background: rgba(40, 40, 40, 0.9) !important;
+  color: #ffd700 !important;
+  border: 1px solid rgba(255, 215, 0, 0.3) !important;
+}
+
+body.dark-mode .carousel-arrow:hover {
+  background: #ffd700 !important;
+  color: #1a1a1a !important;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5) !important;
+}
+
+body.dark-mode .carousel-indicators .dot {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+body.dark-mode .carousel-indicators .dot.active {
+  background: #ffd700 !important;
+  border: 1px solid #ffd700 !important;
+}
+
+/* Dark mode modal GitHub button */
+body.dark-mode .modal-github.btn-primary {
+  background: linear-gradient(135deg, rgba(40, 40, 40, 0.8)) !important;
+  color: gold !important;
+  border: 2px solid gold !important;
+}
+
+body.dark-mode .modal-github.btn-primary:hover {
+  background: rgb(255, 217, 0) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #000000 !important;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), 0 4px 15px rgba(255, 215, 0, 0.2) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Dark mode services section */
+body.dark-mode #services {
+  background: #1a1a1a !important;
+}
+body.dark-mode #services h3 {
+  color: var(--primary-blue);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+body.dark-mode #services h2 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .service {
+  background: linear-gradient(
+    120deg,
+    rgba(40, 40, 40, 0.9) 80%,
+    rgba(30, 30, 30, 0.9) 100%
+  ) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(15px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(15px) saturate(1.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(255, 215, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  position: relative !important;
+}
+
+body.dark-mode .service p {
+  color: #e5e5e5 !important;
+}
+
+body.dark-mode .service:hover {
+  background: linear-gradient(
+    120deg,
+    rgba(50, 50, 50, 0.95) 80%,
+    rgba(40, 40, 40, 0.95) 100%
+  ) !important;
+  border-color: rgba(255, 215, 0, 0.3) !important;
+}
+body.dark-mode .service:nth-child(odd):hover h3 {
+  color: #0073e6 !important;
+  filter: brightness(1.2) drop-shadow(0 0 8px #0073e6cc);
+}
+
+body.dark-mode .service:nth-child(even):hover h3 {
+  color: #ffd700 !important;
+  filter: brightness(1.2) drop-shadow(0 0 8px #ffd700cc);
+}
+
+/* Dark mode testimonials section */
+body.dark-mode #testimonials {
+  background: #1a1a1a !important;
+}
+
+body.dark-mode .why-choose-me-title {
+  color: #ffffff !important;
+}
+
+body.dark-mode .section-subtitle {
+  color: #0073e6 !important;
+}
+
+body.dark-mode .skills-list li {
+  background: linear-gradient(
+    120deg,
+    rgba(40, 40, 40, 0.97) 80%,
+    rgba(30, 30, 30, 0.97) 100%
+  ) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.12) !important;
+  color: #e5e5e5 !important;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode .skills-list li:hover {
+  border: 3.5px solid #ffd700 !important;
+  background: linear-gradient(
+    120deg,
+    rgba(50, 50, 50, 0.98) 80%,
+    rgba(40, 40, 40, 0.98) 100%
+  ) !important;
+  color: #ffd700 !important;
+  box-shadow: 0 12px 32px #ffd70033, 0 2px 8px #0073e622;
+}
+
+body.dark-mode .skill-icon {
+  color: #ffd700 !important;
+  text-shadow: 0 2px 8px #ffd70055, 0 0px 2px #0073e644;
+}
+body.dark-mode .skill-content h4 {
+  color: #ffd700 !important;
+  text-shadow: 0 1px 8px #ffd70044;
+}
+
+body.dark-mode .skill-content p {
+  color: #e5e5e5 !important;
+}
+
+body.dark-mode .skills-list li:hover {
+  border: 3.5px solid #ffd700 !important;
+  background: linear-gradient(
+    120deg,
+    rgba(50, 50, 50, 0.95) 80%,
+    rgba(40, 40, 40, 0.95) 100%
+  ) !important;
+}
+body.dark-mode .skills-list li:hover .skill-content h4 {
+  color: #0073e6 !important;
+  text-shadow: 0 1px 8px #0073e644;
+}
+
+/* --- Dark mode for Contact section --- */
+body.dark-mode #contactForm {
+  background: linear-gradient(
+    120deg,
+    rgba(26, 26, 26, 0.97) 80%,
+    rgba(26, 26, 26, 0.97) 100%
+  ) !important;
+}
+body.dark-mode #contactForm h2,
+body.dark-mode .contactForm-content h2 {
+  color: white !important;
+  text-shadow: 0 2px 12px #1a1a1a99, 0 0 2px #ffd70055;
+  letter-spacing: 0.04em;
+}
+body.dark-mode .contactForm-content {
+  background: transparent !important;
+}
+
+body.dark-mode .form-group label {
+  color: var(--primary-blue) !important;
+}
+
+body.dark-mode .form-group input:not(.phone-number-input),
+body.dark-mode .form-group textarea {
+  background: rgba(30, 30, 30, 0.95) !important;
+  color: #e5e5e5 !important;
+  border: 2px solid var(--primary-blue) !important;
+}
+
+body.dark-mode .form-group input:not(.phone-number-input):focus,
+body.dark-mode .form-group textarea:focus {
+  border-color: #ffd700 !important;
+  background: rgba(40, 40, 40, 0.98) !important;
+  color: #ffd700 !important;
+  box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.08), 0 10px 25px rgba(0, 0, 0, 0.13);
+}
+
+body.dark-mode .form-group input:not(.phone-number-input):hover,
+body.dark-mode .form-group textarea:hover {
+  border-color: #ffd700 !important;
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.18);
+}
+
+body.dark-mode .form-group textarea {
+  background: rgba(30, 30, 30, 0.95) !important;
+  color: #e5e5e5 !important;
+}
+
+body.dark-mode .phone-input-container {
+  background: rgba(30, 30, 30, 0.95) !important;
+  border: 2px solid var(--primary-blue) !important;
+}
+
+body.dark-mode .phone-input-container:hover {
+  border-color: #ffd700 !important;
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.18);
+}
+
+body.dark-mode .phone-number-input,
+body.dark-mode .custom-country-selected {
+  background: transparent !important;
+  color: var(--primary-blue) !important;
+}
+
+body.dark-mode .custom-country-dropdown {
+  background: transparent !important;
+  color: #ffd700 !important;
+}
+
+body.dark-mode .custom-country-options {
+  background: #232323 !important;
+  border: 2px solid var(--primary-blue) !important;
+}
+
+body.dark-mode .custom-country-options li {
+  color: #bfb9b9 !important;
+  background: transparent !important;
+}
+
+body.dark-mode .custom-country-options li:hover,
+body.dark-mode .custom-country-options li.selected {
+  color: #ffd700 !important;
+  background: rgba(40, 40, 40, 0.98) !important;
+}
+
+body.dark-mode .submit-button {
+  background: #232323 !important;
+  color: #ffd700 !important;
+  border: 2px solid #ffd700 !important;
+}
+
+body.dark-mode .submit-button:hover {
+  background: var(--primary-blue) !important;
+  color: gold !important;
+  border-color: var(--primary-blue) !important;
+}
+
+body.dark-mode .response-message.success {
+  background: rgba(72, 187, 120, 0.08) !important;
+  color: #38a169 !important;
+  border: 1px solid rgba(72, 187, 120, 0.18) !important;
+}
+
+body.dark-mode .response-message.error {
+  background: rgba(245, 101, 101, 0.08) !important;
+  color: #ffd700 !important;
+  border: 1px solid rgba(245, 101, 101, 0.18) !important;
+}
+
+body.dark-mode .connect-with-me {
+  background: linear-gradient(
+    120deg,
+    rgba(40, 40, 40, 0.97) 80%,
+    rgba(30, 30, 30, 0.97) 100%
+  ) !important;
+  color: #e5e5e5 !important;
+}
+
+body.dark-mode .connect-with-me h3 {
+  color: white;
+}
+
+body.dark-mode .social-links a {
+  background: rgba(30, 30, 30, 0.95) !important;
+  color: var(--primary-blue) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .social-links a:hover {
+  color: gold !important;
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.18) !important;
+}
+
+body.dark-mode .social-links a i {
+  color: var(--primary-blue) !important;
+  transition: color 0.3s, transform 0.3s;
+}
+
+body.dark-mode .social-links a:hover i {
+  color: #ffd700 !important;
+  transform: rotate(360deg) scale(1.1);
+}
+
+body.dark-mode .phone-error {
+  color: #ffd700 !important;
+}
+
+/* Change hero image in dark mode */
+body.dark-mode .hero-image {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /* keep existing styles */
+  /* Add this to ensure overlay is clipped to image */
+  overflow: hidden;
+}
+
+body.dark-mode .hero-image img {
+  position: relative;
+  z-index: 1;
+  content: url("images/68.png");
+  width: 1;
+  height: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: transparent;
+  display: block;
+}
+
+/* Add missing floatButton animation */
+@keyframes floatButton {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1);
+  }
 }
 
 /* Responsive adjustments - maintain floating position */
 @media (max-width: 1100px) {
   .modal-close {
-    top: 15px !important;
-    right: 15px !important;
-    position: fixed !important;
-    z-index: 9999 !important;
-  }
-
-  body.dark-mode .modal-close {
     top: 15px !important;
     right: 15px !important;
     position: fixed !important;
@@ -3725,32 +4085,11 @@ body.dark-mode .modal-close {
   .modal-close {
     position: fixed !important;
     top: 12px !important;
-    right: 12px !important;
+    right: 34px !important;
     width: 32px !important;
     height: 32px !important;
     font-size: 1.3rem !important;
     z-index: 9999 !important;
-  }
-
-  body.dark-mode .modal-close {
-    position: fixed !important;
-    top: 12px !important;
-    right: 12px !important;
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 1.3rem !important;
-    background: rgba(40, 40, 40, 0.9) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    color: #ffd700 !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
-    z-index: 9999 !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    transform-origin: center !important;
   }
 }
 
@@ -3764,25 +4103,8 @@ body.dark-mode .modal-close {
     font-size: 1.1rem !important;
     z-index: 9999 !important;
   }
+}
 
-  body.dark-mode .modal-close {
-    position: fixed !important;
-    top: 10px !important;
-    right: 10px !important;
-    width: 28px !important;
-    height: 28px !important;
-    font-size: 1.1rem !important;
-    background: rgba(40, 40, 40, 0.9) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    color: #ffd700 !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
-    z-index: 9999 !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    transform-origin: center !important;
-  }
+body.dark-mode .modal-close {
+  display: none !important;
 }
