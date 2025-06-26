@@ -1,3 +1,7 @@
+if (!sessionStorage.getItem("hasVisited")) {
+  window.scrollTo(0, 0);
+  sessionStorage.setItem("hasVisited", "true");
+}
 // =============================================================================
 // GLOBAL VARIABLES & DOM ELEMENTS
 // =============================================================================
@@ -462,7 +466,6 @@ function initBlurRevealAnimation() {
     observer.observe(el);
   });
 }
-
 function initTypingAnimation() {
   const part1 = "A";
   const part2 = " SOFTWARE ENGINEER";
@@ -473,11 +476,13 @@ function initTypingAnimation() {
 
   const typedTextElement = document.getElementById("typed-text");
   const typedDescriptionElement = document.getElementById("typed-description");
+  const heroBtn = document.getElementById("hero-btn"); // Get the button
 
   if (!typedTextElement || !typedDescriptionElement) {
     console.warn("Typing animation elements not found");
     return;
   }
+  if (heroBtn) heroBtn.style.display = "none"; // Hide button at start
 
   let textIndex = 0;
   let descriptionIndex = 0;
@@ -533,13 +538,15 @@ function initTypingAnimation() {
       typedDescriptionElement.innerHTML = formattedDescription;
       descriptionIndex++;
       setTimeout(typeDescription, 15);
+    } else {
+      // Animation finished, show the button
+      if (heroBtn) heroBtn.style.display = "inline-block";
     }
   }
 
   // Start typing animation
   type();
 }
-
 // =============================================================================
 // ABOUT SECTION ANIMATIONS
 // =============================================================================
@@ -576,7 +583,101 @@ function animateWords(card) {
     });
   }, 100);
 }
+function connectTimelineLine() {
+  const timeline = document.querySelector(".about-timeline");
+  const line = document.querySelector(".about-timeline-line");
+  const startDot = document.querySelector(".start-dot");
+  const endDot = document.querySelector(".end-dot");
+  const svgPath = document.querySelector(".timeline-wave-svg path");
 
+  if (timeline && line && startDot && endDot && svgPath) {
+    const timelineHeight = timeline.offsetHeight;
+    const startDotHeight = startDot.offsetHeight;
+    const endDotHeight = endDot.offsetHeight;
+
+    // Calculate the actual height needed for the line
+    const lineHeight = timelineHeight - startDotHeight;
+
+    // Update the SVG path to match the actual height
+    const pathData = `M50,0 Q80,${lineHeight * 0.1} 50,${
+      lineHeight * 0.2
+    } Q20,${lineHeight * 0.3} 50,${lineHeight * 0.4} Q80,${
+      lineHeight * 0.5
+    } 50,${lineHeight * 0.6} Q20,${lineHeight * 0.7} 50,${
+      lineHeight * 0.8
+    } Q80,${lineHeight * 0.9} 50,${lineHeight}`;
+    svgPath.setAttribute("d", pathData);
+
+    // Position the line container
+    line.style.height = `${lineHeight}px`;
+  }
+}
+
+// Helper function to get position relative to a parent element
+function getRelativePosition(element, parent) {
+  const elementRect = element.getBoundingClientRect();
+  const parentRect = parent.getBoundingClientRect();
+
+  return {
+    top: elementRect.top - parentRect.top,
+    left: elementRect.left - parentRect.left,
+  };
+}
+function initAboutTimelineAnimations() {
+  // Intersection Observer for timeline items
+  const timelineItems = document.querySelectorAll(".timeline-item");
+  if (timelineItems.length === 0) return; // Exit if no timeline items found
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -100px 0px",
+  };
+
+  const observer = new IntersectionObserver(function (entries, observer) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in-view");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  timelineItems.forEach((item) => {
+    observer.observe(item);
+  });
+
+  // Add hover effect to timeline dots when cards are hovered
+  const cards = document.querySelectorAll(".about-card");
+  const dots = document.querySelectorAll(".timeline-dot");
+
+  cards.forEach((card, index) => {
+    card.addEventListener("mouseenter", () => {
+      if (dots[index]) {
+        dots[index].style.boxShadow =
+          "0 10px 15px -3px rgba(212, 175, 55, 0.5)";
+        dots[index].style.borderColor = "#2563eb";
+        dots[index].style.background =
+          "linear-gradient(to bottom right, #d4af37, #f0f9ff)";
+        dots[index].style.transform =
+          "translate(-50%, -50%) scale(1.1) rotate(6deg)";
+      }
+    });
+
+    card.addEventListener("mouseleave", () => {
+      if (dots[index]) {
+        dots[index].style.boxShadow =
+          "0 10px 15px -3px rgba(212, 175, 55, 0.4)";
+        dots[index].style.borderColor = "#d4af37";
+        dots[index].style.background =
+          "linear-gradient(to bottom right, white, #f0f9ff)";
+        dots[index].style.transform = "translate(-50%, -50%)";
+      }
+    });
+  });
+
+  // Connect timeline line initially
+  connectTimelineLine();
+}
 function initAboutAnimations() {
   // Animation disabled for About section
   return;
@@ -2035,7 +2136,8 @@ function init() {
   initAboutAnimations();
   aboutSectionEnterAnimation();
   servicesSectionEnterAnimation();
-  setupAnimatedPlaceholder(); // Add animated placeholder
+  setupAnimatedPlaceholder();
+  initAboutTimelineAnimations(); // Add this line
 
   // Set initial states
   updateNavbarBackground();
@@ -2048,6 +2150,9 @@ function init() {
 // On window resize, reposition underline to current active link or hide
 window.addEventListener("resize", moveUnderlineToActiveOrHide);
 
+// Run on load and on resize
+window.addEventListener("DOMContentLoaded", connectTimelineLine);
+window.addEventListener("resize", connectTimelineLine);
 // ===== START THE APPLICATION =====
 // Initialize when DOM is ready
 if (document.readyState === "loading") {
@@ -2317,3 +2422,59 @@ function toggleModalClose2Visibility() {
     modalClose2.style.opacity = "1";
   }
 }
+// =============================================================================
+// ANIMATIONS AND INTERACTIONS
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("navbar").classList.add("animate-in");
+});
+
+// Place this in your JS file or a <script> tag
+const heroImage = document.querySelector(".hero-image");
+const observer = new IntersectionObserver(
+  ([entry]) => {
+    if (entry.isIntersecting) {
+      heroImage.classList.add("animate-in");
+      observer.disconnect(); // Remove observer after animation triggers once
+    }
+  },
+  { threshold: 0.3 }
+);
+if (heroImage) observer.observe(heroImage);
+// Example for Intersection Observer
+const heroBtn = document.querySelector(".hero .btn");
+const btnObserver = new IntersectionObserver(
+  ([entry]) => {
+    if (entry.isIntersecting) {
+      heroBtn.classList.add("animate-in");
+      btnObserver.disconnect();
+    }
+  },
+  { threshold: 0.3 }
+);
+if (heroBtn) btnObserver.observe(heroBtn);
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Scroll to top only on the first page load in this tab
+
+  const aboutHeading = document.getElementById("about-heading");
+  if (aboutHeading) {
+    const aboutObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          aboutHeading.classList.add("in-view");
+          aboutObserver.disconnect(); // Stop observing after first animation
+        }
+      },
+      { threshold: 0.3 }
+    );
+    aboutObserver.observe(aboutHeading);
+  }
+});
+window.addEventListener("load", function () {
+  if (!sessionStorage.getItem("hasVisited")) {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    sessionStorage.setItem("hasVisited", "true");
+  }
+});
+
+// =============================================================================

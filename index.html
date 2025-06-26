@@ -54,6 +54,36 @@
           <li style="--i: 6">
             <a href="#contactForm"><i class="fas fa-envelope"></i> Contact</a>
           </li>
+
+          <li class="nav-social-links">
+            <div class="mobile-social-icons">
+              <a
+                href="https://github.com/Yehia-Ibrahim-saleh"
+                target="_blank"
+                aria-label="GitHub"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/yehia-ibrahim-8154b0201/"
+                target="_blank"
+                aria-label="LinkedIn"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/yahya_ibrahim_1/"
+                target="_blank"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://mail.google.com/"
+                target="_blank"
+                aria-label="Gmail"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
+          </li>
+
           <div class="nav-underline"></div>
         </ul>
 
@@ -92,7 +122,8 @@
         <!-- This is where the typing effect will display -->
         <p id="typed-description"></p>
         <!-- This is for the description -->
-        <a href="#projects" class="btn">View My Work</a>
+
+        <a href="#projects" class="btn" id="hero-btn">View My Work</a>
       </div>
 
       <div class="hero-image">
@@ -104,17 +135,19 @@
 
     <section id="about">
       <div class="about-content">
-        <h2>About Me</h2>
+        <h2 id="about-heading" class="about-animate-in about-animate-in-line">
+          About Me
+        </h2>
+
         <div class="about-timeline">
-          <div class="timeline-start-dot"></div>
+          <!-- Start Dot (Blue) -->
+          <div class="start-dot">
+            <i class="fas fa-play"></i>
+          </div>
+
+          <!-- Timeline Wave (Blue to Gold Gradient) -->
           <div class="about-timeline-line">
-            <svg
-              width="100"
-              height="100%"
-              viewBox="0 0 100 1000"
-              preserveAspectRatio="none"
-              class="timeline-wave-svg"
-            >
+            <svg class="timeline-wave-svg">
               <defs>
                 <linearGradient
                   id="timeline-gradient"
@@ -123,35 +156,36 @@
                   x2="0"
                   y2="1"
                 >
-                  <stop offset="0%" stop-color="#0073e6" />
-                  <stop offset="100%" stop-color="#ffd700" />
+                  <stop offset="0%" stop-color="#2563eb" />
+                  <stop offset="100%" stop-color="#d4af37" />
                 </linearGradient>
               </defs>
               <path
                 d="M50,0 Q80,100 50,200 Q20,300 50,400 Q80,500 50,600 Q20,700 50,800 Q80,900 50,1000"
-                stroke="url(#timeline-gradient)"
-                stroke-width="8"
-                fill="none"
-                opacity="0.8"
               />
             </svg>
           </div>
+
+          <!-- Timeline Cards -->
           <div class="about-timeline-cards">
-            <div class="about-timeline-item about-card-left">
-              <div class="about-timeline-dot"></div>
+            <!-- Card 1 (Left - Blue) -->
+            <div class="timeline-item animate-left">
+              <div class="timeline-dot"></div>
               <div class="about-card">
                 <div class="about-card-inner">
-                  <div class="about-icon"><i class="fas fa-user"></i></div>
+                  <div class="about-icon">
+                    <i class="fas fa-user"></i>
+                  </div>
                   <span class="about-date">2002</span>
                   <p>
                     My name is <strong>Yehia Ibrahim Saleh</strong>, born in
                     Alexandria, Egypt, on August 13, 2002. I am a 22-year-old
                     Software Engineer with a strong academic foundation, having
                     graduated from
-                    <strong>Emirates Private School in Abudhabi, UAE</strong> ,
+                    <strong>Emirates Private School in Abudhabi, UAE</strong>
                     with an American High School Diploma in 2020, achieving a
                     remarkable GPA of 3.92. I pursued my passion for technology
-                    by earning a <strong> dual degree</strong> in
+                    by earning a <strong>dual degree</strong> in
                     <strong
                       >Computer Science from the Arab Academy for Science and
                       Technology and the University of Northampton in
@@ -161,11 +195,15 @@
                 </div>
               </div>
             </div>
-            <div class="about-timeline-item about-card-right">
-              <div class="about-timeline-dot"></div>
+
+            <!-- Card 2 (Right - Gold) -->
+            <div class="timeline-item animate-right">
+              <div class="timeline-dot"></div>
               <div class="about-card">
                 <div class="about-card-inner">
-                  <div class="about-icon"><i class="fas fa-trophy"></i></div>
+                  <div class="about-icon">
+                    <i class="fas fa-trophy"></i>
+                  </div>
                   <span class="about-date">2023</span>
                   <p>
                     During my studies, I participated in the
@@ -182,8 +220,10 @@
                 </div>
               </div>
             </div>
-            <div class="about-timeline-item about-card-left">
-              <div class="about-timeline-dot"></div>
+
+            <!-- Card 3 (Left - Blue) -->
+            <div class="timeline-item animate-left">
+              <div class="timeline-dot"></div>
               <div class="about-card">
                 <div class="about-card-inner">
                   <div class="about-icon">
@@ -203,11 +243,15 @@
                 </div>
               </div>
             </div>
-            <div class="about-timeline-item about-card-right">
-              <div class="about-timeline-dot"></div>
+
+            <!-- Card 4 (Right - Gold) -->
+            <div class="timeline-item animate-right">
+              <div class="timeline-dot"></div>
               <div class="about-card">
                 <div class="about-card-inner">
-                  <div class="about-icon"><i class="fas fa-futbol"></i></div>
+                  <div class="about-icon">
+                    <i class="fas fa-futbol"></i>
+                  </div>
                   <span class="about-date">2022</span>
                   <p>
                     Football has played a significant role in my life, teaching
@@ -223,11 +267,15 @@
                 </div>
               </div>
             </div>
-            <div class="about-timeline-item about-card-left">
-              <div class="about-timeline-dot"></div>
+
+            <!-- Card 5 (Left - Blue) -->
+            <div class="timeline-item animate-left">
+              <div class="timeline-dot"></div>
               <div class="about-card">
                 <div class="about-card-inner">
-                  <div class="about-icon"><i class="fas fa-bolt"></i></div>
+                  <div class="about-icon">
+                    <i class="fas fa-bolt"></i>
+                  </div>
                   <span class="about-date">Future</span>
                   <p>
                     I am excited about the future and eager to leverage my
@@ -238,7 +286,11 @@
               </div>
             </div>
           </div>
-          <div class="timeline-end-dot"></div>
+
+          <!-- End Dot (Gold) -->
+          <div class="end-dot">
+            <i class="fas fa-flag-checkered"></i>
+          </div>
         </div>
       </div>
     </section>
